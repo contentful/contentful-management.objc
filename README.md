@@ -5,24 +5,16 @@
 [![License](https://img.shields.io/cocoapods/l/contentful-management.objc.svg?style=flat)](http://cocoadocs.org/docsets/contentful-management.objc)
 [![Platform](https://img.shields.io/cocoapods/p/contentful-management.objc.svg?style=flat)](http://cocoadocs.org/docsets/contentful-management.objc)
 
-## Usage
+Objective-C SDK for [Contentful's][1] Content Management API.
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+[Contentful][1] is a content management platform for web applications, mobile apps and connected devices. It allows you to create, edit & manage content in the cloud and publish it anywhere via powerful API. Contentful offers tools for managing editorial teams and enabling cooperation between organizations.
+
+## Usage
 
 ## Requirements
 
 ## Installation
 
-contentful-management.objc is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-    pod "contentful-management.objc"
-
-## Author
-
-Boris Bügling, boris@icculus.org
-
 ## License
 
-contentful-management.objc is available under the MIT license. See the LICENSE file for more info.
-
+Copyright (c) 2014 Contentful GmbH. See LICENSE for further details.

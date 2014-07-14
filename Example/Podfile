@@ -1,9 +1,9 @@
 target 'contentful-management.objc', :exclusive => true do
-  pod "contentful-management.objc", :path => "../"
+  pod "ContentfulManagementAPI", :path => "../"
 end
 
 target 'Tests', :exclusive => true do
-  pod "contentful-management.objc", :path => "../"
+  pod "ContentfulManagementAPI", :path => "../"
 
   pod 'Specta', '~> 0.2.1'
   pod 'Expecta'
