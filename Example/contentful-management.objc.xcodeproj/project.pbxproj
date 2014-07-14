@@ -55,6 +55,7 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		9AF15F6F2C8A4651BD3C698E /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13B0AAA1973CB2B00A88BA3 /* ContentfulManagementAPI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ContentfulManagementAPI.podspec; path = ../ContentfulManagementAPI.podspec; sourceTree = "<group>"; };
+		A13B0AAC1973D00100A88BA3 /* CMACredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMACredentials.h; sourceTree = "<group>"; };
 		A93B57B77DCB446FB1CC2796 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		ADFC3018F77845AD8340D718 /* Pods-contentful-management.objc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contentful-management.objc.xcconfig"; path = "Pods/Pods-contentful-management.objc.xcconfig"; sourceTree = "<group>"; };
 		E6B5F085A26E4E618F0FE90D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 			children = (
 				6003F59C195388D20070C39A /* CMAAppDelegate.h */,
 				6003F59D195388D20070C39A /* CMAAppDelegate.m */,
+				A13B0AAC1973D00100A88BA3 /* CMACredentials.h */,
 				6003F5A5195388D20070C39A /* CMAViewController.h */,
 				6003F5A6195388D20070C39A /* CMAViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
