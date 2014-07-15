@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CMAViewController : UIViewController
+@interface CMAViewController : UITableViewController
 
 @end

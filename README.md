@@ -18,3 +18,6 @@ Objective-C SDK for [Contentful's][1] Content Management API.
 ## License
 
 Copyright (c) 2014 Contentful GmbH. See LICENSE for further details.
+
+
+[1]: https://www.contentful.com/
