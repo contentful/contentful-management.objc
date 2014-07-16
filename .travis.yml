@@ -1,5 +1,16 @@
 reference: http://www.objc.io/issue-6/travis-ci.html
 language: objective-c
 cache: bundler
-script:
-- xctool test -workspace Example/contentful-management.objc.xcworkspace -scheme contentful-management.objc -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+before_script:
+- export LANG=en_US.UTF-8
+before_install:
+- gem install cocoapods xcpretty cocoapods-testing
+script: pod lib testing
+  slack:
+  - secure: pbLVGeA+577zmld+ie/1KUWxin8PFB+uXogz1zrVhEqnparjbHNMvFfaAGG1gbaAJC0skGksCe+LeBrhLargbLSgAT3HrObwDCIu7H8IjaYOEhpNTHCObrwRIyOeBVHHAhjgjeElM7hvptJjRMuERErcnL65EOlaIdm4ZqOg3/0=
+env:
+  global:
+  - ARTIFACTS_S3_BUCKET=static.cdnorigin.contentful.com
+  - secure: n/hnbmOoeLt4g+Mzm6Nm/fnxwr7fFjfFTlNxEco7kk9oeNklj0vudOwbYtxL2AWuMNWX/tSHlUieKf4UGOiwzFeQmWyLdi0dkwSKRMNBNz2XQrlzjemZNf8V9+E6+JPeH8BVBKyscYgNevrp7R0Lx2h5mcDVogHm416yUiNzGOQ=
+  - secure: FAIgFb/XlYTHWXAE7dzl5KFAMmST39forxsfmJdysXdaIUXK1Y44PJnS4HQ0cRa79e+o+NSOJSHLGI+qboXNoDAHqaDGBqtC7QROjW7ed0ZQp0iyNeebSq8TQzuOwdrqEjh9SGK24bgbTgQx+i8brYRJA+N8igfNtVoTUXj7buI=
+  - secure: LyiQhHG89Zn0FdprFntjvT34DOcvFU/IITWhhowfgYrXGObUTEOyIyE3ve6fJpMm23B8/u1EUNxBVvqxevdGmA2RuoJiMMy+V/uFsBHmuOeJ8TeDYOgjyWJgsJt1bfDLpFwX2Ztu0smdMeuBpmsOA2I3FW0mDCx5tiAuScNidnE=
