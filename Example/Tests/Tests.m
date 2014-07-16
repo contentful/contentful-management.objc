@@ -6,37 +6,50 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
-SpecBegin(InitialSpecs)
+#import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
-describe(@"these will fail", ^{
+#import "CMACredentials.h"
 
-    it(@"can do maths", ^{
-        expect(1).to.equal(2);
+SpecBegin(Spaces)
+
+describe(@"retrieve Spaces", ^{
+    __block CMAClient* client;
+
+    beforeEach(^{
+        client = [[CMAClient alloc] initWithAccessToken:CMA_ACCESS_TOKEN];
     });
 
-    it(@"can read", ^{
-        expect(@"number").to.equal(@"string");
-    });
-    
-    it(@"will wait and fail", ^AsyncBlock {
-        
-    });
-});
+    it(@"can retrieve all Spaces of an account", ^AsyncBlock {
+        [client fetchAllSpacesWithSuccess:^(CDAResponse *response, CDAArray *array) {
+            expect(response).toNot.beNil;
 
-describe(@"these will pass", ^{
-    
-    it(@"can do maths", ^{
-        expect(1).beLessThan(23);
-    });
-    
-    it(@"can read", ^{
-        expect(@"team").toNot.contain(@"I");
-    });
-    
-    it(@"will wait and succeed", ^AsyncBlock {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            expect(array).toNot.beNil;
+            expect(array.items.count).to.equal(23);
+            expect([array.items[0] class]).to.equal([CMASpace class]);
+
             done();
-        });
+        } failure:^(CDAResponse *response, NSError *error) {
+            XCTFail(@"Error: %@", error);
+
+            done();
+        }];
+    });
+
+    it(@"can retrieve a single Space", ^AsyncBlock {
+        [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,
+                                                                   CMASpace *space) {
+            expect(response).toNot.beNil;
+
+            expect(space).toNot.beNil;
+            expect(space.identifier).to.equal(@"xr0qbumw0cn0");
+            expect(space.name).to.equal(@"test");
+
+            done();
+        } failure:^(CDAResponse *response, NSError *error) {
+            XCTFail(@"Error: %@", error);
+
+            done();
+        }];
     });
 });
 

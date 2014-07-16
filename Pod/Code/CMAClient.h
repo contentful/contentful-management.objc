@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
-#import "CDAClient.h"
+#import <ContentfulDeliveryAPI/CDAClient.h>
+
+@class CMASpace;
+
+typedef void(^CMASpaceFetchedBlock)(CDAResponse* response, CMASpace* space);
 
 @interface CMAClient : NSObject
 
@@ -14,5 +18,9 @@
 
 -(CDARequest*)fetchAllSpacesWithSuccess:(CDAArrayFetchedBlock)success
                                 failure:(CDARequestFailureBlock)failure;
+
+-(CDARequest*)fetchSpaceWithIdentifier:(NSString*)identifier
+                               success:(CMASpaceFetchedBlock)success
+                               failure:(CDARequestFailureBlock)failure;
 
 @end

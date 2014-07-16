@@ -29,6 +29,15 @@
                                     failure:failure];
 }
 
+-(CDARequest *)fetchSpaceWithIdentifier:(NSString *)identifier
+                                success:(CMASpaceFetchedBlock)success
+                                failure:(CDARequestFailureBlock)failure {
+    return [self.client fetchURLPath:[@"spaces/" stringByAppendingString:identifier]
+                          parameters:@{}
+                             success:success
+                             failure:failure];
+}
+
 -(id)initWithAccessToken:(NSString *)accessToken {
     self = [super init];
     if (self) {
@@ -37,6 +46,7 @@
         self.client = [[CDAClient alloc] initWithSpaceKey:nil
                                               accessToken:accessToken
                                             configuration:configuration];
+        self.client.resourceClassPrefix = @"CMA";
     }
     return self;
 }
