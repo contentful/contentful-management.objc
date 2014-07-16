@@ -1,4 +1,3 @@
-reference: http://www.objc.io/issue-6/travis-ci.html
 language: objective-c
 cache: bundler
 before_script:
@@ -6,6 +5,7 @@ before_script:
 before_install:
 - gem install cocoapods xcpretty cocoapods-testing
 script: pod lib testing
+notifications:
   slack:
   - secure: pbLVGeA+577zmld+ie/1KUWxin8PFB+uXogz1zrVhEqnparjbHNMvFfaAGG1gbaAJC0skGksCe+LeBrhLargbLSgAT3HrObwDCIu7H8IjaYOEhpNTHCObrwRIyOeBVHHAhjgjeElM7hvptJjRMuERErcnL65EOlaIdm4ZqOg3/0=
 env:
