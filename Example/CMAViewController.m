@@ -1,6 +1,6 @@
 //
 //  CMAViewController.m
-//  contentful-management.objc
+//  ManagementSDK
 //
 //  Created by Boris Bügling on 07/14/2014.
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.

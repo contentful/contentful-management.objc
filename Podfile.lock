@@ -33,13 +33,13 @@ PODS:
 
 DEPENDENCIES:
   - ContentfulDeliveryAPI (HEAD)
-  - ContentfulManagementAPI (from `../`)
+  - ContentfulManagementAPI (from `.`)
   - Expecta
   - Specta (~> 0.2.1)
 
 EXTERNAL SOURCES:
   ContentfulManagementAPI:
-    :path: ../
+    :path: .
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3

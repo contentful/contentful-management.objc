@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F589195388D20070C39A"
-               BuildableName = "contentful-management.objc.app"
-               BlueprintName = "contentful-management.objc"
-               ReferencedContainer = "container:contentful-management.objc.xcodeproj">
+               BuildableName = "ManagementSDK.app"
+               BlueprintName = "ManagementSDK"
+               ReferencedContainer = "container:ManagementSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
-               ReferencedContainer = "container:contentful-management.objc.xcodeproj">
+               ReferencedContainer = "container:ManagementSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "contentful-management.objc.app"
-            BlueprintName = "contentful-management.objc"
-            ReferencedContainer = "container:contentful-management.objc.xcodeproj">
+            BuildableName = "ManagementSDK.app"
+            BlueprintName = "ManagementSDK"
+            ReferencedContainer = "container:ManagementSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "contentful-management.objc.app"
-            BlueprintName = "contentful-management.objc"
-            ReferencedContainer = "container:contentful-management.objc.xcodeproj">
+            BuildableName = "ManagementSDK.app"
+            BlueprintName = "ManagementSDK"
+            ReferencedContainer = "container:ManagementSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "contentful-management.objc.app"
-            BlueprintName = "contentful-management.objc"
-            ReferencedContainer = "container:contentful-management.objc.xcodeproj">
+            BuildableName = "ManagementSDK.app"
+            BlueprintName = "ManagementSDK"
+            ReferencedContainer = "container:ManagementSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

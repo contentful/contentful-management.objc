@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		504BE7DD49C34CC2B93B6B0D /* libPods-contentful-management.objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 321DCB71A1D24855A59ADF19 /* libPods-contentful-management.objc.a */; };
+		504BE7DD49C34CC2B93B6B0D /* libPods-ManagementSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 321DCB71A1D24855A59ADF19 /* libPods-ManagementSDK.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -20,7 +20,6 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		92CAF3826F5D4D84A66E2F11 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF15F6F2C8A4651BD3C698E /* libPods-Tests.a */; };
-		A13B0AAB1973CB2B00A88BA3 /* ContentfulManagementAPI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A13B0AAA1973CB2B00A88BA3 /* ContentfulManagementAPI.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,20 +28,20 @@
 			containerPortal = 6003F582195388D10070C39A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6003F589195388D20070C39A;
-			remoteInfo = "contentful-management.objc";
+			remoteInfo = ManagementSDK;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		321DCB71A1D24855A59ADF19 /* libPods-contentful-management.objc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-contentful-management.objc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		321DCB71A1D24855A59ADF19 /* libPods-ManagementSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManagementSDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA09ECFC7604948939D5E1C /* Pods-Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.xcconfig"; path = "Pods/Pods-Tests.xcconfig"; sourceTree = "<group>"; };
-		6003F58A195388D20070C39A /* contentful-management.objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "contentful-management.objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F58A195388D20070C39A /* ManagementSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManagementSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6003F595195388D20070C39A /* contentful-management.objc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "contentful-management.objc-Info.plist"; sourceTree = "<group>"; };
+		6003F595195388D20070C39A /* ManagementSDK-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ManagementSDK-Info.plist"; sourceTree = "<group>"; };
 		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6003F59B195388D20070C39A /* contentful-management.objc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "contentful-management.objc-Prefix.pch"; sourceTree = "<group>"; };
+		6003F59B195388D20070C39A /* ManagementSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ManagementSDK-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* CMAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMAAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* CMAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMAAppDelegate.m; sourceTree = "<group>"; };
 		6003F5A5195388D20070C39A /* CMAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMAViewController.h; sourceTree = "<group>"; };
@@ -54,11 +53,11 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		9AF15F6F2C8A4651BD3C698E /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A13B0AAA1973CB2B00A88BA3 /* ContentfulManagementAPI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ContentfulManagementAPI.podspec; path = ../ContentfulManagementAPI.podspec; sourceTree = "<group>"; };
+		A13B0AAA1973CB2B00A88BA3 /* ContentfulManagementAPI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ContentfulManagementAPI.podspec; sourceTree = "<group>"; };
 		A13B0AAC1973D00100A88BA3 /* CMACredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMACredentials.h; sourceTree = "<group>"; };
-		A93B57B77DCB446FB1CC2796 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		ADFC3018F77845AD8340D718 /* Pods-contentful-management.objc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contentful-management.objc.xcconfig"; path = "Pods/Pods-contentful-management.objc.xcconfig"; sourceTree = "<group>"; };
-		E6B5F085A26E4E618F0FE90D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		A93B57B77DCB446FB1CC2796 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		ADFC3018F77845AD8340D718 /* Pods-ManagementSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagementSDK.xcconfig"; path = "Pods/Pods-ManagementSDK.xcconfig"; sourceTree = "<group>"; };
+		E6B5F085A26E4E618F0FE90D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +68,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				504BE7DD49C34CC2B93B6B0D /* libPods-contentful-management.objc.a in Frameworks */,
+				504BE7DD49C34CC2B93B6B0D /* libPods-ManagementSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,20 +89,20 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
-				6003F593195388D20070C39A /* contentful-management.objc */,
+				6003F593195388D20070C39A /* Example */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F58B195388D20070C39A /* Products */,
 				6003F5B5195388D20070C39A /* Tests */,
 				3CA09ECFC7604948939D5E1C /* Pods-Tests.xcconfig */,
-				ADFC3018F77845AD8340D718 /* Pods-contentful-management.objc.xcconfig */,
+				ADFC3018F77845AD8340D718 /* Pods-ManagementSDK.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
 		6003F58B195388D20070C39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6003F58A195388D20070C39A /* contentful-management.objc.app */,
+				6003F58A195388D20070C39A /* ManagementSDK.app */,
 				6003F5AE195388D20070C39A /* Tests.xctest */,
 			);
 			name = Products;
@@ -117,12 +116,12 @@
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				9AF15F6F2C8A4651BD3C698E /* libPods-Tests.a */,
-				321DCB71A1D24855A59ADF19 /* libPods-contentful-management.objc.a */,
+				321DCB71A1D24855A59ADF19 /* libPods-ManagementSDK.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6003F593195388D20070C39A /* contentful-management.objc */ = {
+		6003F593195388D20070C39A /* Example */ = {
 			isa = PBXGroup;
 			children = (
 				6003F59C195388D20070C39A /* CMAAppDelegate.h */,
@@ -133,14 +132,14 @@
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
-			path = "contentful-management.objc";
+			path = Example;
 			sourceTree = "<group>";
 		};
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6003F595195388D20070C39A /* contentful-management.objc-Info.plist */,
-				6003F59B195388D20070C39A /* contentful-management.objc-Prefix.pch */,
+				6003F595195388D20070C39A /* ManagementSDK-Info.plist */,
+				6003F59B195388D20070C39A /* ManagementSDK-Prefix.pch */,
 				6003F599195388D20070C39A /* main.m */,
 			);
 			name = "Supporting Files";
@@ -177,9 +176,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6003F589195388D20070C39A /* contentful-management.objc */ = {
+		6003F589195388D20070C39A /* ManagementSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "contentful-management.objc" */;
+			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ManagementSDK" */;
 			buildPhases = (
 				18DE45168DF544C2B2072D33 /* Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
@@ -191,9 +190,9 @@
 			);
 			dependencies = (
 			);
-			name = "contentful-management.objc";
-			productName = "contentful-management.objc";
-			productReference = 6003F58A195388D20070C39A /* contentful-management.objc.app */;
+			name = ManagementSDK;
+			productName = ManagementSDK;
+			productReference = 6003F58A195388D20070C39A /* ManagementSDK.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6003F5AD195388D20070C39A /* Tests */ = {
@@ -212,7 +211,7 @@
 				6003F5B4195388D20070C39A /* PBXTargetDependency */,
 			);
 			name = Tests;
-			productName = "contentful-management.objcTests";
+			productName = ManagementSDKTests;
 			productReference = 6003F5AE195388D20070C39A /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -231,7 +230,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "contentful-management.objc" */;
+			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "ManagementSDK" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -244,7 +243,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6003F589195388D20070C39A /* contentful-management.objc */,
+				6003F589195388D20070C39A /* ManagementSDK */,
 				6003F5AD195388D20070C39A /* Tests */,
 			);
 		};
@@ -256,7 +255,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				A13B0AAB1973CB2B00A88BA3 /* ContentfulManagementAPI.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +310,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-contentful-management.objc-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-ManagementSDK-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E2893B3751174474A9279B3C /* Check Pods Manifest.lock */ = {
@@ -356,7 +354,7 @@
 /* Begin PBXTargetDependency section */
 		6003F5B4195388D20070C39A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6003F589195388D20070C39A /* contentful-management.objc */;
+			target = 6003F589195388D20070C39A /* ManagementSDK */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -436,14 +434,14 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ADFC3018F77845AD8340D718 /* Pods-contentful-management.objc.xcconfig */;
+			baseConfigurationReference = ADFC3018F77845AD8340D718 /* Pods-ManagementSDK.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "contentful-management.objc/contentful-management.objc-Prefix.pch";
+				GCC_PREFIX_HEADER = "Example/ManagementSDK-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "contentful-management.objc/contentful-management.objc-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Example/ManagementSDK-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -451,14 +449,14 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ADFC3018F77845AD8340D718 /* Pods-contentful-management.objc.xcconfig */;
+			baseConfigurationReference = ADFC3018F77845AD8340D718 /* Pods-ManagementSDK.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "contentful-management.objc/contentful-management.objc-Prefix.pch";
+				GCC_PREFIX_HEADER = "Example/ManagementSDK-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "contentful-management.objc/contentful-management.objc-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Example/ManagementSDK-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -468,7 +466,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3CA09ECFC7604948939D5E1C /* Pods-Tests.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/contentful-management.objc.app/contentful-management.objc";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ManagementSDK.app/ManagementSDK";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -491,7 +489,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3CA09ECFC7604948939D5E1C /* Pods-Tests.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/contentful-management.objc.app/contentful-management.objc";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ManagementSDK.app/ManagementSDK";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -509,7 +507,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6003F585195388D10070C39A /* Build configuration list for PBXProject "contentful-management.objc" */ = {
+		6003F585195388D10070C39A /* Build configuration list for PBXProject "ManagementSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5BD195388D20070C39A /* Debug */,
@@ -518,7 +516,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "contentful-management.objc" */ = {
+		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ManagementSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C0195388D20070C39A /* Debug */,
