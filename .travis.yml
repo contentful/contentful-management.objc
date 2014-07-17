@@ -1,6 +1,8 @@
 language: objective-c
 cache: bundler
-before_install: cd Example && pod install && cd ..
+before_install: 
+- bundle install
+- cd Example && pod install && cd ..
 script: pod lib testing
 notifications:
   slack:
