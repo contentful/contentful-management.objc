@@ -8,7 +8,6 @@
 
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
-#import "CMACredentials.h"
 #import "CMAViewController.h"
 
 @interface CMAViewController ()
@@ -29,7 +28,10 @@
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:NSStringFromClass(self.class)];
 
-    [[[CMAClient alloc] initWithAccessToken:CMA_ACCESS_TOKEN]
+    NSString* token = [[[NSProcessInfo processInfo] environment]
+                       valueForKey:@"CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN"];
+
+    [[[CMAClient alloc] initWithAccessToken:token]
      fetchAllSpacesWithSuccess:^(CDAResponse *response, CDAArray *array) {
          self.spaces = [array.items sortedArrayUsingComparator:^NSComparisonResult(CMASpace* space1,
                                                                                    CMASpace* space2) {

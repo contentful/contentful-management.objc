@@ -8,15 +8,16 @@
 
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
-#import "CMACredentials.h"
-
 SpecBegin(Spaces)
 
 describe(@"retrieve Spaces", ^{
     __block CMAClient* client;
 
     beforeEach(^{
-        client = [[CMAClient alloc] initWithAccessToken:CMA_ACCESS_TOKEN];
+        NSString* token = [[[NSProcessInfo processInfo] environment]
+                           valueForKey:@"CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN"];
+
+        client = [[CMAClient alloc] initWithAccessToken:token];
     });
 
     it(@"can retrieve all Spaces of an account", ^AsyncBlock {
