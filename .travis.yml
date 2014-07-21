@@ -5,3 +5,6 @@ script: pod lib testing
 notifications:
   slack:
     secure: QfCvAzriwr2CTqXoAwuQMIIaghWxa3X7VLXEY4HQ83HIfZRnUUMbTeDUfBKjcOsys8OwgOGxNlTESviqWHuek1yu23UvYTBBsMBwcJBGfMXRMvEyZb/GT5wOof9k7SbKGDDu4AkpPNwuY3zqsn3wEijBWk01b4ocOIbYsDMK/ic=
+env:
+  global:
+    secure: O6Y6vyCeA9ubuENaQYIeiLiGB0+NeKXj3gjIPFf0Wga3mXpFQqVSIXkETB9a//nj1mAYaSzOZGu+7FLnkek65rwjfh3WpHStqX8RSpYFfoe14eS/BaOFtJZikIwOldyxY7aE2e2RTgaqUDMFtiuchTQdKqxlT7Z2tMX+q/f+9Zw=
