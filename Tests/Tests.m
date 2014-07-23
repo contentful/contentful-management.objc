@@ -52,6 +52,28 @@ describe(@"retrieve Spaces", ^{
             done();
         }];
     });
+
+    it(@"can change the name of a Space", ^AsyncBlock {
+        [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,
+                                                                   CMASpace *space) {
+            expect(space).toNot.beNil;
+            space.name = @"foo";
+
+            [space updateWithSuccess:^{
+                expect(space.name).to.equal(@"foo");
+
+                done();
+            } failure:^(CDAResponse *response, NSError *error) {
+                XCTFail(@"Error: %@", error);
+
+                done();
+            }];
+        } failure:^(CDAResponse *response, NSError *error) {
+            XCTFail(@"Error: %@", error);
+
+            done();
+        }];
+    });
 });
 
 SpecEnd

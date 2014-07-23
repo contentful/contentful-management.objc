@@ -10,4 +10,8 @@
 
 @interface CMASpace : CDASpace
 
+@property (nonatomic) NSString* name;
+
+-(CDARequest*)updateWithSuccess:(void(^)())success failure:(CDARequestFailureBlock)failure;
+
 @end
