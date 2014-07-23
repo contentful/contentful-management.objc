@@ -10,7 +10,7 @@
 
 SpecBegin(Spaces)
 
-describe(@"retrieve Spaces", ^{
+describe(@"CMA", ^{
     __block CMAClient* client;
 
     beforeEach(^{
@@ -57,12 +57,23 @@ describe(@"retrieve Spaces", ^{
         [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
             expect(space).toNot.beNil;
+            NSString* originalName = space.name;
             space.name = @"foo";
 
             [space updateWithSuccess:^{
                 expect(space.name).to.equal(@"foo");
 
-                done();
+                space.name = originalName;
+
+                [space updateWithSuccess:^{
+                    expect(space.name).to.equal(originalName);
+
+                    done();
+                } failure:^(CDAResponse *response, NSError *error) {
+                    XCTFail(@"Error: %@", error);
+
+                    done();
+                }];
             } failure:^(CDAResponse *response, NSError *error) {
                 XCTFail(@"Error: %@", error);
 

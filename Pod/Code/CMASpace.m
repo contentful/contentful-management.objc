@@ -22,8 +22,11 @@
     return [self.client.requestOperationManager putURLPath:URLPath
                                                    headers:headers
                                                 parameters:@{ @"name": self.name }
-                                                   success:success
-                                                   failure:failure];
+                                                   success:^(CDAResponse *response, CMASpace* space) {
+                                                       [self updateWithResource:space];
+
+                                                       if (success) success();
+                                                   } failure:failure];
 }
 
 @end
