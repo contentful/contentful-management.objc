@@ -1,5 +1,5 @@
 target 'ManagementSDK', :exclusive => true do
-  pod "ContentfulDeliveryAPI", :head
+  pod "ContentfulDeliveryAPI", :git => 'https://github.com/contentful/contentful.objc.git'
   pod "ContentfulManagementAPI", :path => "."
 end
 
