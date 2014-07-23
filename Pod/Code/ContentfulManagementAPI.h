@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import <ContentfulDeliveryAPI/CDAArray.h>
+#import <ContentfulDeliveryAPI/ContentfulDeliveryAPI.h>
 
+#import <ContentfulManagementAPI/CMAArray.h>
 #import <ContentfulManagementAPI/CMAClient.h>
 #import <ContentfulManagementAPI/CMASpace.h>

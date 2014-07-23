@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
-#import "CDAArray.h"
+#import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
 @interface CMAArray : CDAArray
 

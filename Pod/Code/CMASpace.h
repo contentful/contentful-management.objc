@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
-#import "CDASpace.h"
+#import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
 @interface CMASpace : CDASpace
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
-#import <ContentfulDeliveryAPI/CDAClient.h>
+#import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
 @class CMASpace;
 
