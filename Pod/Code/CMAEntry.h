@@ -14,6 +14,7 @@
 -(CDARequest*)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
 -(CDARequest*)publishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
 -(void)setValue:(id)value forFieldWithName:(NSString *)key;
+-(CDARequest *)unarchiveWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
 -(CDARequest *)unpublishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
 -(CDARequest*)updateWithSuccess:(void(^)())success failure:(CDARequestFailureBlock)failure;
 

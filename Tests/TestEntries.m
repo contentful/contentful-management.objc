@@ -136,6 +136,34 @@ describe(@"CMA", ^{
                                 }];
     });
 
+    it(@"can unarchive an Entry", ^AsyncBlock {
+        [space createEntryOfContentType:contentType
+                             withFields:@{}
+                                success:^(CDAResponse *response, CMAEntry *entry) {
+                                    [entry archiveWithSuccess:^{
+                                        expect(entry.sys[@"archivedVersion"]).equal(@1);
+
+                                        [entry unarchiveWithSuccess:^{
+                                            expect(entry.sys[@"archivedVersion"]).to.beNil;
+
+                                            done();
+                                        } failure:^(CDAResponse *response, NSError *error) {
+                                            XCTFail(@"Error: %@", error);
+
+                                            done();
+                                        }];
+                                    } failure:^(CDAResponse *response, NSError *error) {
+                                        XCTFail(@"Error: %@", error);
+
+                                        done();
+                                    }];
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
+                                    
+                                    done();
+                                }];
+    });
+
     it(@"can unpublish an Entry", ^AsyncBlock {
         [space createEntryOfContentType:contentType
                              withFields:@{}

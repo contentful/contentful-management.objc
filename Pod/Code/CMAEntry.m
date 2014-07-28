@@ -53,6 +53,22 @@
     return [result copy];
 }
 
+-(CDARequest*)performDeleteToFragment:(NSString*)fragment
+                          withSuccess:(void (^)())success
+                              failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client deleteURLPath:[self.URLPath stringByAppendingPathComponent:fragment]
+                              headers:nil
+                           parameters:nil
+                              success:^(CDAResponse *response, CMAEntry* entry) {
+                                  [self updateWithResource:entry];
+
+                                  if (success) {
+                                      success();
+                                  }
+                              } failure:failure];
+}
+
 -(CDARequest*)performPutToFragment:(NSString*)fragment
                        withSuccess:(void (^)())success
                            failure:(CDARequestFailureBlock)failure {
@@ -77,18 +93,12 @@
     [super setValue:value forFieldWithName:key];
 }
 
--(CDARequest *)unpublishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client deleteURLPath:[self.URLPath stringByAppendingPathComponent:@"published"]
-                              headers:nil
-                           parameters:nil
-                              success:^(CDAResponse *response, CMAEntry* entry) {
-                                  [self updateWithResource:entry];
+-(CDARequest *)unarchiveWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performDeleteToFragment:@"archived" withSuccess:success failure:failure];
+}
 
-                                  if (success) {
-                                      success();
-                                  }
-                              } failure:failure];
+-(CDARequest *)unpublishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performDeleteToFragment:@"published" withSuccess:success failure:failure];
 }
 
 -(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
