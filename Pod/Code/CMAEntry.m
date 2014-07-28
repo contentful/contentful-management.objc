@@ -72,8 +72,8 @@
     return [self.client putURLPath:self.URLPath
                            headers:@{ @"X-Contentful-Version": [self.sys[@"version"] stringValue] }
                         parameters:@{ @"fields" : [self parametersFromLocalizedFields] }
-                           success:^(CDAResponse *response, CMASpace* space) {
-                               [self updateWithResource:space];
+                           success:^(CDAResponse *response, CMAEntry* entry) {
+                               [self updateWithResource:entry];
 
                                if (success) success();
                            } failure:failure];
