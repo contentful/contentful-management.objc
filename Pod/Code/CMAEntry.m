@@ -14,7 +14,7 @@
 
 @interface CMAEntry ()
 
-@property (nonatomic) NSString* URLPath;
+@property (nonatomic, readonly) NSString* URLPath;
 
 @end
 
