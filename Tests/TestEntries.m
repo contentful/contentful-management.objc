@@ -96,6 +96,26 @@ describe(@"CMA", ^{
                                 }];
     });
 
+    it(@"can publish an Entry", ^AsyncBlock {
+        [space createEntryOfContentType:contentType
+                             withFields:@{}
+                                success:^(CDAResponse *response, CMAEntry *entry) {
+                                    [entry publishWithSuccess:^{
+                                        expect(entry.sys[@"publishedCounter"]).equal(@1);
+
+                                        done();
+                                    } failure:^(CDAResponse *response, NSError *error) {
+                                        XCTFail(@"Error: %@", error);
+
+                                        done();
+                                    }];
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
+
+                                    done();
+                                }];
+    });
+
     it(@"can update an Entry", ^AsyncBlock {
         [space createEntryOfContentType:contentType
                              withFields:@{ @"title": @{ @"en-US": @"foo" } }

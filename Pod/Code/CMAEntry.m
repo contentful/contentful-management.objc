@@ -49,6 +49,20 @@
     return [result copy];
 }
 
+-(CDARequest *)publishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client putURLPath:[self.URLPath stringByAppendingPathComponent:@"published"]
+                           headers:@{ @"X-Contentful-Version": [self.sys[@"version"] stringValue] }
+                        parameters:nil
+                           success:^(CDAResponse *response, CMAEntry* entry) {
+                               [self updateWithResource:entry];
+
+                               if (success) {
+                                   success();
+                               }
+                           } failure:failure];
+}
+
 -(void)setValue:(id)value forFieldWithName:(NSString *)key {
     [super setValue:value forFieldWithName:key];
 }
