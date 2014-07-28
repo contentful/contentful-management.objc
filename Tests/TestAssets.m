@@ -98,6 +98,25 @@ describe(@"CMA", ^{
                                  done();
                              }];
     });
+
+    it(@"cannot publish an Asset without associated file", ^AsyncBlock {
+        [space createAssetWithFields:@{}
+                             success:^(CDAResponse *response, CMAAsset *asset) {
+                                 expect(asset).toNot.beNil;
+
+                                 [asset publishWithSuccess:^{
+                                     XCTFail(@"Should not succeed.");
+
+                                     done();
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     done();
+                                 }];
+                             } failure:^(CDAResponse *response, NSError *error) {
+                                 XCTFail(@"Error: %@", error);
+
+                                 done();
+                             }];
+    });
 });
 
 SpecEnd

@@ -52,6 +52,10 @@
                            } failure:failure];
 }
 
+-(CDARequest *)publishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performPutToFragment:@"published" withSuccess:success failure:failure];
+}
+
 -(NSString *)URLPath {
     return [@"assets" stringByAppendingPathComponent:self.identifier];
 }
