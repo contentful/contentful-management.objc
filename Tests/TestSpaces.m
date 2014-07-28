@@ -1,6 +1,6 @@
 //
-//  ManagementSDKTests.m
-//  ManagementSDKTests
+//  TestSpaces.m
+//  TestSpaces
 //
 //  Created by Boris Bügling on 07/14/2014.
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
@@ -46,6 +46,29 @@ describe(@"CMA", ^{
             expect(space.name).to.equal(@"test");
 
             done();
+        } failure:^(CDAResponse *response, NSError *error) {
+            XCTFail(@"Error: %@", error);
+
+            done();
+        }];
+    });
+
+    it(@"can retrieve the Content Types of a Space", ^AsyncBlock {
+        [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,
+                                                                   CMASpace *space) {
+            expect(space).toNot.beNil;
+
+            [space fetchContentTypesWithSuccess:^(CDAResponse *response, CDAArray *array) {
+                expect(array).toNot.beNil;
+                expect(array.items.count).equal(1);
+                expect([array.items[0] identifier]).toNot.beNil;
+
+                done();
+            } failure:^(CDAResponse *response, NSError *error) {
+                XCTFail(@"Error: %@", error);
+
+                done();
+            }];
         } failure:^(CDAResponse *response, NSError *error) {
             XCTFail(@"Error: %@", error);
 
