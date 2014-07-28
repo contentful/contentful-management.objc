@@ -22,6 +22,10 @@
 
 @implementation CMAEntry
 
+-(CDARequest *)archiveWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performPutToFragment:@"archived" withSuccess:success failure:failure];
+}
+
 -(CDARequest*)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     NSParameterAssert(self.client);
     return [self.client deleteURLPath:self.URLPath
@@ -49,9 +53,11 @@
     return [result copy];
 }
 
--(CDARequest *)publishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+-(CDARequest*)performPutToFragment:(NSString*)fragment
+                       withSuccess:(void (^)())success
+                           failure:(CDARequestFailureBlock)failure {
     NSParameterAssert(self.client);
-    return [self.client putURLPath:[self.URLPath stringByAppendingPathComponent:@"published"]
+    return [self.client putURLPath:[self.URLPath stringByAppendingPathComponent:fragment]
                            headers:@{ @"X-Contentful-Version": [self.sys[@"version"] stringValue] }
                         parameters:nil
                            success:^(CDAResponse *response, CMAEntry* entry) {
@@ -61,6 +67,10 @@
                                    success();
                                }
                            } failure:failure];
+}
+
+-(CDARequest *)publishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performPutToFragment:@"published" withSuccess:success failure:failure];
 }
 
 -(void)setValue:(id)value forFieldWithName:(NSString *)key {

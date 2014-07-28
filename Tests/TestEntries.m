@@ -49,6 +49,26 @@ describe(@"CMA", ^{
                                  }];
     });
 
+    it(@"can archive an Entry", ^AsyncBlock {
+        [space createEntryOfContentType:contentType
+                             withFields:@{}
+                                success:^(CDAResponse *response, CMAEntry *entry) {
+                                    [entry archiveWithSuccess:^{
+                                        expect(entry.sys[@"archivedVersion"]).equal(@1);
+
+                                        done();
+                                    } failure:^(CDAResponse *response, NSError *error) {
+                                        XCTFail(@"Error: %@", error);
+
+                                        done();
+                                    }];
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
+                                    
+                                    done();
+                                }];
+    });
+
     it(@"can create a new Entry", ^AsyncBlock {
         [space createEntryOfContentType:contentType
                              withFields:@{ @"title": @{ @"en-US": @"Mr. President" } }
