@@ -99,6 +99,28 @@ describe(@"CMA", ^{
                              }];
     });
 
+    it(@"can process the file of an Asset", ^AsyncBlock {
+        NSDictionary* fileData = @{ @"upload": @"http://i.imgur.com/vaa4by0.png",
+                                    @"contentType": @"image/png",
+                                    @"fileName": @"doge.png" };
+
+        [space createAssetWithFields:@{ @"title": @{ @"en-US": @"Bacon Pancakes" },
+                                        @"file": @{ @"en-US": fileData } }
+                             success:^(CDAResponse *response, CMAAsset *asset) {
+                                 [asset processWithSuccess:^{
+                                     done();
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+                             } failure:^(CDAResponse *response, NSError *error) {
+                                 XCTFail(@"Error: %@", error);
+
+                                 done();
+                             }];
+    });
+
     it(@"cannot publish an Asset without associated file", ^AsyncBlock {
         [space createAssetWithFields:@{}
                              success:^(CDAResponse *response, CMAAsset *asset) {

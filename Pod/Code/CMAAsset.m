@@ -74,6 +74,12 @@
                            } failure:failure];
 }
 
+-(CDARequest *)processWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performPutToFragment:[NSString stringWithFormat:@"files/%@/process", self.locale]
+                          withSuccess:success
+                              failure:failure];
+}
+
 -(CDARequest *)publishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performPutToFragment:@"published" withSuccess:success failure:failure];
 }

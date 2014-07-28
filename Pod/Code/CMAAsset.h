@@ -12,4 +12,6 @@
 
 @property (nonatomic) NSString* title;
 
+-(CDARequest*)processWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
+
 @end
