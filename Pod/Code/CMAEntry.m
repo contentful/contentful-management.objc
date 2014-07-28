@@ -67,6 +67,20 @@
     [super setValue:value forFieldWithName:key];
 }
 
+-(CDARequest *)unpublishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client deleteURLPath:[self.URLPath stringByAppendingPathComponent:@"published"]
+                              headers:nil
+                           parameters:nil
+                              success:^(CDAResponse *response, CMAEntry* entry) {
+                                  [self updateWithResource:entry];
+
+                                  if (success) {
+                                      success();
+                                  }
+                              } failure:failure];
+}
+
 -(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     NSParameterAssert(self.client);
     return [self.client putURLPath:self.URLPath
