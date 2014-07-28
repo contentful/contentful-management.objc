@@ -6,10 +6,12 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
-#import <ContentfulManagementAPI/ContentfulManagementAPI.h>
+#import <ContentfulDeliveryAPI/ContentfulDeliveryAPI.h>
 
+@class CMAEntry;
 @class CMASpace;
 
+typedef void(^CMAEntryFetchedBlock)(CDAResponse* response, CMAEntry* entry);
 typedef void(^CMASpaceFetchedBlock)(CDAResponse* response, CMASpace* space);
 
 @interface CMAClient : NSObject

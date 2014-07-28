@@ -8,10 +8,21 @@
 
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
+@class CMAContentType;
+
 @interface CMASpace : CDASpace
 
 @property (nonatomic) NSString* name;
 
+-(CDARequest*)createEntryOfContentType:(CMAContentType*)contentType
+                            withFields:(NSDictionary*)fields
+                               success:(CMAEntryFetchedBlock)success
+                               failure:(CDARequestFailureBlock)failure;
+-(CDARequest*)fetchContentTypesWithSuccess:(CDAArrayFetchedBlock)success
+                                   failure:(CDARequestFailureBlock)failure;
+-(CDARequest*)fetchEntryWithIdentifier:(NSString*)identifier
+                               success:(CDAEntryFetchedBlock)success
+                               failure:(CDARequestFailureBlock)failure;
 -(CDARequest*)updateWithSuccess:(void(^)())success failure:(CDARequestFailureBlock)failure;
 
 @end

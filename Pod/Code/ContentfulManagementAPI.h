@@ -12,4 +12,6 @@
 
 #import <ContentfulManagementAPI/CMAArray.h>
 #import <ContentfulManagementAPI/CMAClient.h>
+#import <ContentfulManagementAPI/CMAContentType.h>
+#import <ContentfulManagementAPI/CMAEntry.h>
 #import <ContentfulManagementAPI/CMASpace.h>
