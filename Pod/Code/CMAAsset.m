@@ -7,7 +7,41 @@
 //
 
 #import "CMAAsset.h"
+#import "CDAClient+Private.h"
+#import "CDAResource+Private.h"
+
+@interface CMAAsset ()
+
+@property (nonatomic, readonly) NSString* URLPath;
+
+@end
+
+#pragma mark -
 
 @implementation CMAAsset
+
+-(CDARequest *)archiveWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performPutToFragment:@"archived" withSuccess:success failure:failure];
+}
+
+-(CDARequest*)performPutToFragment:(NSString*)fragment
+                       withSuccess:(void (^)())success
+                           failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client putURLPath:[self.URLPath stringByAppendingPathComponent:fragment]
+                           headers:@{ @"X-Contentful-Version": [self.sys[@"version"] stringValue] }
+                        parameters:nil
+                           success:^(CDAResponse *response, CMAAsset* asset) {
+                               [self updateWithResource:asset];
+
+                               if (success) {
+                                   success();
+                               }
+                           } failure:failure];
+}
+
+-(NSString *)URLPath {
+    return [@"assets" stringByAppendingPathComponent:self.identifier];
+}
 
 @end

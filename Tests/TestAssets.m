@@ -33,6 +33,27 @@ describe(@"CMA", ^{
                                  }];
     });
 
+    it(@"can archive an Asset", ^AsyncBlock {
+        [space createAssetWithFields:@{}
+                             success:^(CDAResponse *response, CMAAsset *asset) {
+                                 expect(asset).toNot.beNil;
+
+                                 [asset archiveWithSuccess:^{
+                                     expect(asset.sys[@"archivedVersion"]).equal(@1);
+
+                                     done();
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+                             } failure:^(CDAResponse *response, NSError *error) {
+                                 XCTFail(@"Error: %@", error);
+
+                                 done();
+                             }];
+    });
+
     it(@"can create a new Asset", ^AsyncBlock {
         [space createAssetWithFields:@{ @"title": @{ @"en-US": @"My Asset" } }
                              success:^(CDAResponse *response, CMAAsset *asset) {
