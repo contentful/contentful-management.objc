@@ -6,9 +6,11 @@
 //
 //
 
+#import "CDAAsset+Private.h"
 #import "CMAAsset.h"
 #import "CDAClient+Private.h"
 #import "CDAResource+Private.h"
+#import "CMAUtilities.h"
 
 @interface CMAAsset ()
 
@@ -34,6 +36,10 @@
                                       success();
                                   }
                               } failure:failure];
+}
+
+-(NSDictionary*)parametersFromLocalizedFields {
+    return CMATransformLocalizedFieldsToParameterDictionary(self.localizedFields);
 }
 
 -(CDARequest*)performDeleteToFragment:(NSString*)fragment
@@ -72,12 +78,32 @@
     return [self performPutToFragment:@"published" withSuccess:success failure:failure];
 }
 
+-(void)setTitle:(NSString *)title {
+    [self setValue:title forFieldWithName:@"title"];
+}
+
+-(NSString *)title {
+    return self.fields[@"title"];
+}
+
 -(CDARequest *)unarchiveWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"archived" withSuccess:success failure:failure];
 }
 
 -(CDARequest *)unpublishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"published" withSuccess:success failure:failure];
+}
+
+-(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client putURLPath:self.URLPath
+                           headers:@{ @"X-Contentful-Version": [self.sys[@"version"] stringValue] }
+                        parameters:@{ @"fields" : [self parametersFromLocalizedFields] }
+                           success:^(CDAResponse *response, CMAAsset* asset) {
+                               [self updateWithResource:asset];
+
+                               if (success) success();
+                           } failure:failure];
 }
 
 -(NSString *)URLPath {

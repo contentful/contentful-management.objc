@@ -146,6 +146,43 @@ describe(@"CMA", ^{
                                  done();
                              }];
     });
+
+    it(@"can update an Asset", ^AsyncBlock {
+        [space createAssetWithFields:@{ @"title": @{ @"en-US": @"foo" } }
+                             success:^(CDAResponse *response, CMAAsset *asset) {
+                                 expect(asset).toNot.beNil;
+
+                                 asset.title = @"bar";
+
+                                 [asset updateWithSuccess:^{
+                                     // FIXME: There has to be a better way...
+                                     [NSThread sleepForTimeInterval:5.0];
+
+                                     [space fetchAssetWithIdentifier:asset.identifier success:^(CDAResponse *response, CMAAsset* newAsset) {
+                                         expect(asset.fields[@"title"]).equal(@"bar");
+                                         expect(asset.sys[@"version"]).equal(@2);
+
+                                         expect(newAsset).toNot.beNil;
+                                         expect(newAsset.fields[@"title"]).equal(@"bar");
+                                         expect(newAsset.sys[@"version"]).equal(@2);
+
+                                         done();
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+                             } failure:^(CDAResponse *response, NSError *error) {
+                                 XCTFail(@"Error: %@", error);
+                                 
+                                 done();
+                             }];
+    });
 });
 
 SpecEnd

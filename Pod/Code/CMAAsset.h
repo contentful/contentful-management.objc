@@ -10,4 +10,6 @@
 
 @interface CMAAsset : CDAAsset <CMAArchiving, CMAPublishing, CMAResource>
 
+@property (nonatomic) NSString* title;
+
 @end
