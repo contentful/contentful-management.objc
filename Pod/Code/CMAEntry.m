@@ -11,6 +11,7 @@
 #import "CDAEntry+Private.h"
 #import "CMAEntry.h"
 #import "CDAResource+Private.h"
+#import "CMAUtilities.h"
 
 @interface CMAEntry ()
 
@@ -39,18 +40,7 @@
 }
 
 -(NSDictionary*)parametersFromLocalizedFields {
-    NSMutableDictionary* result = [@{} mutableCopy];
-
-    [self.localizedFields enumerateKeysAndObjectsUsingBlock:^(NSString* language,
-                                                              NSDictionary* values, BOOL *stop) {
-        [values enumerateKeysAndObjectsUsingBlock:^(NSString* fieldName, id value, BOOL *stop) {
-            NSMutableDictionary* fieldValues = result[fieldName] ?: [@{} mutableCopy];
-            fieldValues[language] = value;
-            result[fieldName] = fieldValues;
-        }];
-    }];
-
-    return [result copy];
+    return CMATransformLocalizedFieldsToParameterDictionary(self.localizedFields);
 }
 
 -(CDARequest*)performDeleteToFragment:(NSString*)fragment
