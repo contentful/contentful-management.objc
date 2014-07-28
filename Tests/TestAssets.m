@@ -117,6 +117,35 @@ describe(@"CMA", ^{
                                  done();
                              }];
     });
+
+    it(@"can unarchive an Asset", ^AsyncBlock {
+        [space createAssetWithFields:@{}
+                             success:^(CDAResponse *response, CMAAsset *asset) {
+                                 expect(asset).toNot.beNil;
+
+                                 [asset archiveWithSuccess:^{
+                                     expect(asset.sys[@"archivedVersion"]).equal(@1);
+
+                                     [asset unarchiveWithSuccess:^{
+                                         expect(asset.sys[@"archivedVersion"]).to.beNil;
+
+                                         done();
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+                             } failure:^(CDAResponse *response, NSError *error) {
+                                 XCTFail(@"Error: %@", error);
+                                 
+                                 done();
+                             }];
+    });
 });
 
 SpecEnd
