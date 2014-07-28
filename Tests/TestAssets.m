@@ -70,6 +70,34 @@ describe(@"CMA", ^{
                                  done();
                              }];
     });
+
+    it(@"can delete an existing Asset", ^AsyncBlock {
+        [space createAssetWithFields:@{}
+                             success:^(CDAResponse *response, CMAAsset *asset) {
+                                 expect(asset).toNot.beNil;
+
+                                 [asset deleteWithSuccess:^{
+                                     [space fetchAssetWithIdentifier:asset.identifier
+                                                             success:^(CDAResponse *response,
+                                                                       CMAAsset *asset) {
+                                                                 XCTFail(@"Should not succeed.");
+
+                                                                 done();
+                                                             } failure:^(CDAResponse *response,
+                                                                         NSError *error) {
+                                                                 done();
+                                                             }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+                             } failure:^(CDAResponse *response, NSError *error) {
+                                 XCTFail(@"Error: %@", error);
+
+                                 done();
+                             }];
+    });
 });
 
 SpecEnd

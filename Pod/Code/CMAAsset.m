@@ -24,6 +24,18 @@
     return [self performPutToFragment:@"archived" withSuccess:success failure:failure];
 }
 
+-(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client deleteURLPath:self.URLPath
+                              headers:nil
+                           parameters:nil
+                              success:^(CDAResponse *response, id responseObject) {
+                                  if (success) {
+                                      success();
+                                  }
+                              } failure:failure];
+}
+
 -(CDARequest*)performPutToFragment:(NSString*)fragment
                        withSuccess:(void (^)())success
                            failure:(CDARequestFailureBlock)failure {
