@@ -56,6 +56,18 @@
                             failure:failure];
 }
 
+-(CDARequest *)fetchAssetWithIdentifier:(NSString *)identifier
+                                success:(CMAAssetFetchedBlock)success
+                                failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client fetchAssetWithIdentifier:identifier
+                                         success:^(CDAResponse *response, CDAAsset *asset) {
+                                             if (success) {
+                                                 success(response, (CMAAsset*)asset);
+                                             }
+                                         } failure:failure];
+}
+
 -(CDARequest *)fetchContentTypesWithSuccess:(CDAArrayFetchedBlock)success
                                     failure:(CDARequestFailureBlock)failure {
     NSParameterAssert(self.client);

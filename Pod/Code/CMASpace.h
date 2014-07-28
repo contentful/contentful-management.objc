@@ -21,6 +21,9 @@
                             withFields:(NSDictionary*)fields
                                success:(CMAEntryFetchedBlock)success
                                failure:(CDARequestFailureBlock)failure;
+-(CDARequest*)fetchAssetWithIdentifier:(NSString*)identifier
+                               success:(CMAAssetFetchedBlock)success
+                               failure:(CDARequestFailureBlock)failure;
 -(CDARequest*)fetchContentTypesWithSuccess:(CDAArrayFetchedBlock)success
                                    failure:(CDARequestFailureBlock)failure;
 -(CDARequest*)fetchEntryWithIdentifier:(NSString*)identifier
