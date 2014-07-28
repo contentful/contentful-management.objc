@@ -33,6 +33,17 @@
     self.apiClient = [client copyWithSpace:self];
 }
 
+-(CDARequest *)createAssetWithFields:(NSDictionary *)fields
+                             success:(CMAAssetFetchedBlock)success
+                             failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client postURLPath:@"assets"
+                            headers:nil
+                         parameters:@{ @"fields": fields }
+                            success:success
+                            failure:failure];
+}
+
 -(CDARequest *)createEntryOfContentType:(CMAContentType*)contentType
                              withFields:(NSDictionary *)fields
                                 success:(CMAEntryFetchedBlock)success

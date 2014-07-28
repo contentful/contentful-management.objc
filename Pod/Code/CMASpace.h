@@ -14,6 +14,9 @@
 
 @property (nonatomic) NSString* name;
 
+-(CDARequest*)createAssetWithFields:(NSDictionary*)fields
+                            success:(CMAAssetFetchedBlock)success
+                            failure:(CDARequestFailureBlock)failure;
 -(CDARequest*)createEntryOfContentType:(CMAContentType*)contentType
                             withFields:(NSDictionary*)fields
                                success:(CMAEntryFetchedBlock)success

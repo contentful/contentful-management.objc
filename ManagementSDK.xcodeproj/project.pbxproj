@@ -21,6 +21,7 @@
 		6003F5BC195388D20070C39A /* TestSpaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* TestSpaces.m */; };
 		92CAF3826F5D4D84A66E2F11 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF15F6F2C8A4651BD3C698E /* libPods-Tests.a */; };
 		A1757CCF19800B11008F52E1 /* TestEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = A1757CCE19800B11008F52E1 /* TestEntries.m */; };
+		A1BB173B1986933D00B55DCA /* TestAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB173A1986933D00B55DCA /* TestAssets.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		9AF15F6F2C8A4651BD3C698E /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13B0AAA1973CB2B00A88BA3 /* ContentfulManagementAPI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ContentfulManagementAPI.podspec; sourceTree = "<group>"; };
 		A1757CCE19800B11008F52E1 /* TestEntries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestEntries.m; sourceTree = "<group>"; };
+		A1BB173A1986933D00B55DCA /* TestAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAssets.m; sourceTree = "<group>"; };
 		A93B57B77DCB446FB1CC2796 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		ADFC3018F77845AD8340D718 /* Pods-ManagementSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagementSDK.xcconfig"; path = "Pods/Pods-ManagementSDK.xcconfig"; sourceTree = "<group>"; };
 		E6B5F085A26E4E618F0FE90D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A1BB173A1986933D00B55DCA /* TestAssets.m */,
 				A1757CCE19800B11008F52E1 /* TestEntries.m */,
 				6003F5BB195388D20070C39A /* TestSpaces.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1757CCF19800B11008F52E1 /* TestEntries.m in Sources */,
+				A1BB173B1986933D00B55DCA /* TestAssets.m in Sources */,
 				6003F5BC195388D20070C39A /* TestSpaces.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

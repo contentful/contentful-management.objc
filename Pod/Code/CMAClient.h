@@ -8,9 +8,11 @@
 
 #import <ContentfulDeliveryAPI/ContentfulDeliveryAPI.h>
 
+@class CMAAsset;
 @class CMAEntry;
 @class CMASpace;
 
+typedef void(^CMAAssetFetchedBlock)(CDAResponse* response, CMAAsset* asset);
 typedef void(^CMAEntryFetchedBlock)(CDAResponse* response, CMAEntry* entry);
 typedef void(^CMASpaceFetchedBlock)(CDAResponse* response, CMASpace* space);
 
