@@ -10,6 +10,10 @@
 
 #import <ContentfulDeliveryAPI/ContentfulDeliveryAPI.h>
 
+#import <ContentfulManagementAPI/CMAArchiving.h>
+#import <ContentfulManagementAPI/CMAPublishing.h>
+#import <ContentfulManagementAPI/CMAResource.h>
+
 #import <ContentfulManagementAPI/CMAArray.h>
 #import <ContentfulManagementAPI/CMAClient.h>
 #import <ContentfulManagementAPI/CMAContentType.h>
