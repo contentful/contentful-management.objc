@@ -76,6 +76,10 @@
     return [self performDeleteToFragment:@"archived" withSuccess:success failure:failure];
 }
 
+-(CDARequest *)unpublishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performDeleteToFragment:@"published" withSuccess:success failure:failure];
+}
+
 -(NSString *)URLPath {
     return [@"assets" stringByAppendingPathComponent:self.identifier];
 }
