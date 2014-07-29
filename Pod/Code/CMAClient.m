@@ -8,7 +8,9 @@
 
 #import <ContentfulDeliveryAPI/ContentfulDeliveryAPI.h>
 
+#import "CDAArray+Private.h"
 #import "CDAClient+Private.h"
+#import "CMAAccessToken.h"
 #import "CMAClient.h"
 
 @interface CMAClient ()
@@ -27,6 +29,25 @@
                                  parameters:@{}
                                     success:success
                                     failure:failure];
+}
+
+-(CDARequest *)fetchOrganizationsWithSuccess:(CDAArrayFetchedBlock)success
+                                     failure:(CDARequestFailureBlock)failure {
+    return [self.client fetchArrayAtURLPath:@"token"
+                                 parameters:nil
+                                    success:^(CDAResponse *response, CDAArray *array) {
+                                        NSMutableArray* orgs = [@[] mutableCopy];
+
+                                        for (CMAAccessToken* token in array.items) {
+                                            [orgs addObjectsFromArray:token.organizations];
+                                        }
+
+                                        if (success) {
+                                            success(response,
+                                                    [[CDAArray alloc] initWithItems:orgs
+                                                                             client:self.client]);
+                                        }
+                                    } failure:failure];
 }
 
 -(CDARequest *)fetchSpaceWithIdentifier:(NSString *)identifier

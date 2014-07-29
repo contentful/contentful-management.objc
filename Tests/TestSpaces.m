@@ -20,6 +20,23 @@ describe(@"CMA", ^{
         client = [[CMAClient alloc] initWithAccessToken:token];
     });
 
+    it(@"can retrieve all Organizations of an account", ^AsyncBlock {
+        [client fetchOrganizationsWithSuccess:^(CDAResponse *response, CDAArray *array) {
+            expect(array.items.count).equal(5);
+
+            for (CMAOrganization* organization in array.items) {
+                expect(organization.name).toNot.beNil;
+                expect(organization.isActive).equal(YES);
+            }
+
+            done();
+        } failure:^(CDAResponse *response, NSError *error) {
+            XCTFail(@"Error: %@", error);
+
+            done();
+        }];
+    });
+
     it(@"can retrieve all Spaces of an account", ^AsyncBlock {
         [client fetchAllSpacesWithSuccess:^(CDAResponse *response, CDAArray *array) {
             expect(response).toNot.beNil;

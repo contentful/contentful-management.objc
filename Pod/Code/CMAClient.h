@@ -23,6 +23,9 @@ typedef void(^CMASpaceFetchedBlock)(CDAResponse* response, CMASpace* space);
 -(CDARequest*)fetchAllSpacesWithSuccess:(CDAArrayFetchedBlock)success
                                 failure:(CDARequestFailureBlock)failure;
 
+-(CDARequest*)fetchOrganizationsWithSuccess:(CDAArrayFetchedBlock)success
+                                    failure:(CDARequestFailureBlock)failure;
+
 -(CDARequest*)fetchSpaceWithIdentifier:(NSString*)identifier
                                success:(CMASpaceFetchedBlock)success
                                failure:(CDARequestFailureBlock)failure;
