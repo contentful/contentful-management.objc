@@ -44,6 +44,21 @@
                             failure:failure];
 }
 
+-(CDARequest *)createContentTypeWithName:(NSString*)name
+                                  fields:(NSArray*)fields
+                                 success:(CMAContentTypeFetchedBlock)success
+                                 failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+
+    NSArray* fieldsAsDictionaries = fields ? [fields valueForKey:@"dictionaryRepresentation"] : @[];
+
+    return [self.client postURLPath:@"content_types"
+                            headers:nil
+                         parameters:@{ @"name": name, @"fields": fieldsAsDictionaries }
+                            success:success
+                            failure:failure];
+}
+
 -(CDARequest *)createEntryOfContentType:(CMAContentType*)contentType
                              withFields:(NSDictionary *)fields
                                 success:(CMAEntryFetchedBlock)success
@@ -84,6 +99,19 @@
                                     failure:(CDARequestFailureBlock)failure {
     NSParameterAssert(self.client);
     return [self.client fetchContentTypesWithSuccess:success failure:failure];
+}
+
+-(CDARequest *)fetchContentTypeWithIdentifier:(NSString *)identifier
+                                      success:(CMAContentTypeFetchedBlock)success
+                                      failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client fetchContentTypeWithIdentifier:identifier
+                                               success:^(CDAResponse *response,
+                                                         CDAContentType *contentType) {
+                                                   if (success) {
+                                                       success(response, (CMAContentType*)contentType);
+                                                   }
+                                               } failure:failure];
 }
 
 -(CDARequest *)fetchEntryWithIdentifier:(NSString *)identifier

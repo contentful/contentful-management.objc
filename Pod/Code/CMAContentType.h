@@ -10,4 +10,6 @@
 
 @interface CMAContentType : CDAContentType
 
+-(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
+
 @end

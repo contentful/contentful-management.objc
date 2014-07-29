@@ -17,6 +17,10 @@
 -(CDARequest*)createAssetWithFields:(NSDictionary*)fields
                             success:(CMAAssetFetchedBlock)success
                             failure:(CDARequestFailureBlock)failure;
+-(CDARequest*)createContentTypeWithName:(NSString*)name
+                                 fields:(NSArray*)fields
+                                success:(CMAContentTypeFetchedBlock)success
+                                failure:(CDARequestFailureBlock)failure;
 -(CDARequest*)createEntryOfContentType:(CMAContentType*)contentType
                             withFields:(NSDictionary*)fields
                                success:(CMAEntryFetchedBlock)success
@@ -26,6 +30,9 @@
                                failure:(CDARequestFailureBlock)failure;
 -(CDARequest*)fetchContentTypesWithSuccess:(CDAArrayFetchedBlock)success
                                    failure:(CDARequestFailureBlock)failure;
+-(CDARequest*)fetchContentTypeWithIdentifier:(NSString*)identifier
+                                     success:(CMAContentTypeFetchedBlock)success
+                                     failure:(CDARequestFailureBlock)failure;
 -(CDARequest*)fetchEntryWithIdentifier:(NSString*)identifier
                                success:(CDAEntryFetchedBlock)success
                                failure:(CDARequestFailureBlock)failure;
