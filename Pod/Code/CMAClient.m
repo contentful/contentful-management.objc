@@ -23,6 +23,30 @@
 
 @implementation CMAClient
 
+-(CDARequest *)createSpaceWithName:(NSString *)name
+                    inOrganization:(CMAOrganization *)organization
+                           success:(CMASpaceFetchedBlock)success
+                           failure:(CDARequestFailureBlock)failure {
+    NSDictionary* headers = nil;
+
+    if (organization) {
+        headers = @{ @"X-Contentful-Organization": organization.identifier };
+    }
+
+    NSParameterAssert(self.client);
+    return [self.client postURLPath:@"spaces"
+                            headers:headers
+                         parameters:@{ @"name": name }
+                            success:success
+                            failure:failure];
+}
+
+-(CDARequest *)createSpaceWithName:(NSString *)name
+                           success:(CMASpaceFetchedBlock)success
+                           failure:(CDARequestFailureBlock)failure {
+    return [self createSpaceWithName:name inOrganization:nil success:success failure:failure];
+}
+
 -(CDARequest *)fetchAllSpacesWithSuccess:(CDAArrayFetchedBlock)success
                                  failure:(CDARequestFailureBlock)failure {
     return [self.client fetchArrayAtURLPath:@"spaces"

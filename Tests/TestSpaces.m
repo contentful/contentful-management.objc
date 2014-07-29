@@ -12,12 +12,27 @@ SpecBegin(Spaces)
 
 describe(@"CMA", ^{
     __block CMAClient* client;
+    __block CMAOrganization* organization;
 
-    beforeEach(^{
+    beforeEach(^AsyncBlock {
         NSString* token = [[[NSProcessInfo processInfo] environment]
                            valueForKey:@"CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN"];
 
         client = [[CMAClient alloc] initWithAccessToken:token];
+
+        [client fetchOrganizationsWithSuccess:^(CDAResponse *response, CDAArray *array) {
+            for (CMAOrganization* item in array.items) {
+                if ([item.identifier isEqualToString:@"1PLOOEmTI2S1NYald2TemO"]) {
+                    organization = item;
+                }
+            }
+
+            done();
+        } failure:^(CDAResponse *response, NSError *error) {
+            XCTFail(@"Error: %@", error);
+
+            done();
+        }];
     });
 
     it(@"can retrieve all Organizations of an account", ^AsyncBlock {
@@ -92,6 +107,108 @@ describe(@"CMA", ^{
             done();
         }];
     });
+
+// FIXME: Deactivated because of rate-limiting, will reactivate once VCR is integrated.
+#if 0
+    it(@"can create a new Space", ^AsyncBlock {
+        [client createSpaceWithName:@"MySpace"
+                            success:^(CDAResponse *response, CMASpace *space) {
+                                expect(space).toNot.beNil;
+                                expect(space.name).equal(@"MySpace");
+                                expect(space.identifier).toNot.beNil;
+
+                                [client fetchSpaceWithIdentifier:space.identifier
+                                                         success:^(CDAResponse *response,
+                                                                   CMASpace *newSpace) {
+                                                             expect(newSpace).toNot.beNil;
+                                                             expect(newSpace.name).equal(@"MySpace");
+
+                                                             [space deleteWithSuccess:^{
+                                                                 done();
+                                                             } failure:^(CDAResponse *response,
+                                                                         NSError *error) {
+                                                                 XCTFail(@"Error: %@", error);
+
+                                                                 done();
+                                                             }];
+                                                         } failure:^(CDAResponse *response,
+                                                                     NSError *error) {
+                                                             XCTFail(@"Error: %@", error);
+
+                                                             done();
+                                                         }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
+
+                                done();
+                            }];
+    });
+
+    it(@"can create a new Space within a specific Organization", ^AsyncBlock {
+        expect(organization).toNot.beNil;
+
+        [client createSpaceWithName:@"MySpace"
+                     inOrganization:organization
+                            success:^(CDAResponse *response, CMASpace *space) {
+                                expect(space).toNot.beNil;
+                                expect(space.name).equal(@"MySpace");
+                                expect(space.identifier).toNot.beNil;
+
+                                [client fetchSpaceWithIdentifier:space.identifier
+                                                         success:^(CDAResponse *response,
+                                                                   CMASpace *newSpace) {
+                                                             expect(newSpace).toNot.beNil;
+                                                             expect(newSpace.name).equal(@"MySpace");
+
+                                                             [space deleteWithSuccess:^{
+                                                                 done();
+                                                             } failure:^(CDAResponse *response,
+                                                                         NSError *error) {
+                                                                 XCTFail(@"Error: %@", error);
+
+                                                                 done();
+                                                             }];
+                                                         } failure:^(CDAResponse *response,
+                                                                     NSError *error) {
+                                                             XCTFail(@"Error: %@", error);
+
+                                                             done();
+                                                         }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
+
+                                done();
+                            }];
+    });
+
+    it(@"can delete an existing Space", ^AsyncBlock  {
+        [client createSpaceWithName:@"MySpace"
+                            success:^(CDAResponse *response, CMASpace *space) {
+                                expect(space).toNot.beNil;
+
+                                [space deleteWithSuccess:^{
+                                    [client fetchSpaceWithIdentifier:space.identifier
+                                                             success:^(CDAResponse *response,
+                                                                       CMASpace *space) {
+                                                                 XCTFail(@"Should not succeed.");
+
+                                                                 done();
+                                                             } failure:^(CDAResponse *response,
+                                                                         NSError *error) {
+                                                                 done();
+                                                             }];
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
+
+                                    done();
+                                }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
+
+                                done();
+                            }];
+    });
+#endif
 
     it(@"can change the name of a Space", ^AsyncBlock {
         [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,

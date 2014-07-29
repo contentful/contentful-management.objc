@@ -10,7 +10,7 @@
 
 @class CMAContentType;
 
-@interface CMASpace : CDASpace
+@interface CMASpace : CDASpace <CMAResource>
 
 @property (nonatomic) NSString* name;
 
@@ -29,6 +29,5 @@
 -(CDARequest*)fetchEntryWithIdentifier:(NSString*)identifier
                                success:(CDAEntryFetchedBlock)success
                                failure:(CDARequestFailureBlock)failure;
--(CDARequest*)updateWithSuccess:(void(^)())success failure:(CDARequestFailureBlock)failure;
 
 @end

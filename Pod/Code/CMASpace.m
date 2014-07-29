@@ -56,6 +56,18 @@
                             failure:failure];
 }
 
+-(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client deleteURLPath:@""
+                              headers:nil
+                           parameters:nil
+                              success:^(CDAResponse *response, id responseObject) {
+                                  if (success) {
+                                      success();
+                                  }
+                              } failure:failure];
+}
+
 -(CDARequest *)fetchAssetWithIdentifier:(NSString *)identifier
                                 success:(CMAAssetFetchedBlock)success
                                 failure:(CDARequestFailureBlock)failure {

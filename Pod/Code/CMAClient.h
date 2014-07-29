@@ -10,6 +10,7 @@
 
 @class CMAAsset;
 @class CMAEntry;
+@class CMAOrganization;
 @class CMASpace;
 
 typedef void(^CMAAssetFetchedBlock)(CDAResponse* response, CMAAsset* asset);
@@ -19,6 +20,15 @@ typedef void(^CMASpaceFetchedBlock)(CDAResponse* response, CMASpace* space);
 @interface CMAClient : NSObject
 
 -(id)initWithAccessToken:(NSString*)accessToken;
+
+-(CDARequest*)createSpaceWithName:(NSString*)name
+                          success:(CMASpaceFetchedBlock)success
+                          failure:(CDARequestFailureBlock)failure;
+
+-(CDARequest*)createSpaceWithName:(NSString*)name
+                   inOrganization:(CMAOrganization*)organization
+                          success:(CMASpaceFetchedBlock)success
+                          failure:(CDARequestFailureBlock)failure;
 
 -(CDARequest*)fetchAllSpacesWithSuccess:(CDAArrayFetchedBlock)success
                                 failure:(CDARequestFailureBlock)failure;
