@@ -8,4 +8,5 @@ target 'Tests', :exclusive => true do
 
   pod 'Specta', '~> 0.2.1'
   pod 'Expecta'
+  pod 'CCLRequestReplay', :git => 'https://github.com/neonichu/CCLRequestReplay.git'
 end

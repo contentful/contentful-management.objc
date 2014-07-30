@@ -8,6 +8,8 @@
 
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
+#import "BBURecordingHelper.h"
+
 // TODO: Should cleanup / delete entries after tests
 
 SpecBegin(Entry)
@@ -16,6 +18,8 @@ describe(@"CMA", ^{
     __block CMAClient* client;
     __block CMAContentType* contentType;
     __block CMASpace* space;
+
+    RECORD_TESTCASE
 
     beforeEach(^AsyncBlock {
         NSString* token = [[[NSProcessInfo processInfo] environment]

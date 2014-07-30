@@ -8,11 +8,15 @@
 
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
+#import "BBURecordingHelper.h"
+
 SpecBegin(Asset)
 
 describe(@"CMA", ^{
     __block CMAClient* client;
     __block CMASpace* space;
+
+    RECORD_TESTCASE
 
     beforeEach(^AsyncBlock {
         NSString* token = [[[NSProcessInfo processInfo] environment]
