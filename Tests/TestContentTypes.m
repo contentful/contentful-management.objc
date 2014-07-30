@@ -33,6 +33,76 @@ describe(@"CMA", ^{
                                  }];
     });
 
+    it(@"can activate a Content Type", ^AsyncBlock {
+        [space createContentTypeWithName:@"foobar"
+                                  fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil;
+
+                                     [contentType publishWithSuccess:^{
+                                         expect(contentType.sys[@"publishedCounter"]).equal(@1);
+
+                                         [contentType unpublishWithSuccess:^{
+                                             [contentType deleteWithSuccess:^{
+                                                 done();
+                                             } failure:^(CDAResponse *response, NSError *error) {
+                                                 XCTFail(@"Error: %@", error);
+
+                                                 done();
+                                             }];
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+    });
+
+    it(@"can deactivate a Content Type", ^AsyncBlock {
+        [space createContentTypeWithName:@"foobar"
+                                  fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil;
+
+                                     [contentType publishWithSuccess:^{
+                                         expect(contentType.sys[@"publishedCounter"]).equal(@1);
+
+                                         [contentType unpublishWithSuccess:^{
+                                             expect(contentType.sys[@"publishedCounter"]).to.beNil;
+
+                                             [contentType deleteWithSuccess:^{
+                                                 done();
+                                             } failure:^(CDAResponse *response, NSError *error) {
+                                                 XCTFail(@"Error: %@", error);
+
+                                                 done();
+                                             }];
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+                                     
+                                     done();
+                                 }];
+    });
+
     it(@"can create a new Content Type", ^AsyncBlock {
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"Date" type:CDAFieldTypeDate],

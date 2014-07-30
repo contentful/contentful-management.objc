@@ -8,7 +8,7 @@
 
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
-@interface CMAContentType : CDAContentType
+@interface CMAContentType : CDAContentType <CMAPublishing>
 
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
 
