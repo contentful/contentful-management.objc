@@ -6,8 +6,7 @@
 //
 //
 
-#import "CDAClient+Private.h"
-#import "CDAResource+Private.h"
+#import "CDAResource+Management.h"
 #import "CMAContentType.h"
 
 @interface CMAContentType ()
@@ -22,38 +21,6 @@
 
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
-}
-
--(CDARequest*)performDeleteToFragment:(NSString*)fragment
-                          withSuccess:(void (^)())success
-                              failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client deleteURLPath:[self.URLPath stringByAppendingPathComponent:fragment]
-                              headers:nil
-                           parameters:nil
-                              success:^(CDAResponse *response, CMAEntry* entry) {
-                                  [self updateWithResource:entry];
-
-                                  if (success) {
-                                      success();
-                                  }
-                              } failure:failure];
-}
-
--(CDARequest*)performPutToFragment:(NSString*)fragment
-                       withSuccess:(void (^)())success
-                           failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client putURLPath:[self.URLPath stringByAppendingPathComponent:fragment]
-                           headers:@{ @"X-Contentful-Version": [self.sys[@"version"] stringValue] }
-                        parameters:nil
-                           success:^(CDAResponse *response, CMAEntry* entry) {
-                               [self updateWithResource:entry];
-
-                               if (success) {
-                                   success();
-                               }
-                           } failure:failure];
 }
 
 -(CDARequest *)publishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {

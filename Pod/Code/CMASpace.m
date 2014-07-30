@@ -7,7 +7,7 @@
 //
 
 #import "CDAClient+Private.h"
-#import "CDAResource+Private.h"
+#import "CDAResource+Management.h"
 #import "CMASpace.h"
 
 @interface CMASpace ()
@@ -72,15 +72,7 @@
 }
 
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client deleteURLPath:@""
-                              headers:nil
-                           parameters:nil
-                              success:^(CDAResponse *response, id responseObject) {
-                                  if (success) {
-                                      success();
-                                  }
-                              } failure:failure];
+    return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
 }
 
 -(CDARequest *)fetchAssetWithIdentifier:(NSString *)identifier
@@ -122,15 +114,14 @@
 }
 
 -(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client putURLPath:@""
-                           headers:@{ @"X-Contentful-Version": [self.sys[@"version"] stringValue] }
-                        parameters:@{ @"name": self.name }
-                           success:^(CDAResponse *response, CMASpace* space) {
-                               [self updateWithResource:space];
+    return [self performPutToFragment:@""
+                       withParameters:@{ @"name": self.name }
+                              success:success
+                              failure:failure];
+}
 
-                               if (success) success();
-                           } failure:failure];
+-(NSString *)URLPath {
+    return @"";
 }
 
 @end

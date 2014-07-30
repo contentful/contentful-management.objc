@@ -7,9 +7,8 @@
 //
 
 #import "CDAAsset+Private.h"
+#import "CDAResource+Management.h"
 #import "CMAAsset.h"
-#import "CDAClient+Private.h"
-#import "CDAResource+Private.h"
 #import "CMAUtilities.h"
 
 @interface CMAAsset ()
@@ -27,51 +26,11 @@
 }
 
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client deleteURLPath:self.URLPath
-                              headers:nil
-                           parameters:nil
-                              success:^(CDAResponse *response, id responseObject) {
-                                  if (success) {
-                                      success();
-                                  }
-                              } failure:failure];
+    return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
 }
 
 -(NSDictionary*)parametersFromLocalizedFields {
     return CMATransformLocalizedFieldsToParameterDictionary(self.localizedFields);
-}
-
--(CDARequest*)performDeleteToFragment:(NSString*)fragment
-                          withSuccess:(void (^)())success
-                              failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client deleteURLPath:[self.URLPath stringByAppendingPathComponent:fragment]
-                              headers:nil
-                           parameters:nil
-                              success:^(CDAResponse *response, CMAAsset* asset) {
-                                  [self updateWithResource:asset];
-
-                                  if (success) {
-                                      success();
-                                  }
-                              } failure:failure];
-}
-
--(CDARequest*)performPutToFragment:(NSString*)fragment
-                       withSuccess:(void (^)())success
-                           failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client putURLPath:[self.URLPath stringByAppendingPathComponent:fragment]
-                           headers:@{ @"X-Contentful-Version": [self.sys[@"version"] stringValue] }
-                        parameters:nil
-                           success:^(CDAResponse *response, CMAAsset* asset) {
-                               [self updateWithResource:asset];
-
-                               if (success) {
-                                   success();
-                               }
-                           } failure:failure];
 }
 
 -(CDARequest *)processWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
@@ -101,15 +60,10 @@
 }
 
 -(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client putURLPath:self.URLPath
-                           headers:@{ @"X-Contentful-Version": [self.sys[@"version"] stringValue] }
-                        parameters:@{ @"fields" : [self parametersFromLocalizedFields] }
-                           success:^(CDAResponse *response, CMAAsset* asset) {
-                               [self updateWithResource:asset];
-
-                               if (success) success();
-                           } failure:failure];
+    return [self performPutToFragment:@""
+                       withParameters:@{ @"fields" : [self parametersFromLocalizedFields] }
+                              success:success
+                              failure:failure];
 }
 
 -(NSString *)URLPath {
