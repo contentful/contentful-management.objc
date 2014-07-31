@@ -9,6 +9,7 @@
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
 #import "BBURecordingHelper.h"
+#import "CMASpace+Private.h"
 
 // TODO: Should cleanup / delete entries after tests
 
@@ -86,6 +87,31 @@ describe(@"CMA", ^{
                                     expect(entry.fields[@"title"]).equal(@"Mr. President");
 
                                     done();
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
+
+                                    done();
+                                }];
+    });
+
+    it(@"can create a new Entry with user-defined identifier", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createEntryOfContentType:contentType
+                         withIdentifier:@"foo"
+                                 fields:@{}
+                                success:^(CDAResponse *response, CMAEntry *entry) {
+                                    expect(entry).toNot.beNil;
+
+                                    expect(entry.identifier).equal(@"foo");
+                                    expect(entry.sys[@"version"]).equal(@1);
+
+                                    [entry deleteWithSuccess:^{
+                                        done();
+                                    } failure:^(CDAResponse *response, NSError *error) {
+                                        XCTFail(@"Error: %@", error);
+
+                                        done();
+                                    }];
                                 } failure:^(CDAResponse *response, NSError *error) {
                                     XCTFail(@"Error: %@", error);
 

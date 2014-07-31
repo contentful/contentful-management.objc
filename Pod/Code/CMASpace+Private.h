@@ -15,4 +15,10 @@
                                  success:(CMAAssetFetchedBlock)success
                                  failure:(CDARequestFailureBlock)failure;
 
+-(CDARequest *)createEntryOfContentType:(CMAContentType*)contentType
+                         withIdentifier:(NSString*)identifier
+                                 fields:(NSDictionary*)fields
+                                success:(CMAEntryFetchedBlock)success
+                                failure:(CDARequestFailureBlock)failure;
+
 @end

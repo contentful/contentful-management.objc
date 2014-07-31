@@ -83,6 +83,19 @@
                             failure:failure];
 }
 
+-(CDARequest *)createEntryOfContentType:(CMAContentType *)contentType
+                         withIdentifier:(NSString *)identifier
+                                 fields:(NSDictionary *)fields
+                                success:(CMAEntryFetchedBlock)success
+                                failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client putURLPath:[@"entries" stringByAppendingPathComponent:identifier]
+                           headers:@{ @"X-Contentful-Content-Type": contentType.identifier }
+                        parameters:@{ @"fields": fields }
+                           success:success
+                           failure:failure];
+}
+
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
 }
