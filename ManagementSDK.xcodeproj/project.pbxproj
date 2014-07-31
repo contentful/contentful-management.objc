@@ -498,6 +498,19 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/CCLRequestReplay\"",
+					"\"${PODS_ROOT}/Headers/CCLRequestReplay/CCLRequestReplay\"",
+					"\"${PODS_ROOT}/Headers/ContentfulDeliveryAPI\"",
+					"\"${PODS_ROOT}/Headers/ContentfulManagementAPI\"",
+					"\"${PODS_ROOT}/Headers/Expecta\"",
+					"\"${PODS_ROOT}/Headers/HRCoder\"",
+					"\"${PODS_ROOT}/Headers/ISO8601DateFormatter\"",
+					"\"${PODS_ROOT}/Headers/Specta\"",
+					"\"${PODS_ROOT}/BuildHeaders/ContentfulManagementAPI\"",
+				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -517,6 +530,19 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/CCLRequestReplay\"",
+					"\"${PODS_ROOT}/Headers/CCLRequestReplay/CCLRequestReplay\"",
+					"\"${PODS_ROOT}/Headers/ContentfulDeliveryAPI\"",
+					"\"${PODS_ROOT}/Headers/ContentfulManagementAPI\"",
+					"\"${PODS_ROOT}/Headers/Expecta\"",
+					"\"${PODS_ROOT}/Headers/HRCoder\"",
+					"\"${PODS_ROOT}/Headers/ISO8601DateFormatter\"",
+					"\"${PODS_ROOT}/Headers/Specta\"",
+					"\"${PODS_ROOT}/BuildHeaders/ContentfulManagementAPI\"",
+				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

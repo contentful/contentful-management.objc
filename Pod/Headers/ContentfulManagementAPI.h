@@ -14,7 +14,6 @@
 #import <ContentfulManagementAPI/CMAPublishing.h>
 #import <ContentfulManagementAPI/CMAResource.h>
 
-#import <ContentfulManagementAPI/CMAArray.h>
 #import <ContentfulManagementAPI/CMAAsset.h>
 #import <ContentfulManagementAPI/CMAClient.h>
 #import <ContentfulManagementAPI/CMAContentType.h>

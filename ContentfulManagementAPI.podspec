@@ -17,7 +17,8 @@ Pod::Spec.new do |s|
   s.osx.deployment_target     = '10.8'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Code/**/*.{h,m}'
+  s.source_files = 'Pod/**/*.{h,m}'
+  s.public_header_files = 'Pod/Headers/*.h'
 
   s.dependency 'ContentfulDeliveryAPI'
 end
