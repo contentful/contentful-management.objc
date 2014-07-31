@@ -8,9 +8,19 @@
 
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
+/**
+ *  An organization on Contentful.
+ */
 @interface CMAOrganization : CDAResource
 
+/**
+ *  Whether or not the receiver is active. You cannot create spaces on inactive organizations.
+ */
 @property (nonatomic, readonly, getter = isActive) BOOL active;
+
+/**
+ *  The name of the receiver.
+ */
 @property (nonatomic, readonly) NSString* name;
 
 @end
