@@ -27,7 +27,7 @@ describe(@"CMA", ^{
 
         client = [[CMAClient alloc] initWithAccessToken:token];
 
-        [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0"
+        [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn"
                                  success:^(CDAResponse *response, CMASpace *mySpace) {
                                      expect(space).toNot.beNil;
                                      space = mySpace;

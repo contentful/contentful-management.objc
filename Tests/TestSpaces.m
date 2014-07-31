@@ -76,13 +76,13 @@ describe(@"CMA", ^{
 
     it(@"can retrieve a single Space", ^AsyncBlock {
         NSAssert(client, @"Client is not available.");
-        [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,
+        [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
             expect(response).toNot.beNil;
 
             expect(space).toNot.beNil;
-            expect(space.identifier).to.equal(@"xr0qbumw0cn0");
-            expect(space.name).to.equal(@"test");
+            expect(space.identifier).to.equal(@"hvjkfbzcwrfn");
+            expect(space.name).to.equal(@"CMA SDK Test");
 
             done();
         } failure:^(CDAResponse *response, NSError *error) {
@@ -94,7 +94,7 @@ describe(@"CMA", ^{
 
     it(@"can retrieve the Content Types of a Space", ^AsyncBlock {
         NSAssert(client, @"Client is not available.");
-        [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,
+        [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
             expect(space).toNot.beNil;
 
@@ -223,7 +223,7 @@ describe(@"CMA", ^{
 
     it(@"can change the name of a Space", ^AsyncBlock {
         NSAssert(client, @"Client is not available.");
-        [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,
+        [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
             expect(space).toNot.beNil;
             NSString* originalName = space.name;
