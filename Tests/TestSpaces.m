@@ -40,6 +40,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can retrieve all Organizations of an account", ^AsyncBlock {
+        NSAssert(client, @"Client is not available.");
         [client fetchOrganizationsWithSuccess:^(CDAResponse *response, CDAArray *array) {
             expect(array.items.count).equal(5);
 
@@ -57,6 +58,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can retrieve all Spaces of an account", ^AsyncBlock {
+        NSAssert(client, @"Client is not available.");
         [client fetchAllSpacesWithSuccess:^(CDAResponse *response, CDAArray *array) {
             expect(response).toNot.beNil;
 
@@ -73,6 +75,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can retrieve a single Space", ^AsyncBlock {
+        NSAssert(client, @"Client is not available.");
         [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
             expect(response).toNot.beNil;
@@ -90,6 +93,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can retrieve the Content Types of a Space", ^AsyncBlock {
+        NSAssert(client, @"Client is not available.");
         [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
             expect(space).toNot.beNil;
@@ -115,6 +119,7 @@ describe(@"CMA", ^{
 // FIXME: Deactivated because of rate-limiting, will reactivate once VCR is integrated.
 #if 0
     it(@"can create a new Space", ^AsyncBlock {
+        NSAssert(client, @"Client is not available.");
         [client createSpaceWithName:@"MySpace"
                             success:^(CDAResponse *response, CMASpace *space) {
                                 expect(space).toNot.beNil;
@@ -151,6 +156,7 @@ describe(@"CMA", ^{
     it(@"can create a new Space within a specific Organization", ^AsyncBlock {
         expect(organization).toNot.beNil;
 
+        NSAssert(client, @"Client is not available.");
         [client createSpaceWithName:@"MySpace"
                      inOrganization:organization
                             success:^(CDAResponse *response, CMASpace *space) {
@@ -186,6 +192,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can delete an existing Space", ^AsyncBlock  {
+        NSAssert(client, @"Client is not available.");
         [client createSpaceWithName:@"MySpace"
                             success:^(CDAResponse *response, CMASpace *space) {
                                 expect(space).toNot.beNil;
@@ -215,6 +222,7 @@ describe(@"CMA", ^{
 #endif
 
     it(@"can change the name of a Space", ^AsyncBlock {
+        NSAssert(client, @"Client is not available.");
         [client fetchSpaceWithIdentifier:@"xr0qbumw0cn0" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
             expect(space).toNot.beNil;

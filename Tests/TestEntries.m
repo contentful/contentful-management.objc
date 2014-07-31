@@ -54,6 +54,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can archive an Entry", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
                                 success:^(CDAResponse *response, CMAEntry *entry) {
@@ -74,6 +75,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can create a new Entry", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{ @"title": @{ @"en-US": @"Mr. President" } }
                                 success:^(CDAResponse *response, CDAEntry *entry) {
@@ -92,6 +94,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can delete an existing Entry", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
                                 success:^(CDAResponse *response, CMAEntry *entry) {
@@ -121,6 +124,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can publish an Entry", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
                                 success:^(CDAResponse *response, CMAEntry *entry) {
@@ -141,6 +145,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can unarchive an Entry", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
                                 success:^(CDAResponse *response, CMAEntry *entry) {
@@ -169,6 +174,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can unpublish an Entry", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
                                 success:^(CDAResponse *response, CMAEntry *entry) {
@@ -197,6 +203,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can update an Entry", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{ @"title": @{ @"en-US": @"foo" } }
                                 success:^(CDAResponse *response, CMAEntry *entry) {

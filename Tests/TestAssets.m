@@ -9,6 +9,7 @@
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
 #import "BBURecordingHelper.h"
+#import "CMASpace+Private.h"
 
 SpecBegin(Asset)
 
@@ -38,6 +39,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can archive an Asset", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createAssetWithFields:@{}
                              success:^(CDAResponse *response, CMAAsset *asset) {
                                  expect(asset).toNot.beNil;
@@ -59,6 +61,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can create a new Asset", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createAssetWithFields:@{ @"title": @{ @"en-US": @"My Asset" } }
                              success:^(CDAResponse *response, CMAAsset *asset) {
                                  expect(asset).toNot.beNil;
@@ -104,6 +107,8 @@ describe(@"CMA", ^{
     });
 
     it(@"can process the file of an Asset", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+
         NSDictionary* fileData = @{ @"upload": @"http://i.imgur.com/vaa4by0.png",
                                     @"contentType": @"image/png",
                                     @"fileName": @"doge.png" };
@@ -126,6 +131,7 @@ describe(@"CMA", ^{
     });
 
     it(@"cannot publish an Asset without associated file", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createAssetWithFields:@{}
                              success:^(CDAResponse *response, CMAAsset *asset) {
                                  expect(asset).toNot.beNil;
@@ -145,6 +151,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can unarchive an Asset", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createAssetWithFields:@{}
                              success:^(CDAResponse *response, CMAAsset *asset) {
                                  expect(asset).toNot.beNil;
@@ -174,6 +181,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can update an Asset", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createAssetWithFields:@{ @"title": @{ @"en-US": @"foo" } }
                              success:^(CDAResponse *response, CMAAsset *asset) {
                                  expect(asset).toNot.beNil;

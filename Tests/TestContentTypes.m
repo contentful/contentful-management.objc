@@ -38,6 +38,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can activate a Content Type", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
                                  success:^(CDAResponse *response, CMAContentType *contentType) {
@@ -72,6 +73,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can deactivate a Content Type", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
                                  success:^(CDAResponse *response, CMAContentType *contentType) {
@@ -108,6 +110,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can create a new Content Type", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"Date" type:CDAFieldTypeDate],
                                             [CMAField fieldWithName:@"Bool" type:CDAFieldTypeBoolean],
@@ -136,6 +139,7 @@ describe(@"CMA", ^{
     });
 
     it(@"can delete an existing Content Type", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:nil
                                  success:^(CDAResponse *response, CMAContentType *contentType) {
