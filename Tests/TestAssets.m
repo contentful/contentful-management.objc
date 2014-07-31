@@ -78,7 +78,33 @@ describe(@"CMA", ^{
                              }];
     });
 
+    it(@"can create a new Asset with user-defined identifier", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createAssetWithIdentifier:@"foo"
+                                  fields:@{ @"title": @{ @"en-US": @"My Asset" } }
+                                 success:^(CDAResponse *response, CMAAsset *asset) {
+                                     expect(asset).toNot.beNil;
+
+                                     expect(asset.identifier).equal(@"foo");
+                                     expect(asset.sys[@"version"]).equal(@1);
+                                     expect(asset.fields[@"title"]).equal(@"My Asset");
+
+                                     [asset deleteWithSuccess:^{
+                                         done();
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+    });
+
     it(@"can delete an existing Asset", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
         [space createAssetWithFields:@{}
                              success:^(CDAResponse *response, CMAAsset *asset) {
                                  expect(asset).toNot.beNil;

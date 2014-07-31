@@ -8,7 +8,7 @@
 
 #import "CDAClient+Private.h"
 #import "CDAResource+Management.h"
-#import "CMASpace.h"
+#import "CMASpace+Private.h"
 
 @interface CMASpace ()
 
@@ -42,6 +42,18 @@
                          parameters:@{ @"fields": fields }
                             success:success
                             failure:failure];
+}
+
+-(CDARequest *)createAssetWithIdentifier:(NSString*)identifier
+                                  fields:(NSDictionary *)fields
+                                 success:(CMAAssetFetchedBlock)success
+                                 failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client putURLPath:[@"assets" stringByAppendingPathComponent:identifier]
+                           headers:nil
+                        parameters:@{ @"fields": fields }
+                           success:success
+                           failure:failure];
 }
 
 -(CDARequest *)createContentTypeWithName:(NSString*)name
