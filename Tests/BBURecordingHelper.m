@@ -21,12 +21,6 @@
 
 @implementation BBURecordingHelper
 
-+(NSString*)recordingPathForTestCase:(Class)testCase {
-    NSString* path = [[NSBundle bundleForClass:testCase] bundlePath];
-    path = [path stringByAppendingPathComponent:NSStringFromClass(testCase)];
-    return [path stringByAppendingPathExtension:@"recording"];
-}
-
 +(instancetype)sharedHelper {
     static BBURecordingHelper *sharedHelper = nil;
     static dispatch_once_t onceToken;
@@ -39,7 +33,10 @@
 #pragma mark -
 
 -(void)loadRecordingsForTestCase:(Class)testCase {
-    NSString* recordingPath = [[self class] recordingPathForTestCase:testCase];
+    NSBundle* bundle = [NSBundle bundleForClass:testCase];
+    NSString* recordingPath = [bundle pathForResource:NSStringFromClass(testCase)
+                                               ofType:@"recording"
+                                          inDirectory:@"Recordings"];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:recordingPath]) {
         self.manager = [NSKeyedUnarchiver unarchiveObjectWithFile:recordingPath];
@@ -56,8 +53,9 @@
     [self.manager stopReplay];
     [self.manager stopRecording];
 
+    NSString* recordingName = [NSStringFromClass(testCase) stringByAppendingPathExtension:@"recording"];
     [NSKeyedArchiver archiveRootObject:self.manager
-                                toFile:[[self class] recordingPathForTestCase:testCase]];
+                                toFile:[@"/tmp" stringByAppendingPathComponent:recordingName]];
 
     self.manager = nil;
 }
