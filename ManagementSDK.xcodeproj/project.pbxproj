@@ -463,6 +463,19 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/ManagementSDK-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wconversion",
+					"-Wdeprecated-implementations",
+					"-Wextra",
+					"-Wfloat-equal",
+					"-Wimplicit-retain-self",
+					"-Wnewline-eof",
+					"-Wreturn-type",
+					"-Wshadow",
+					"-Wsign-compare",
+					"-Wundef",
+					"-Wall",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -478,6 +491,19 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/ManagementSDK-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wconversion",
+					"-Wdeprecated-implementations",
+					"-Wextra",
+					"-Wfloat-equal",
+					"-Wimplicit-retain-self",
+					"-Wnewline-eof",
+					"-Wreturn-type",
+					"-Wshadow",
+					"-Wsign-compare",
+					"-Wundef",
+					"-Wall",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

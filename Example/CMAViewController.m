@@ -12,7 +12,7 @@
 
 @interface CMAViewController ()
 
-@property (nonatomic) NSArray* spaces;
+@property (nonatomic, copy) NSArray* spaces;
 
 @end
 
@@ -32,14 +32,20 @@
                        valueForKey:@"CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN"];
 
     [[[CMAClient alloc] initWithAccessToken:token]
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
      fetchAllSpacesWithSuccess:^(CDAResponse *response, CDAArray *array) {
+#pragma clang diagnostic pop
          self.spaces = [array.items sortedArrayUsingComparator:^NSComparisonResult(CMASpace* space1,
                                                                                    CMASpace* space2) {
              return [space1.name compare:space2.name];
          }];
 
          [self.tableView reloadData];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
      } failure:^(CDAResponse *response, NSError *error) {
+#pragma clang diagnostic pop
          NSLog(@"Error: %@", error);
      }];
 }
@@ -50,14 +56,17 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(self.class)
                                                             forIndexPath:indexPath];
 
-    CMASpace* space = self.spaces[indexPath.row];
+    CMASpace* space = self.spaces[(NSUInteger)indexPath.row];
     cell.textLabel.text = space.name;
 
     return cell;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.spaces.count;
+#pragma clang diagnostic pop
+    return (NSInteger)self.spaces.count;
 }
 
 @end
