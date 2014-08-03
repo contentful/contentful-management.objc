@@ -40,42 +40,46 @@ describe(@"CMA", ^{
 
     it(@"can archive an Asset", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
-        [space createAssetWithFields:@{}
-                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                 expect(asset).toNot.beNil;
+        [space createAssetWithTitle:nil
+                        description:nil
+                       fileToUpload:nil
+                            success:^(CDAResponse *response, CMAAsset *asset) {
+                                expect(asset).toNot.beNil;
 
-                                 [asset archiveWithSuccess:^{
-                                     expect(asset.sys[@"archivedVersion"]).equal(@1);
+                                [asset archiveWithSuccess:^{
+                                    expect(asset.sys[@"archivedVersion"]).equal(@1);
 
-                                     done();
-                                 } failure:^(CDAResponse *response, NSError *error) {
-                                     XCTFail(@"Error: %@", error);
+                                    done();
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
 
-                                     done();
-                                 }];
-                             } failure:^(CDAResponse *response, NSError *error) {
-                                 XCTFail(@"Error: %@", error);
-
-                                 done();
-                             }];
+                                    done();
+                                }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
+                                
+                                done();
+                            }];
     });
 
     it(@"can create a new Asset", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
-        [space createAssetWithFields:@{ @"title": @{ @"en-US": @"My Asset" } }
-                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                 expect(asset).toNot.beNil;
+        [space createAssetWithTitle:@{ @"en-US": @"My Asset" }
+                        description:nil
+                       fileToUpload:nil
+                            success:^(CDAResponse *response, CMAAsset *asset) {
+                                expect(asset).toNot.beNil;
 
-                                 expect(asset.identifier).toNot.beNil;
-                                 expect(asset.sys[@"version"]).equal(@1);
-                                 expect(asset.fields[@"title"]).equal(@"My Asset");
+                                expect(asset.identifier).toNot.beNil;
+                                expect(asset.sys[@"version"]).equal(@1);
+                                expect(asset.fields[@"title"]).equal(@"My Asset");
 
-                                 done();
-                             } failure:^(CDAResponse *response, NSError *error) {
-                                 XCTFail(@"Error: %@", error);
+                                done();
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
 
-                                 done();
-                             }];
+                                done();
+                            }];
     });
 
     it(@"can create a new Asset with user-defined identifier", ^AsyncBlock {
@@ -105,143 +109,147 @@ describe(@"CMA", ^{
 
     it(@"can delete an existing Asset", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
-        [space createAssetWithFields:@{}
-                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                 expect(asset).toNot.beNil;
+        [space createAssetWithTitle:nil
+                        description:nil
+                       fileToUpload:nil
+                            success:^(CDAResponse *response, CMAAsset *asset) {
+                                expect(asset).toNot.beNil;
 
-                                 [asset deleteWithSuccess:^{
-                                     [space fetchAssetWithIdentifier:asset.identifier
-                                                             success:^(CDAResponse *response,
-                                                                       CMAAsset *asset) {
-                                                                 XCTFail(@"Should not succeed.");
+                                [asset deleteWithSuccess:^{
+                                    [space fetchAssetWithIdentifier:asset.identifier
+                                                            success:^(CDAResponse *response,
+                                                                      CMAAsset *asset) {
+                                                                XCTFail(@"Should not succeed.");
 
-                                                                 done();
-                                                             } failure:^(CDAResponse *response,
-                                                                         NSError *error) {
-                                                                 done();
-                                                             }];
-                                 } failure:^(CDAResponse *response, NSError *error) {
-                                     XCTFail(@"Error: %@", error);
+                                                                done();
+                                                            } failure:^(CDAResponse *response,
+                                                                        NSError *error) {
+                                                                done();
+                                                            }];
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
 
-                                     done();
-                                 }];
-                             } failure:^(CDAResponse *response, NSError *error) {
-                                 XCTFail(@"Error: %@", error);
-
-                                 done();
-                             }];
+                                    done();
+                                }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
+                                
+                                done();
+                            }];
     });
 
     it(@"can process the file of an Asset", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
+        [space createAssetWithTitle:@{ @"en-US": @"Bacon Pancakes" }
+                        description:nil
+                       fileToUpload:@{ @"en-US": @"http://i.imgur.com/vaa4by0.png" }
+                            success:^(CDAResponse *response, CMAAsset *asset) {
+                                [asset processWithSuccess:^{
+                                    done();
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
 
-        NSDictionary* fileData = @{ @"upload": @"http://i.imgur.com/vaa4by0.png",
-                                    @"contentType": @"image/png",
-                                    @"fileName": @"doge.png" };
+                                    done();
+                                }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
 
-        [space createAssetWithFields:@{ @"title": @{ @"en-US": @"Bacon Pancakes" },
-                                        @"file": @{ @"en-US": fileData } }
-                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                 [asset processWithSuccess:^{
-                                     done();
-                                 } failure:^(CDAResponse *response, NSError *error) {
-                                     XCTFail(@"Error: %@", error);
-
-                                     done();
-                                 }];
-                             } failure:^(CDAResponse *response, NSError *error) {
-                                 XCTFail(@"Error: %@", error);
-
-                                 done();
-                             }];
+                                done();
+                            }];
     });
 
     it(@"cannot publish an Asset without associated file", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
-        [space createAssetWithFields:@{}
-                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                 expect(asset).toNot.beNil;
+        [space createAssetWithTitle:nil
+                        description:nil
+                       fileToUpload:nil
+                            success:^(CDAResponse *response, CMAAsset *asset) {
+                                expect(asset).toNot.beNil;
 
-                                 [asset publishWithSuccess:^{
-                                     XCTFail(@"Should not succeed.");
+                                [asset publishWithSuccess:^{
+                                    XCTFail(@"Should not succeed.");
 
-                                     done();
-                                 } failure:^(CDAResponse *response, NSError *error) {
-                                     done();
-                                 }];
-                             } failure:^(CDAResponse *response, NSError *error) {
-                                 XCTFail(@"Error: %@", error);
+                                    done();
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    done();
+                                }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
 
-                                 done();
-                             }];
+                                done();
+                            }];
     });
 
     it(@"can unarchive an Asset", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
-        [space createAssetWithFields:@{}
-                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                 expect(asset).toNot.beNil;
+        [space createAssetWithTitle:nil
+                        description:nil
+                       fileToUpload:nil
+                            success:^(CDAResponse *response, CMAAsset *asset) {
+                                expect(asset).toNot.beNil;
 
-                                 [asset archiveWithSuccess:^{
-                                     expect(asset.sys[@"archivedVersion"]).equal(@1);
+                                [asset archiveWithSuccess:^{
+                                    expect(asset.sys[@"archivedVersion"]).equal(@1);
 
-                                     [asset unarchiveWithSuccess:^{
-                                         expect(asset.sys[@"archivedVersion"]).to.beNil;
+                                    [asset unarchiveWithSuccess:^{
+                                        expect(asset.sys[@"archivedVersion"]).to.beNil;
 
-                                         done();
-                                     } failure:^(CDAResponse *response, NSError *error) {
-                                         XCTFail(@"Error: %@", error);
+                                        done();
+                                    } failure:^(CDAResponse *response, NSError *error) {
+                                        XCTFail(@"Error: %@", error);
 
-                                         done();
-                                     }];
-                                 } failure:^(CDAResponse *response, NSError *error) {
-                                     XCTFail(@"Error: %@", error);
+                                        done();
+                                    }];
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
 
-                                     done();
-                                 }];
-                             } failure:^(CDAResponse *response, NSError *error) {
-                                 XCTFail(@"Error: %@", error);
-                                 
-                                 done();
-                             }];
+                                    done();
+                                }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
+                                
+                                done();
+                            }];
     });
 
     it(@"can update an Asset", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
-        [space createAssetWithFields:@{ @"title": @{ @"en-US": @"foo" } }
-                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                 expect(asset).toNot.beNil;
+        [space createAssetWithTitle:@{ @"en-US": @"foo" }
+                        description:nil
+                       fileToUpload:nil
+                            success:^(CDAResponse *response, CMAAsset *asset) {
+                                expect(asset).toNot.beNil;
 
-                                 asset.title = @"bar";
+                                asset.title = @"bar";
 
-                                 [asset updateWithSuccess:^{
-                                     // FIXME: There has to be a better way...
-                                     [NSThread sleepForTimeInterval:5.0];
+                                [asset updateWithSuccess:^{
+                                    // FIXME: There has to be a better way...
+                                    [NSThread sleepForTimeInterval:5.0];
 
-                                     [space fetchAssetWithIdentifier:asset.identifier success:^(CDAResponse *response, CMAAsset* newAsset) {
-                                         expect(asset.fields[@"title"]).equal(@"bar");
-                                         expect(asset.sys[@"version"]).equal(@2);
+                                    [space fetchAssetWithIdentifier:asset.identifier success:^(CDAResponse *response, CMAAsset* newAsset) {
+                                        expect(asset.fields[@"title"]).equal(@"bar");
+                                        expect(asset.sys[@"version"]).equal(@2);
 
-                                         expect(newAsset).toNot.beNil;
-                                         expect(newAsset.fields[@"title"]).equal(@"bar");
-                                         expect(newAsset.sys[@"version"]).equal(@2);
+                                        expect(newAsset).toNot.beNil;
+                                        expect(newAsset.fields[@"title"]).equal(@"bar");
+                                        expect(newAsset.sys[@"version"]).equal(@2);
 
-                                         done();
-                                     } failure:^(CDAResponse *response, NSError *error) {
-                                         XCTFail(@"Error: %@", error);
+                                        done();
+                                    } failure:^(CDAResponse *response, NSError *error) {
+                                        XCTFail(@"Error: %@", error);
 
-                                         done();
-                                     }];
-                                 } failure:^(CDAResponse *response, NSError *error) {
-                                     XCTFail(@"Error: %@", error);
+                                        done();
+                                    }];
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
 
-                                     done();
-                                 }];
-                             } failure:^(CDAResponse *response, NSError *error) {
-                                 XCTFail(@"Error: %@", error);
-                                 
-                                 done();
-                             }];
+                                    done();
+                                }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
+                                
+                                done();
+                            }];
     });
 });
 

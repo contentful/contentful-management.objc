@@ -23,15 +23,17 @@
 /**
  *  Create a new asset on Contentful.
  *
- *  @param fields  The field values for the new asset.
- *  @param success Called if creation succeeds.
- *  @param failure Called if creation fails.
- *
- *  @return The request used for creation.
+ *  @param titleDictionary          Localized values for the asset title.
+ *  @param descriptionDictionary    Localized values for the asset description.
+ *  @param fileUploadDictionary     Localized values for the file to upload.
+ *  @param success                  Called if creation succeeds.
+ *  @param failure                  Called if creation fails.
  */
--(CDARequest*)createAssetWithFields:(NSDictionary*)fields
-                            success:(CMAAssetFetchedBlock)success
-                            failure:(CDARequestFailureBlock)failure;
+-(void)createAssetWithTitle:(NSDictionary*)titleDictionary
+                description:(NSDictionary*)descriptionDictionary
+               fileToUpload:(NSDictionary*)fileUploadDictionary
+                    success:(CMAAssetFetchedBlock)success
+                    failure:(CDARequestFailureBlock)failure;
 
 /**
  *  Create a new content type on Contentful.

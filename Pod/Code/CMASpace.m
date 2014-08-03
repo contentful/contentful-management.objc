@@ -56,6 +56,45 @@
                            failure:failure];
 }
 
+-(void)createAssetWithTitle:(NSDictionary *)titleDictionary
+                description:(NSDictionary *)descriptionDictionary
+               fileToUpload:(NSDictionary *)fileUploadDictionary
+                    success:(CMAAssetFetchedBlock)success
+                    failure:(CDARequestFailureBlock)failure {
+    NSMutableDictionary* fields = [@{} mutableCopy];
+
+    if (titleDictionary.count > 0) {
+        fields[@"title"] = titleDictionary;
+    }
+
+    if (descriptionDictionary.count > 0) {
+        fields[@"description"] = descriptionDictionary;
+    }
+
+    if (fileUploadDictionary.count == 0) {
+        [self createAssetWithFields:[fields copy] success:success failure:failure];
+        return;
+    }
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableDictionary* fileDictionary = [@{} mutableCopy];
+
+        [fileUploadDictionary enumerateKeysAndObjectsUsingBlock:^(NSString* language,
+                                                                  NSString* fileUrl,
+                                                                  BOOL *stop) {
+            NSString* mimeType = [self determineMIMETypeOfResourceAtURL:[NSURL URLWithString:fileUrl]
+                                                                  error:nil];
+
+            fileDictionary[language] = @{ @"upload": fileUrl,
+                                          @"contentType": mimeType,
+                                          @"fileName": [fileUrl lastPathComponent] };
+        }];
+
+        fields[@"file"] = fileDictionary;
+        [self createAssetWithFields:[fields copy] success:success failure:failure];
+    });
+}
+
 -(CDARequest *)createContentTypeWithName:(NSString*)name
                                   fields:(NSArray*)fields
                                  success:(CMAContentTypeFetchedBlock)success
@@ -98,6 +137,24 @@
 
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
+}
+
+-(NSString*)determineMIMETypeOfResourceAtURL:(NSURL*)url error:(NSError**)error {
+    NSHTTPURLResponse* response;
+    NSData* data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
+                                         returningResponse:&response
+                                                     error:error];
+
+    if (!data) {
+        return nil;
+    }
+
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+        return response.allHeaderFields[@"Content-Type"];
+    }
+
+    // FIXME: Return an error in this case
+    return nil;
 }
 
 -(CDARequest *)fetchAssetWithIdentifier:(NSString *)identifier
