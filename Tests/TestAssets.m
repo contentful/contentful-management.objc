@@ -251,6 +251,34 @@ describe(@"CMA", ^{
                                 done();
                             }];
     });
+
+    it(@"can update the file of an Asset", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createAssetWithTitle:nil
+                        description:nil
+                       fileToUpload:@{ @"en-US": @"http://i.imgur.com/vaa4by0.png" }
+                            success:^(CDAResponse *response, CMAAsset *asset) {
+                                expect(asset).toNot.beNil();
+                                expect(asset.isImage).to.beTruthy();
+
+                                [asset updateWithLocalizedUploads:@{ @"en-US": @"http://www.dogecoinforhumans.com/dogecoin-for-humans.pdf" }
+                                                          success:^{
+                                                              expect(asset).toNot.beNil();
+                                                              expect(asset.isImage).to.beFalsy();
+
+                                                              done();
+                                                          } failure:^(CDAResponse *response,
+                                                                      NSError *error) {
+                                                              XCTFail(@"Error: %@", error);
+
+                                                              done();
+                                                          }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
+
+                                done();
+                            }];
+    });
 });
 
 SpecEnd

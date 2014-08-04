@@ -10,6 +10,8 @@
 
 @interface CMASpace (Private)
 
++(NSDictionary*)fileUploadDictionaryFromLocalizedUploads:(NSDictionary*)localizedUploads;
+
 -(CDARequest *)createAssetWithIdentifier:(NSString*)identifier
                                   fields:(NSDictionary *)fields
                                  success:(CMAAssetFetchedBlock)success

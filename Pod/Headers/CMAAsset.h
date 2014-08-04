@@ -14,6 +14,11 @@
 @interface CMAAsset : CDAAsset <CMAArchiving, CMAPublishing, CMAResource>
 
 /**
+ *  The description of the receiver.
+ */
+@property (nonatomic) NSString* description;
+
+/**
  *  The title of the receiver.
  */
 @property (nonatomic) NSString* title;
@@ -30,5 +35,21 @@
  *  @return The request for initiating processing.
  */
 -(CDARequest*)processWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
+
+/**
+ *  Update the receiver with new values.
+ *
+ *  Before an update will be active on the delivery API, you have to republish it, until then, the
+ *  last published version will continue to be active.
+ *
+ *  @param localizedUploads File URLs to upload for all relevant locales.
+ *  @param success          Called if update succeeds.
+ *  @param failure          Called if update fails.
+ *
+ *  @return The request used for updating.
+ */
+-(CDARequest *)updateWithLocalizedUploads:(NSDictionary*)localizedUploads
+                                  success:(void (^)())success
+                                  failure:(CDARequestFailureBlock)failure;
 
 @end

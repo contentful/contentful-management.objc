@@ -24,6 +24,43 @@
 
 #pragma mark -
 
++(NSString*)determineMIMETypeOfResourceAtURL:(NSURL*)url error:(NSError**)error {
+    NSHTTPURLResponse* response;
+    NSData* data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
+                                         returningResponse:&response
+                                                     error:error];
+
+    if (!data) {
+        return nil;
+    }
+
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+        return response.allHeaderFields[@"Content-Type"];
+    }
+
+    // FIXME: Return an error in this case
+    return nil;
+}
+
++(NSDictionary*)fileUploadDictionaryFromLocalizedUploads:(NSDictionary*)localizedUploads {
+    NSMutableDictionary* fileDictionary = [@{} mutableCopy];
+
+    [localizedUploads enumerateKeysAndObjectsUsingBlock:^(NSString* language,
+                                                          NSString* fileUrl,
+                                                          BOOL *stop) {
+        NSString* mimeType = [[self class] determineMIMETypeOfResourceAtURL:[NSURL URLWithString:fileUrl]
+                                                                      error:nil];
+
+        fileDictionary[language] = @{ @"upload": fileUrl,
+                                      @"contentType": mimeType,
+                                      @"fileName": [fileUrl lastPathComponent] };
+    }];
+
+    return fileDictionary;
+}
+
+#pragma mark -
+
 -(CDAClient *)client {
     return self.apiClient;
 }
@@ -77,20 +114,7 @@
     }
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableDictionary* fileDictionary = [@{} mutableCopy];
-
-        [fileUploadDictionary enumerateKeysAndObjectsUsingBlock:^(NSString* language,
-                                                                  NSString* fileUrl,
-                                                                  BOOL *stop) {
-            NSString* mimeType = [self determineMIMETypeOfResourceAtURL:[NSURL URLWithString:fileUrl]
-                                                                  error:nil];
-
-            fileDictionary[language] = @{ @"upload": fileUrl,
-                                          @"contentType": mimeType,
-                                          @"fileName": [fileUrl lastPathComponent] };
-        }];
-
-        fields[@"file"] = fileDictionary;
+        fields[@"file"] = [[self class] fileUploadDictionaryFromLocalizedUploads:fileUploadDictionary];
         [self createAssetWithFields:[fields copy] success:success failure:failure];
     });
 }
@@ -137,24 +161,6 @@
 
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
-}
-
--(NSString*)determineMIMETypeOfResourceAtURL:(NSURL*)url error:(NSError**)error {
-    NSHTTPURLResponse* response;
-    NSData* data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
-                                         returningResponse:&response
-                                                     error:error];
-
-    if (!data) {
-        return nil;
-    }
-
-    if (response.statusCode >= 200 && response.statusCode < 300) {
-        return response.allHeaderFields[@"Content-Type"];
-    }
-
-    // FIXME: Return an error in this case
-    return nil;
 }
 
 -(CDARequest *)fetchAssetWithIdentifier:(NSString *)identifier
