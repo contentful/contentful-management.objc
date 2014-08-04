@@ -27,7 +27,7 @@ describe(@"CMA", ^{
 
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn"
                                  success:^(CDAResponse *response, CMASpace *mySpace) {
-                                     expect(space).toNot.beNil;
+                                     expect(mySpace).toNot.beNil();
                                      space = mySpace;
 
                                      done();
@@ -44,7 +44,7 @@ describe(@"CMA", ^{
                         description:nil
                        fileToUpload:nil
                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                expect(asset).toNot.beNil;
+                                expect(asset).toNot.beNil();
 
                                 [asset archiveWithSuccess:^{
                                     expect(asset.sys[@"archivedVersion"]).equal(@1);
@@ -68,9 +68,9 @@ describe(@"CMA", ^{
                         description:nil
                        fileToUpload:nil
                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                expect(asset).toNot.beNil;
+                                expect(asset).toNot.beNil();
 
-                                expect(asset.identifier).toNot.beNil;
+                                expect(asset.identifier).toNot.beNil();
                                 expect(asset.sys[@"version"]).equal(@1);
                                 expect(asset.fields[@"title"]).equal(@"My Asset");
 
@@ -87,7 +87,7 @@ describe(@"CMA", ^{
         [space createAssetWithIdentifier:@"foo"
                                   fields:@{ @"title": @{ @"en-US": @"My Asset" } }
                                  success:^(CDAResponse *response, CMAAsset *asset) {
-                                     expect(asset).toNot.beNil;
+                                     expect(asset).toNot.beNil();
 
                                      expect(asset.identifier).equal(@"foo");
                                      expect(asset.sys[@"version"]).equal(@1);
@@ -113,7 +113,7 @@ describe(@"CMA", ^{
                         description:nil
                        fileToUpload:nil
                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                expect(asset).toNot.beNil;
+                                expect(asset).toNot.beNil();
 
                                 [asset deleteWithSuccess:^{
                                     [space fetchAssetWithIdentifier:asset.identifier
@@ -164,7 +164,7 @@ describe(@"CMA", ^{
                         description:nil
                        fileToUpload:nil
                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                expect(asset).toNot.beNil;
+                                expect(asset).toNot.beNil();
 
                                 [asset publishWithSuccess:^{
                                     XCTFail(@"Should not succeed.");
@@ -186,13 +186,13 @@ describe(@"CMA", ^{
                         description:nil
                        fileToUpload:nil
                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                expect(asset).toNot.beNil;
+                                expect(asset).toNot.beNil();
 
                                 [asset archiveWithSuccess:^{
                                     expect(asset.sys[@"archivedVersion"]).equal(@1);
 
                                     [asset unarchiveWithSuccess:^{
-                                        expect(asset.sys[@"archivedVersion"]).to.beNil;
+                                        expect(asset.sys[@"archivedVersion"]).to.beNil();
 
                                         done();
                                     } failure:^(CDAResponse *response, NSError *error) {
@@ -218,7 +218,7 @@ describe(@"CMA", ^{
                         description:nil
                        fileToUpload:nil
                             success:^(CDAResponse *response, CMAAsset *asset) {
-                                expect(asset).toNot.beNil;
+                                expect(asset).toNot.beNil();
 
                                 asset.title = @"bar";
 
@@ -230,7 +230,7 @@ describe(@"CMA", ^{
                                         expect(asset.fields[@"title"]).equal(@"bar");
                                         expect(asset.sys[@"version"]).equal(@2);
 
-                                        expect(newAsset).toNot.beNil;
+                                        expect(newAsset).toNot.beNil();
                                         expect(newAsset.fields[@"title"]).equal(@"bar");
                                         expect(newAsset.sys[@"version"]).equal(@2);
 

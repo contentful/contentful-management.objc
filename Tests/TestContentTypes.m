@@ -26,7 +26,7 @@ describe(@"CMA", ^{
 
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn"
                                  success:^(CDAResponse *response, CMASpace *mySpace) {
-                                     expect(space).toNot.beNil;
+                                     expect(mySpace).toNot.beNil();
                                      space = mySpace;
 
                                      done();
@@ -42,7 +42,7 @@ describe(@"CMA", ^{
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
                                  success:^(CDAResponse *response, CMAContentType *contentType) {
-                                     expect(contentType).toNot.beNil;
+                                     expect(contentType).toNot.beNil();
 
                                      [contentType publishWithSuccess:^{
                                          expect(contentType.sys[@"publishedCounter"]).equal(@1);
@@ -77,7 +77,7 @@ describe(@"CMA", ^{
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
                                  success:^(CDAResponse *response, CMAContentType *contentType) {
-                                     expect(contentType).toNot.beNil;
+                                     expect(contentType).toNot.beNil();
 
                                      [contentType publishWithSuccess:^{
                                          expect(contentType.sys[@"publishedCounter"]).equal(@1);
@@ -121,7 +121,7 @@ describe(@"CMA", ^{
                                             [CMAField fieldWithName:@"Text" type:CDAFieldTypeText],
                                             [CMAField fieldWithName:@"Sym" type:CDAFieldTypeSymbol] ]
                                  success:^(CDAResponse *response, CMAContentType *contentType) {
-                                     expect(contentType).toNot.beNil;
+                                     expect(contentType).toNot.beNil();
                                      expect(contentType.fields.count).equal(8);
 
                                      [contentType deleteWithSuccess:^{
@@ -143,7 +143,7 @@ describe(@"CMA", ^{
         [space createContentTypeWithName:@"foobar"
                                   fields:nil
                                  success:^(CDAResponse *response, CMAContentType *contentType) {
-                                     expect(contentType).toNot.beNil;
+                                     expect(contentType).toNot.beNil();
                                      expect(contentType.fields.count).equal(0);
 
                                      [contentType deleteWithSuccess:^{

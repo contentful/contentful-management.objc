@@ -45,7 +45,7 @@ describe(@"CMA", ^{
             expect(array.items.count).equal(5);
 
             for (CMAOrganization* organization in array.items) {
-                expect(organization.name).toNot.beNil;
+                expect(organization.name).toNot.beNil();
                 expect(organization.isActive).equal(YES);
             }
 
@@ -60,9 +60,9 @@ describe(@"CMA", ^{
     it(@"can retrieve all Spaces of an account", ^AsyncBlock {
         NSAssert(client, @"Client is not available.");
         [client fetchAllSpacesWithSuccess:^(CDAResponse *response, CDAArray *array) {
-            expect(response).toNot.beNil;
+            expect(response).toNot.beNil();
 
-            expect(array).toNot.beNil;
+            expect(array).toNot.beNil();
             expect(array.items.count).to.equal(23);
             expect([array.items[0] class]).to.equal([CMASpace class]);
 
@@ -78,9 +78,9 @@ describe(@"CMA", ^{
         NSAssert(client, @"Client is not available.");
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
-            expect(response).toNot.beNil;
+            expect(response).toNot.beNil();
 
-            expect(space).toNot.beNil;
+            expect(space).toNot.beNil();
             expect(space.identifier).to.equal(@"hvjkfbzcwrfn");
             expect(space.name).to.equal(@"CMA SDK Test");
 
@@ -96,12 +96,12 @@ describe(@"CMA", ^{
         NSAssert(client, @"Client is not available.");
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
-            expect(space).toNot.beNil;
+            expect(space).toNot.beNil();
 
             [space fetchContentTypesWithSuccess:^(CDAResponse *response, CDAArray *array) {
-                expect(array).toNot.beNil;
+                expect(array).toNot.beNil();
                 expect(array.items.count).equal(2);
-                expect([array.items[0] identifier]).toNot.beNil;
+                expect([array.items[0] identifier]).toNot.beNil();
 
                 done();
             } failure:^(CDAResponse *response, NSError *error) {
@@ -122,14 +122,14 @@ describe(@"CMA", ^{
         NSAssert(client, @"Client is not available.");
         [client createSpaceWithName:@"MySpace"
                             success:^(CDAResponse *response, CMASpace *space) {
-                                expect(space).toNot.beNil;
+                                expect(space).toNot.beNil();
                                 expect(space.name).equal(@"MySpace");
-                                expect(space.identifier).toNot.beNil;
+                                expect(space.identifier).toNot.beNil();
 
                                 [client fetchSpaceWithIdentifier:space.identifier
                                                          success:^(CDAResponse *response,
                                                                    CMASpace *newSpace) {
-                                                             expect(newSpace).toNot.beNil;
+                                                             expect(newSpace).toNot.beNil();
                                                              expect(newSpace.name).equal(@"MySpace");
 
                                                              [space deleteWithSuccess:^{
@@ -160,14 +160,14 @@ describe(@"CMA", ^{
         [client createSpaceWithName:@"MySpace"
                      inOrganization:organization
                             success:^(CDAResponse *response, CMASpace *space) {
-                                expect(space).toNot.beNil;
+                                expect(space).toNot.beNil();
                                 expect(space.name).equal(@"MySpace");
-                                expect(space.identifier).toNot.beNil;
+                                expect(space.identifier).toNot.beNil();
 
                                 [client fetchSpaceWithIdentifier:space.identifier
                                                          success:^(CDAResponse *response,
                                                                    CMASpace *newSpace) {
-                                                             expect(newSpace).toNot.beNil;
+                                                             expect(newSpace).toNot.beNil();
                                                              expect(newSpace.name).equal(@"MySpace");
 
                                                              [space deleteWithSuccess:^{
@@ -195,7 +195,7 @@ describe(@"CMA", ^{
         NSAssert(client, @"Client is not available.");
         [client createSpaceWithName:@"MySpace"
                             success:^(CDAResponse *response, CMASpace *space) {
-                                expect(space).toNot.beNil;
+                                expect(space).toNot.beNil();
 
                                 [space deleteWithSuccess:^{
                                     [client fetchSpaceWithIdentifier:space.identifier
@@ -225,7 +225,7 @@ describe(@"CMA", ^{
         NSAssert(client, @"Client is not available.");
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
-            expect(space).toNot.beNil;
+            expect(space).toNot.beNil();
             NSString* originalName = space.name;
             space.name = @"foo";
 

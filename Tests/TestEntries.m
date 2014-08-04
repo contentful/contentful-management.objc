@@ -30,16 +30,16 @@ describe(@"CMA", ^{
 
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn"
                                  success:^(CDAResponse *response, CMASpace *mySpace) {
-                                     expect(space).toNot.beNil;
+                                     expect(mySpace).toNot.beNil();
                                      space = mySpace;
 
                                      [space fetchContentTypesWithSuccess:^(CDAResponse *response,
                                                                            CDAArray *array) {
-                                         expect(array).toNot.beNil;
+                                         expect(array).toNot.beNil();
                                          expect(array.items.count).to.equal(2);
 
                                          contentType = array.items[0];
-                                         expect(contentType.identifier).toNot.beNil;
+                                         expect(contentType.identifier).toNot.beNil();
 
                                          done();
                                      } failure:^(CDAResponse *response, NSError *error) {
@@ -80,9 +80,9 @@ describe(@"CMA", ^{
         [space createEntryOfContentType:contentType
                              withFields:@{ @"title": @{ @"en-US": @"Mr. President" } }
                                 success:^(CDAResponse *response, CDAEntry *entry) {
-                                    expect(entry).toNot.beNil;
+                                    expect(entry).toNot.beNil();
 
-                                    expect(entry.identifier).toNot.beNil;
+                                    expect(entry.identifier).toNot.beNil();
                                     expect(entry.sys[@"version"]).equal(@1);
                                     expect(entry.fields[@"title"]).equal(@"Mr. President");
 
@@ -100,7 +100,7 @@ describe(@"CMA", ^{
                          withIdentifier:@"foo"
                                  fields:@{}
                                 success:^(CDAResponse *response, CMAEntry *entry) {
-                                    expect(entry).toNot.beNil;
+                                    expect(entry).toNot.beNil();
 
                                     expect(entry.identifier).equal(@"foo");
                                     expect(entry.sys[@"version"]).equal(@1);
@@ -124,7 +124,7 @@ describe(@"CMA", ^{
         [space createEntryOfContentType:contentType
                              withFields:@{}
                                 success:^(CDAResponse *response, CMAEntry *entry) {
-                                    expect(entry).toNot.beNil;
+                                    expect(entry).toNot.beNil();
 
                                     [entry deleteWithSuccess:^{
                                         [space fetchEntryWithIdentifier:entry.identifier
@@ -179,7 +179,7 @@ describe(@"CMA", ^{
                                         expect(entry.sys[@"archivedVersion"]).equal(@1);
 
                                         [entry unarchiveWithSuccess:^{
-                                            expect(entry.sys[@"archivedVersion"]).to.beNil;
+                                            expect(entry.sys[@"archivedVersion"]).to.beNil();
 
                                             done();
                                         } failure:^(CDAResponse *response, NSError *error) {
@@ -233,7 +233,7 @@ describe(@"CMA", ^{
         [space createEntryOfContentType:contentType
                              withFields:@{ @"title": @{ @"en-US": @"foo" } }
                                 success:^(CDAResponse *response, CMAEntry *entry) {
-                                    expect(entry).toNot.beNil;
+                                    expect(entry).toNot.beNil();
 
                                     [entry setValue:@"bar" forFieldWithName:@"title"];
                                     [entry updateWithSuccess:^{
@@ -244,7 +244,7 @@ describe(@"CMA", ^{
                                             expect(entry.fields[@"title"]).equal(@"bar");
                                             expect(entry.sys[@"version"]).equal(@2);
 
-                                            expect(newEntry).toNot.beNil;
+                                            expect(newEntry).toNot.beNil();
                                             expect(newEntry.fields[@"title"]).equal(@"bar");
                                             expect(newEntry.sys[@"version"]).equal(@2);
 
