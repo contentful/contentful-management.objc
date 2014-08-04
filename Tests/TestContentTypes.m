@@ -80,10 +80,12 @@ describe(@"CMA", ^{
                                      expect(contentType).toNot.beNil();
 
                                      [contentType publishWithSuccess:^{
-                                         expect(contentType.sys[@"publishedCounter"]).equal(@1);
+                                         expect(contentType.sys[@"publishedVersion"]).equal(@1);
 
                                          [contentType unpublishWithSuccess:^{
-                                             expect(contentType.sys[@"publishedCounter"]).to.beNil;
+                                             dispatch_sync(dispatch_get_main_queue(), ^{
+                                                 expect(contentType.sys[@"publishedVersion"]).to.beNil();
+                                             });
 
                                              [contentType deleteWithSuccess:^{
                                                  done();

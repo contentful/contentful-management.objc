@@ -205,10 +205,10 @@ describe(@"CMA", ^{
                              withFields:@{}
                                 success:^(CDAResponse *response, CMAEntry *entry) {
                                     [entry publishWithSuccess:^{
-                                        expect(entry.sys[@"publishedCounter"]).equal(@1);
+                                        expect(entry.sys[@"publishedVersion"]).equal(@1);
 
                                         [entry unpublishWithSuccess:^{
-                                            expect(entry.sys[@"publishedCounter"]).to.beNil;
+                                            expect(entry.sys[@"publishedVersion"]).to.beNil();
 
                                             done();
                                         } failure:^(CDAResponse *response, NSError *error) {
