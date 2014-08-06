@@ -279,6 +279,80 @@ describe(@"Content Type", ^{
                                  }];
     });
 
+    it(@"can update the name of an existing field during update", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createContentTypeWithName:@"foobar"
+                                  fields:@[ [CMAField fieldWithName:@"field1" type:CDAFieldTypeText]]
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil();
+                                     expect(contentType.fields.count).equal(1);
+                                     expect([contentType.fields.firstObject name]).equal(@"field1");
+
+                                     [contentType updateName:@"foobar" ofFieldWithIdentifier:@"field1"];
+                                     [contentType updateWithSuccess:^{
+                                         expect(contentType).toNot.beNil();
+                                         expect(contentType.fields.count).equal(1);
+                                         expect([contentType.fields.firstObject identifier]).equal(@"field1");
+                                         expect([contentType.fields.firstObject name]).equal(@"foobar");
+
+                                         [contentType deleteWithSuccess:^{
+                                             done();
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+                                     
+                                     done();
+                                 }];
+    });
+
+    it(@"can update the type of an existing field during update", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createContentTypeWithName:@"foobar"
+                                  fields:@[ [CMAField fieldWithName:@"field1" type:CDAFieldTypeText]]
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil();
+                                     expect(contentType.fields.count).equal(1);
+
+                                     __block CMAField* field = contentType.fields.firstObject;
+                                     expect(field.type).equal(CDAFieldTypeText);
+
+                                     [contentType updateType:CDAFieldTypeDate ofFieldWithIdentifier:@"field1"];
+                                     [contentType updateWithSuccess:^{
+                                         expect(contentType).toNot.beNil();
+                                         expect(contentType.fields.count).equal(1);
+
+                                         field = contentType.fields.firstObject;
+                                         expect(field.identifier).equal(@"field1");
+                                         expect(field.type).equal(CDAFieldTypeDate);
+
+                                         [contentType deleteWithSuccess:^{
+                                             done();
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+                                     
+                                     done();
+                                 }];
+    });
+
     it(@"does not allow to add two fields with the same name", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"

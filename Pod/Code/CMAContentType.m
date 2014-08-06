@@ -6,6 +6,7 @@
 //
 //
 
+#import "CDAField+Private.h"
 #import "CDAResource+Management.h"
 #import "CDAResource+Private.h"
 #import "CMAContentType.h"
@@ -37,11 +38,9 @@
 }
 
 -(void)deleteFieldWithIdentifier:(NSString *)identifier {
-    for (CMAField* field in self.fields) {
-        if ([field.identifier isEqualToString:identifier]) {
-            [self deleteField:field];
-        }
-    }
+    [self performAction:^(CMAField *field) {
+        [self deleteField:field];
+    } onFieldsWithIdentifier:identifier];
 }
 
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
@@ -70,6 +69,18 @@
     return fieldsArray;
 }
 
+-(void)performAction:(void (^)(CMAField* field))action onFieldsWithIdentifier:(NSString*)identifier {
+    if (!action) {
+        return;
+    }
+
+    for (CMAField* field in self.fields) {
+        if ([field.identifier isEqualToString:identifier]) {
+            action(field);
+        }
+    }
+}
+
 -(CDARequest *)publishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performPutToFragment:@"published" withSuccess:success failure:failure];
 }
@@ -85,6 +96,18 @@
                            }
                        });
     } failure:failure];
+}
+
+-(void)updateName:(NSString *)newName ofFieldWithIdentifier:(NSString *)identifier {
+    [self performAction:^(CMAField *field) {
+        field.name = newName;
+    } onFieldsWithIdentifier:identifier];
+}
+
+-(void)updateType:(CDAFieldType)newType ofFieldWithIdentifier:(NSString *)identifier {
+    [self performAction:^(CMAField *field) {
+        field.type = newType;
+    } onFieldsWithIdentifier:identifier];
 }
 
 -(void)updateWithResource:(CDAResource *)resource {
