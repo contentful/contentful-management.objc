@@ -7,10 +7,12 @@
 //
 
 #import "CDAResource+Management.h"
+#import "CDAResource+Private.h"
 #import "CMAContentType.h"
 
 @interface CMAContentType ()
 
+@property (nonatomic) NSMutableArray* mutableFields;
 @property (nonatomic, readonly) NSString* URLPath;
 
 @end
@@ -19,8 +21,41 @@
 
 @implementation CMAContentType
 
+-(BOOL)addFieldWithName:(NSString *)name type:(CDAFieldType)type {
+    CMAField* field = [CMAField fieldWithName:name type:type];
+
+    if ([[self.mutableFields valueForKey:@"identifier"] containsObject:field.identifier]) {
+        return NO;
+    }
+
+    [self.mutableFields addObject:field];
+    return YES;
+}
+
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
+}
+
+-(NSArray *)fields {
+    return [self.mutableFields copy];
+}
+
+-(id)initWithDictionary:(NSDictionary *)dictionary client:(CDAClient *)client {
+    self = [super initWithDictionary:dictionary client:client];
+    if (self) {
+        self.mutableFields = [super.fields mutableCopy];
+    }
+    return self;
+}
+
+-(NSArray*)parameterArrayFromFields {
+    NSMutableArray* fieldsArray = [@[] mutableCopy];
+
+    for (CDAField* field in self.mutableFields) {
+        [fieldsArray addObject:[field valueForKey:@"dictionaryRepresentation"]];
+    }
+
+    return fieldsArray;
 }
 
 -(CDARequest *)publishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
@@ -38,6 +73,23 @@
                            }
                        });
     } failure:failure];
+}
+
+-(void)updateWithResource:(CDAResource *)resource {
+    [super updateWithResource:resource];
+
+    if ([resource isKindOfClass:[CMAContentType class]]) {
+        self.mutableFields = [[(CMAContentType*)resource mutableFields] mutableCopy];
+    }
+}
+
+-(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performPutToFragment:@""
+                       withParameters:@{ @"name": self.name,
+                                         @"description": self.description,
+                                         @"fields": [self parameterArrayFromFields] }
+                              success:success
+                              failure:failure];
 }
 
 -(NSString *)URLPath {

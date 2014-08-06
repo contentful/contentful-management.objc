@@ -11,18 +11,8 @@
 /**
  *  Management extension for content types.
  */
-@interface CMAContentType : CDAContentType <CMAPublishing>
+@interface CMAContentType : CDAContentType <CMAPublishing, CMAResource>
 
-/**
- *  Delete the receiver.
- *
- *  A content type needs to be unpublished to be deletable.
- *
- *  @param success Called if deletion succeeds.
- *  @param failure Called if deletion fails.
- *
- *  @return The request used for deletion.
- */
--(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
+-(BOOL)addFieldWithName:(NSString*)name type:(CDAFieldType)type;
 
 @end

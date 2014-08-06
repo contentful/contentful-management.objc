@@ -170,6 +170,109 @@ describe(@"CMA", ^{
                                      done();
                                  }];
     });
+
+    it(@"does not change a Content Type during update", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createContentTypeWithName:@"foobar"
+                                  fields:@[ [CMAField fieldWithName:@"Date" type:CDAFieldTypeDate],
+                                            [CMAField fieldWithName:@"Bool" type:CDAFieldTypeBoolean],
+                                            [CMAField fieldWithName:@"Loc" type:CDAFieldTypeLocation],
+                                            [CMAField fieldWithName:@"Int" type:CDAFieldTypeInteger],
+                                            [CMAField fieldWithName:@"Num" type:CDAFieldTypeNumber],
+                                            [CMAField fieldWithName:@"Obj" type:CDAFieldTypeObject],
+                                            [CMAField fieldWithName:@"Text" type:CDAFieldTypeText],
+                                            [CMAField fieldWithName:@"Sym" type:CDAFieldTypeSymbol] ]
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil();
+                                     expect(contentType.fields.count).equal(8);
+
+                                     [contentType updateWithSuccess:^{
+                                         expect(contentType).toNot.beNil();
+                                         expect(contentType.fields.count).equal(8);
+
+                                         [contentType deleteWithSuccess:^{
+                                             done();
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+    });
+
+    it(@"can add a new field to a Content Type during update", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createContentTypeWithName:@"foobar"
+                                  fields:@[ [CMAField fieldWithName:@"field" type:CDAFieldTypeText] ]
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil();
+                                     expect(contentType.fields.count).equal(1);
+
+                                     [contentType addFieldWithName:@"anotherField"
+                                                              type:CDAFieldTypeNumber];
+                                     [contentType updateWithSuccess:^{
+                                         expect(contentType).toNot.beNil();
+                                         expect(contentType.fields.count).equal(2);
+
+                                         [contentType deleteWithSuccess:^{
+                                             done();
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+                                     
+                                     done();
+                                 }];
+    });
+
+    it(@"does not allow to add two fields with the same name to a Content Type", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createContentTypeWithName:@"foobar"
+                                  fields:@[ [CMAField fieldWithName:@"field" type:CDAFieldTypeText] ]
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil();
+                                     expect(contentType.fields.count).equal(1);
+
+                                     [contentType addFieldWithName:@"field" type:CDAFieldTypeNumber];
+                                     [contentType updateWithSuccess:^{
+                                         expect(contentType).toNot.beNil();
+                                         expect(contentType.fields.count).equal(1);
+
+                                         [contentType deleteWithSuccess:^{
+                                             done();
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+    });
 });
 
 SpecEnd
