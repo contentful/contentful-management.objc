@@ -63,7 +63,7 @@ describe(@"CMA", ^{
             expect(response).toNot.beNil();
 
             expect(array).toNot.beNil();
-            expect(array.items.count).to.equal(23);
+            expect(array.items.count).to.equal(24);
             expect([array.items[0] class]).to.equal([CMASpace class]);
 
             done();
@@ -100,7 +100,7 @@ describe(@"CMA", ^{
 
             [space fetchContentTypesWithSuccess:^(CDAResponse *response, CDAArray *array) {
                 expect(array).toNot.beNil();
-                expect(array.items.count).equal(2);
+                expect(array.items.count).equal(3);
                 expect([array.items[0] identifier]).toNot.beNil();
 
                 done();
