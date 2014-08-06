@@ -46,12 +46,4 @@
     return [identifier copy];
 }
 
-#pragma mark -
-
--(NSDictionary*)dictionaryRepresentation {
-    return @{ @"id": self.identifier,
-              @"name": self.name,
-              @"type": [self fieldTypeToString:self.type] };
-}
-
 @end
