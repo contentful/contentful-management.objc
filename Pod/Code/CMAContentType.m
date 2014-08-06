@@ -32,6 +32,18 @@
     return YES;
 }
 
+-(void)deleteField:(CMAField *)field {
+    [self.mutableFields removeObject:field];
+}
+
+-(void)deleteFieldWithIdentifier:(NSString *)identifier {
+    for (CMAField* field in self.fields) {
+        if ([field.identifier isEqualToString:identifier]) {
+            [self deleteField:field];
+        }
+    }
+}
+
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
 }
