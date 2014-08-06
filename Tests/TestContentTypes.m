@@ -12,7 +12,7 @@
 
 SpecBegin(ContentType)
 
-describe(@"CMA", ^{
+describe(@"Content Type", ^{
     __block CMAClient* client;
     __block CMASpace* space;
 
@@ -37,7 +37,7 @@ describe(@"CMA", ^{
                                  }];
     });
 
-    it(@"can activate a Content Type", ^AsyncBlock {
+    it(@"can be activated", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
@@ -72,7 +72,7 @@ describe(@"CMA", ^{
                                  }];
     });
 
-    it(@"can deactivate a Content Type", ^AsyncBlock {
+    it(@"can be deactivated", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
@@ -111,7 +111,7 @@ describe(@"CMA", ^{
                                  }];
     });
 
-    it(@"can create a new Content Type", ^AsyncBlock {
+    it(@"can be created", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"Date" type:CDAFieldTypeDate],
@@ -140,7 +140,7 @@ describe(@"CMA", ^{
                                  }];
     });
 
-    it(@"can delete an existing Content Type", ^AsyncBlock {
+    it(@"can be deleted", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:nil
@@ -171,7 +171,7 @@ describe(@"CMA", ^{
                                  }];
     });
 
-    it(@"does not change a Content Type during update", ^AsyncBlock {
+    it(@"does not change during update", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"Date" type:CDAFieldTypeDate],
@@ -209,7 +209,7 @@ describe(@"CMA", ^{
                                  }];
     });
 
-    it(@"can add a new field to a Content Type during update", ^AsyncBlock {
+    it(@"can add a new field during update", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"field" type:CDAFieldTypeText] ]
@@ -242,7 +242,7 @@ describe(@"CMA", ^{
                                  }];
     });
 
-    it(@"does not allow to add two fields with the same name to a Content Type", ^AsyncBlock {
+    it(@"does not allow to add two fields with the same name", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"field" type:CDAFieldTypeText] ]

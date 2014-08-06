@@ -15,7 +15,7 @@
 
 SpecBegin(Entry)
 
-describe(@"CMA", ^{
+describe(@"Entry", ^{
     __block CMAClient* client;
     __block CMAContentType* contentType;
     __block CMASpace* space;
@@ -54,7 +54,7 @@ describe(@"CMA", ^{
                                  }];
     });
 
-    it(@"can archive an Entry", ^AsyncBlock {
+    it(@"can be archived", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
@@ -75,7 +75,7 @@ describe(@"CMA", ^{
                                 }];
     });
 
-    it(@"can create a new Entry", ^AsyncBlock {
+    it(@"can be created", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{ @"title": @{ @"en-US": @"Mr. President" } }
@@ -94,7 +94,7 @@ describe(@"CMA", ^{
                                 }];
     });
 
-    it(@"can create a new Entry with user-defined identifier", ^AsyncBlock {
+    it(@"can be created with user-defined identifier", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                          withIdentifier:@"foo"
@@ -119,7 +119,7 @@ describe(@"CMA", ^{
                                 }];
     });
 
-    it(@"can delete an existing Entry", ^AsyncBlock {
+    it(@"can be deleted", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
@@ -149,7 +149,7 @@ describe(@"CMA", ^{
                                 }];
     });
 
-    it(@"can publish an Entry", ^AsyncBlock {
+    it(@"can be published", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
@@ -170,7 +170,7 @@ describe(@"CMA", ^{
                                 }];
     });
 
-    it(@"can unarchive an Entry", ^AsyncBlock {
+    it(@"can be unarchived", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
@@ -199,7 +199,7 @@ describe(@"CMA", ^{
                                 }];
     });
 
-    it(@"can unpublish an Entry", ^AsyncBlock {
+    it(@"can be unpublished", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
@@ -228,7 +228,7 @@ describe(@"CMA", ^{
                                 }];
     });
 
-    it(@"can update an Entry", ^AsyncBlock {
+    it(@"can be updated", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{ @"title": @{ @"en-US": @"foo" } }

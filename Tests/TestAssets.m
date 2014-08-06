@@ -13,7 +13,7 @@
 
 SpecBegin(Asset)
 
-describe(@"CMA", ^{
+describe(@"Asset", ^{
     __block CMAClient* client;
     __block CMASpace* space;
 
@@ -38,7 +38,7 @@ describe(@"CMA", ^{
                                  }];
     });
 
-    it(@"can archive an Asset", ^AsyncBlock {
+    it(@"can be archived", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
                         description:nil
@@ -62,7 +62,7 @@ describe(@"CMA", ^{
                             }];
     });
 
-    it(@"can create a new Asset", ^AsyncBlock {
+    it(@"can be created", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:@{ @"en-US": @"My Asset" }
                         description:nil
@@ -82,7 +82,7 @@ describe(@"CMA", ^{
                             }];
     });
 
-    it(@"can create a new Asset with user-defined identifier", ^AsyncBlock {
+    it(@"can be created with user-defined identifier", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithIdentifier:@"foo"
                                   fields:@{ @"title": @{ @"en-US": @"My Asset" } }
@@ -107,7 +107,7 @@ describe(@"CMA", ^{
                                  }];
     });
 
-    it(@"can delete an existing Asset", ^AsyncBlock {
+    it(@"can be deleted", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
                         description:nil
@@ -138,7 +138,7 @@ describe(@"CMA", ^{
                             }];
     });
 
-    it(@"can process the file of an Asset", ^AsyncBlock {
+    it(@"can process its file", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:@{ @"en-US": @"Bacon Pancakes" }
                         description:nil
@@ -158,7 +158,7 @@ describe(@"CMA", ^{
                             }];
     });
 
-    it(@"cannot publish an Asset without associated file", ^AsyncBlock {
+    it(@"cannot be published without associated file", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
                         description:nil
@@ -180,7 +180,7 @@ describe(@"CMA", ^{
                             }];
     });
 
-    it(@"can unarchive an Asset", ^AsyncBlock {
+    it(@"can be unarchived", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
                         description:nil
@@ -212,7 +212,7 @@ describe(@"CMA", ^{
                             }];
     });
 
-    it(@"can update an Asset", ^AsyncBlock {
+    it(@"can be updated", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:@{ @"en-US": @"foo" }
                         description:nil
@@ -252,7 +252,7 @@ describe(@"CMA", ^{
                             }];
     });
 
-    it(@"can update the file of an Asset", ^AsyncBlock {
+    it(@"can update its file", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
                         description:nil
