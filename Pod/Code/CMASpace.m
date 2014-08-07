@@ -163,6 +163,21 @@
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
 }
 
+-(CDARequest *)fetchAssetsMatching:(NSDictionary *)query
+                           success:(CDAArrayFetchedBlock)success
+                           failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client fetchAssetsMatching:query
+                                    success:success
+                                    failure:failure];
+}
+
+-(CDARequest *)fetchAssetsWithSuccess:(CDAArrayFetchedBlock)success
+                              failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client fetchAssetsWithSuccess:success failure:failure];
+}
+
 -(CDARequest *)fetchAssetWithIdentifier:(NSString *)identifier
                                 success:(CMAAssetFetchedBlock)success
                                 failure:(CDARequestFailureBlock)failure {
@@ -192,6 +207,21 @@
                                                        success(response, (CMAContentType*)contentType);
                                                    }
                                                } failure:failure];
+}
+
+-(CDARequest *)fetchEntriesMatching:(NSDictionary *)query
+                            success:(CDAArrayFetchedBlock)success
+                            failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client fetchEntriesMatching:query
+                                     success:success
+                                     failure:failure];
+}
+
+-(CDARequest *)fetchEntriesWithSuccess:(CDAArrayFetchedBlock)success
+                               failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client fetchEntriesWithSuccess:success failure:failure];
 }
 
 -(CDARequest *)fetchEntryWithIdentifier:(NSString *)identifier
