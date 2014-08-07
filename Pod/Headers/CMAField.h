@@ -24,4 +24,7 @@
  */
 +(instancetype)fieldWithName:(NSString*)name type:(CDAFieldType)type;
 
+/** Field type of items if the field is an Array, `CDAFieldTypeNone` otherwise. */
+@property (nonatomic) CDAFieldType itemType;
+
 @end

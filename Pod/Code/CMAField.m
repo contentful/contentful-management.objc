@@ -21,6 +21,10 @@
 
 @implementation CMAField
 
+@dynamic itemType;
+
+#pragma mark -
+
 +(instancetype)fieldWithName:(NSString *)name type:(CDAFieldType)type {
     CMAField* field = [[self alloc] initWithDictionary:@{ @"type": @"Symbol" }
                                                 client:(CDAClient*)[NSNull null]];

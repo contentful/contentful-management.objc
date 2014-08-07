@@ -10,6 +10,48 @@
 
 #import "BBURecordingHelper.h"
 
+#define ArrayTestWithItemType(__itemType) NSAssert(space, @"Test space could not be found."); \
+\
+CMAField* arrayField = [CMAField fieldWithName:@"Array" type:CDAFieldTypeArray]; \
+arrayField.itemType = __itemType; \
+\
+[space createContentTypeWithName:@"foobar" \
+                          fields:@[ arrayField ] \
+                         success:^(CDAResponse *response, CMAContentType *contentType) { \
+                             expect(contentType).toNot.beNil(); \
+                             expect(contentType.fields.count).to.equal(1); \
+\
+                             [contentType publishWithSuccess:^{ \
+                                 expect(contentType).toNot.beNil(); \
+                                 expect(contentType.fields.count).to.equal(1); \
+\
+                                 [contentType unpublishWithSuccess:^{ \
+                                     expect(contentType).toNot.beNil(); \
+                                     expect(contentType.fields.count).to.equal(1); \
+\
+                                     [contentType deleteWithSuccess:^{ \
+                                         done(); \
+                                     } failure:^(CDAResponse *response, NSError *error) { \
+                                         XCTFail(@"Error: %@", error); \
+\
+                                         done(); \
+                                     }]; \
+                                 } failure:^(CDAResponse *response, NSError *error) { \
+                                     XCTFail(@"Error: %@", error); \
+\
+                                     done(); \
+                                 }]; \
+                             } failure:^(CDAResponse *response, NSError *error) { \
+                                 XCTFail(@"Error: %@", error); \
+\
+                                 done(); \
+                             }]; \
+                         } failure:^(CDAResponse *response, NSError *error) { \
+                             XCTFail(@"Error: %@", error); \
+\
+                             done(); \
+                         }];
+
 SpecBegin(ContentType)
 
 describe(@"Content Type", ^{
@@ -138,6 +180,18 @@ describe(@"Content Type", ^{
 
                                      done();
                                  }];
+    });
+
+    it(@"can be created with an array field of symbols", ^AsyncBlock {
+        ArrayTestWithItemType(CDAFieldTypeSymbol);
+    });
+
+    it(@"can be created with an array field of entries", ^AsyncBlock {
+        ArrayTestWithItemType(CDAFieldTypeEntry);
+    });
+
+    it(@"can be created with an array field of assets", ^AsyncBlock {
+        ArrayTestWithItemType(CDAFieldTypeAsset);
     });
 
     it(@"can be deleted", ^AsyncBlock {

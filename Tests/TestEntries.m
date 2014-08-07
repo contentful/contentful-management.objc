@@ -36,7 +36,7 @@ describe(@"Entry", ^{
                                      [space fetchContentTypesWithSuccess:^(CDAResponse *response,
                                                                            CDAArray *array) {
                                          expect(array).toNot.beNil();
-                                         expect(array.items.count).to.equal(3);
+                                         expect(array.items.count).to.equal(5);
 
                                          contentType = array.items[0];
                                          expect(contentType.identifier).toNot.beNil();
