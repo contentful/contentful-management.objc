@@ -194,6 +194,48 @@ describe(@"Content Type", ^{
         ArrayTestWithItemType(CDAFieldTypeAsset);
     });
 
+    it(@"can be created with a link to an entry", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createContentTypeWithName:@"foobar"
+                                  fields:@[ [CMAField fieldWithName:@"Link" type:CDAFieldTypeEntry] ]
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil();
+                                     expect(contentType.fields.count).equal(1);
+
+                                     [contentType publishWithSuccess:^{
+                                         expect(contentType).toNot.beNil();
+                                         expect(contentType.fields.count).equal(1);
+                                         expect(contentType.sys[@"publishedVersion"]).equal(@1);
+
+                                         [contentType unpublishWithSuccess:^{
+                                             expect(contentType).toNot.beNil();
+                                             expect(contentType.fields.count).equal(1);
+                                             expect(contentType.sys[@"publishedVersion"]).to.beNil();
+
+                                             [contentType deleteWithSuccess:^{
+                                                 done();
+                                             } failure:^(CDAResponse *response, NSError *error) {
+                                                 XCTFail(@"Error: %@", error);
+
+                                                 done();
+                                             }];
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+    });
+
     it(@"can be deleted", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
