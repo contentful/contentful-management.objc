@@ -173,7 +173,7 @@ describe(@"Content Type", ^{
                                      expect(contentType.fields.count).equal(8);
 
                                      // FIXME: There has to be a better way...
-                                     [NSThread sleepForTimeInterval:2.0];
+                                     [NSThread sleepForTimeInterval:3.0];
 
                                      [contentType deleteWithSuccess:^{
                                          done();
@@ -294,7 +294,7 @@ describe(@"Content Type", ^{
                                          expect(contentType.fields.count).equal(8);
 
                                          // FIXME: There has to be a better way...
-                                         [NSThread sleepForTimeInterval:2.0];
+                                         [NSThread sleepForTimeInterval:3.0];
 
                                          [contentType deleteWithSuccess:^{
                                              done();
