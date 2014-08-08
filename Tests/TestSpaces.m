@@ -100,7 +100,7 @@ describe(@"CMA", ^{
 
             [space fetchContentTypesWithSuccess:^(CDAResponse *response, CDAArray *array) {
                 expect(array).toNot.beNil();
-                expect(array.items.count).equal(8);
+                expect(array.items.count).equal(9);
                 expect([array.items[0] identifier]).toNot.beNil();
 
                 done();
@@ -248,6 +248,21 @@ describe(@"CMA", ^{
 
                 done();
             }];
+        } failure:^(CDAResponse *response, NSError *error) {
+            XCTFail(@"Error: %@", error);
+
+            done();
+        }];
+    });
+
+    it(@"can retrieve all locales of a Space", ^AsyncBlock {
+        NSAssert(client, @"Client is not available.");
+        [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
+                                                                   CMASpace *space) {
+            expect(space).toNot.beNil();
+            expect(space.locales).to.equal(@[ @{ @"name": @"U.S. English", @"code": @"en-US" } ]);
+
+            done();
         } failure:^(CDAResponse *response, NSError *error) {
             XCTFail(@"Error: %@", error);
 

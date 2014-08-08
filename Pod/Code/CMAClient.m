@@ -10,6 +10,7 @@
 
 #import "CDAArray+Private.h"
 #import "CDAClient+Private.h"
+#import "CDASpace+Private.h"
 #import "CMAAccessToken.h"
 #import "CMAClient.h"
 
@@ -77,9 +78,23 @@
 -(CDARequest *)fetchSpaceWithIdentifier:(NSString *)identifier
                                 success:(CMASpaceFetchedBlock)success
                                 failure:(CDARequestFailureBlock)failure {
-    return [self.client fetchURLPath:[@"spaces/" stringByAppendingString:identifier]
+    NSString* spaceURLPath = [@"spaces" stringByAppendingPathComponent:identifier];
+    NSString* localesURLPath = [spaceURLPath stringByAppendingPathComponent:@"locales"];
+
+    return [self.client fetchURLPath:spaceURLPath
                           parameters:@{}
-                             success:success
+                             success:^(CDAResponse *response, CMASpace* space) {
+                                 [self.client fetchArrayAtURLPath:localesURLPath
+                                                       parameters:nil
+                                                          success:^(CDAResponse *secondResponse,
+                                                                    CDAArray *array) {
+                                                              space.locales = [array.items valueForKey:@"dictionaryRepresentation"];
+
+                                                              if (success) {
+                                                                  success(response, space);
+                                                              }
+                                                          } failure:failure];
+                             }
                              failure:failure];
 }
 
