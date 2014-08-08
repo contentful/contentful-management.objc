@@ -172,6 +172,9 @@ describe(@"Content Type", ^{
                                      expect(contentType).toNot.beNil();
                                      expect(contentType.fields.count).equal(8);
 
+                                     // FIXME: There has to be a better way...
+                                     [NSThread sleepForTimeInterval:2.0];
+
                                      [contentType deleteWithSuccess:^{
                                          done();
                                      } failure:^(CDAResponse *response, NSError *error) {
@@ -289,6 +292,9 @@ describe(@"Content Type", ^{
                                      [contentType updateWithSuccess:^{
                                          expect(contentType).toNot.beNil();
                                          expect(contentType.fields.count).equal(8);
+
+                                         // FIXME: There has to be a better way...
+                                         [NSThread sleepForTimeInterval:2.0];
 
                                          [contentType deleteWithSuccess:^{
                                              done();
