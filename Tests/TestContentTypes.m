@@ -338,6 +338,41 @@ describe(@"Content Type", ^{
                                  }];
     });
 
+    it(@"can add a new field created manually", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createContentTypeWithName:@"foobar"
+                                  fields:@[ [CMAField fieldWithName:@"field" type:CDAFieldTypeText] ]
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil();
+                                     expect(contentType.fields.count).equal(1);
+
+                                     CMAField* field = [CMAField fieldWithName:@"anotherField"
+                                                                          type:CDAFieldTypeNumber];
+                                     [contentType addField:field];
+
+                                     [contentType updateWithSuccess:^{
+                                         expect(contentType).toNot.beNil();
+                                         expect(contentType.fields.count).equal(2);
+
+                                         [contentType deleteWithSuccess:^{
+                                             done();
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+                                     
+                                     done();
+                                 }];
+    });
+
     it(@"can delete an existing field during update", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"

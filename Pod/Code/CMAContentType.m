@@ -22,15 +22,17 @@
 
 @implementation CMAContentType
 
--(BOOL)addFieldWithName:(NSString *)name type:(CDAFieldType)type {
-    CMAField* field = [CMAField fieldWithName:name type:type];
-
+-(BOOL)addField:(CMAField *)field {
     if ([[self.mutableFields valueForKey:@"identifier"] containsObject:field.identifier]) {
         return NO;
     }
 
     [self.mutableFields addObject:field];
     return YES;
+}
+
+-(BOOL)addFieldWithName:(NSString *)name type:(CDAFieldType)type {
+    return [self addField:[CMAField fieldWithName:name type:type]];
 }
 
 -(void)deleteField:(CMAField *)field {

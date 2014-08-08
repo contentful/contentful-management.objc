@@ -20,6 +20,17 @@
  *
  *  Call `updateWithSuccess:failure:` to synchronize local changes to Contentful.
  *
+ *  @param field The new field.
+ *
+ *  @return YES if no other field with the same `identifier` exits, NO otherwise.
+ */
+-(BOOL)addField:(CMAField*)field;
+
+/**
+ *  Adds a new field to the receiver locally.
+ *
+ *  Call `updateWithSuccess:failure:` to synchronize local changes to Contentful.
+ *
  *  @param name The name of the new field.
  *  @param type The type of the new field.
  *
