@@ -14,6 +14,11 @@
 @protocol CMAPublishing
 
 /**
+ *  Determine whether or not the receiver is currently published.
+ */
+@property (readonly, getter = isPublished) BOOL published;
+
+/**
  *  Publish the receiver. A published resource will be available via the delivery API.
  *
  *  Before publishing certain resources, Contentful will perform validations, so publishing can fail

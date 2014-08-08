@@ -35,6 +35,10 @@
     return self.fields[@"description"];
 }
 
+-(BOOL)isPublished {
+    return self.sys[@"publishedCounter"] != nil;
+}
+
 -(NSDictionary*)parametersFromLocalizedFields {
     return CMATransformLocalizedFieldsToParameterDictionary(self.localizedFields);
 }

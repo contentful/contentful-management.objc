@@ -154,8 +154,11 @@ describe(@"Entry", ^{
         [space createEntryOfContentType:contentType
                              withFields:@{}
                                 success:^(CDAResponse *response, CMAEntry *entry) {
+                                    expect(entry.isPublished).to.equal(NO);
+
                                     [entry publishWithSuccess:^{
                                         expect(entry.sys[@"publishedCounter"]).equal(@1);
+                                        expect(entry.isPublished).to.equal(YES);
 
                                         done();
                                     } failure:^(CDAResponse *response, NSError *error) {

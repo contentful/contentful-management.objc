@@ -85,11 +85,15 @@ describe(@"Content Type", ^{
                                   fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
                                  success:^(CDAResponse *response, CMAContentType *contentType) {
                                      expect(contentType).toNot.beNil();
+                                     expect(contentType.isPublished).to.equal(NO);
 
                                      [contentType publishWithSuccess:^{
                                          expect(contentType.sys[@"publishedCounter"]).equal(@1);
+                                         expect(contentType.isPublished).to.equal(YES);
 
                                          [contentType unpublishWithSuccess:^{
+                                             expect(contentType.isPublished).to.equal(NO);
+
                                              [contentType deleteWithSuccess:^{
                                                  done();
                                              } failure:^(CDAResponse *response, NSError *error) {

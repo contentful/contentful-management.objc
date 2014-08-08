@@ -29,6 +29,10 @@
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
 }
 
+-(BOOL)isPublished {
+    return self.sys[@"publishedCounter"] != nil;
+}
+
 -(NSDictionary*)parametersFromLocalizedFields {
     return CMATransformLocalizedFieldsToParameterDictionary(self.localizedFields);
 }

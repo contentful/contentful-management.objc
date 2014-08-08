@@ -61,6 +61,10 @@
     return self;
 }
 
+-(BOOL)isPublished {
+    return self.sys[@"publishedCounter"] != nil;
+}
+
 -(NSArray*)parameterArrayFromFields {
     NSMutableArray* fieldsArray = [@[] mutableCopy];
 
