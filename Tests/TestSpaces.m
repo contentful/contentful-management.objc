@@ -100,7 +100,7 @@ describe(@"CMA", ^{
 
             [space fetchContentTypesWithSuccess:^(CDAResponse *response, CDAArray *array) {
                 expect(array).toNot.beNil();
-                expect(array.items.count).equal(10);
+                expect(array.items.count).equal(12);
                 expect([array.items[0] identifier]).toNot.beNil();
 
                 done();

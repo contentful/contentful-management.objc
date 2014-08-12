@@ -174,9 +174,6 @@ describe(@"Content Type", ^{
                                      expect(contentType).toNot.beNil();
                                      expect(contentType.fields.count).equal(8);
 
-                                     // FIXME: There has to be a better way...
-                                     [NSThread sleepForTimeInterval:3.0];
-
                                      [contentType deleteWithSuccess:^{
                                          done();
                                      } failure:^(CDAResponse *response, NSError *error) {
@@ -257,7 +254,9 @@ describe(@"Content Type", ^{
                                          [space fetchContentTypeWithIdentifier:contentType.identifier
                                                                        success:^(CDAResponse *response,
                                                                                  CMAContentType *ct) {
-                                                                           XCTFail(@"Should not succeed.");
+                                                                           dispatch_sync(dispatch_get_main_queue(), ^{
+                                                                               XCTFail(@"Should not succeed.");
+                                                                           });
 
                                                                            done();
                                                                        } failure:^(CDAResponse *response,
@@ -294,9 +293,6 @@ describe(@"Content Type", ^{
                                      [contentType updateWithSuccess:^{
                                          expect(contentType).toNot.beNil();
                                          expect(contentType.fields.count).equal(8);
-
-                                         // FIXME: There has to be a better way...
-                                         [NSThread sleepForTimeInterval:3.0];
 
                                          [contentType deleteWithSuccess:^{
                                              done();
