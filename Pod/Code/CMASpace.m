@@ -32,15 +32,14 @@
                                                      error:error];
 
     if (!data) {
-        return nil;
+        return @"application/octet-stream";
     }
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
         return response.allHeaderFields[@"Content-Type"];
     }
 
-    // FIXME: Return an error in this case
-    return nil;
+    return @"application/octet-stream";
 }
 
 +(NSDictionary*)fileUploadDictionaryFromLocalizedUploads:(NSDictionary*)localizedUploads {
