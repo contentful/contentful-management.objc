@@ -38,7 +38,13 @@ describe(@"Entry", ^{
                                          expect(array).toNot.beNil();
                                          expect(array.items.count).to.equal(9);
 
-                                         contentType = array.items[0];
+                                         for (CMAContentType* ct in array.items) {
+                                             if ([ct.identifier isEqualToString:@"6FxqhReTPUuYAYW8gqOwS"]) {
+                                                 contentType = ct;
+                                                 break;
+                                             }
+                                         }
+
                                          expect(contentType.identifier).toNot.beNil();
 
                                          done();
