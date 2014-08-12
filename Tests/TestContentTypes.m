@@ -524,6 +524,38 @@ describe(@"Content Type", ^{
                                  }];
     });
 
+    it(@"can change description during update", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createContentTypeWithName:@"name"
+                                  fields:nil
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil();
+                                     expect(contentType.userDescription).to.beNil();
+
+                                     contentType.userDescription = @"changed description";
+                                     [contentType updateWithSuccess:^{
+                                         expect(contentType).toNot.beNil();
+                                         expect(contentType.userDescription).to.equal(@"changed description");
+
+                                         [contentType deleteWithSuccess:^{
+                                             done();
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+                                     
+                                     done();
+                                 }];
+    });
+
     it(@"does not allow to add two fields with the same name", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"

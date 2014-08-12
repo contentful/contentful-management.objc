@@ -16,6 +16,11 @@
 @interface CMAContentType : CDAContentType <CMAPublishing, CMAResource>
 
 /**
+ *  The description of the receiver.
+ */
+@property (nonatomic) NSString* userDescription;
+
+/**
  *  The name of the receiver.
  */
 @property (nonatomic) NSString* name;

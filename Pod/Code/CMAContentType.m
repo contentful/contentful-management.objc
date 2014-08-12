@@ -23,6 +23,7 @@
 @implementation CMAContentType
 
 @dynamic name;
+@dynamic userDescription;
 
 #pragma mark -
 
