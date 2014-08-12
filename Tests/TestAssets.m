@@ -45,9 +45,11 @@ describe(@"Asset", ^{
                        fileToUpload:nil
                             success:^(CDAResponse *response, CMAAsset *asset) {
                                 expect(asset).toNot.beNil();
+                                expect(asset.isArchived).to.beFalsy();
 
                                 [asset archiveWithSuccess:^{
                                     expect(asset.sys[@"archivedVersion"]).equal(@1);
+                                    expect(asset.isArchived).to.beTruthy();
 
                                     done();
                                 } failure:^(CDAResponse *response, NSError *error) {

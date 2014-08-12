@@ -14,6 +14,11 @@
 @protocol CMAArchiving
 
 /**
+ *  Determine whether or not the receiver is currently archived.
+ */
+@property (readonly, getter = isArchived) BOOL archived;
+
+/**
  *  Archive the receiver. 
  *
  *  This operation only works on unpublished resources and will exclude them from default queries.

@@ -35,6 +35,10 @@
     return self.fields[@"description"];
 }
 
+-(BOOL)isArchived {
+    return self.sys[@"archivedVersion"] != nil;
+}
+
 -(BOOL)isPublished {
     return self.sys[@"publishedVersion"] != nil;
 }

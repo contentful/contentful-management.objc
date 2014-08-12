@@ -65,8 +65,11 @@ describe(@"Entry", ^{
         [space createEntryOfContentType:contentType
                              withFields:@{}
                                 success:^(CDAResponse *response, CMAEntry *entry) {
+                                    expect(entry.isArchived).to.beFalsy();
+
                                     [entry archiveWithSuccess:^{
                                         expect(entry.sys[@"archivedVersion"]).equal(@1);
+                                        expect(entry.isArchived).to.beTruthy();
 
                                         done();
                                     } failure:^(CDAResponse *response, NSError *error) {
