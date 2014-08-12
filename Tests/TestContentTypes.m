@@ -92,7 +92,9 @@ describe(@"Content Type", ^{
                                          expect(contentType.isPublished).to.equal(YES);
 
                                          [contentType unpublishWithSuccess:^{
-                                             expect(contentType.isPublished).to.equal(NO);
+                                             dispatch_sync(dispatch_get_main_queue(), ^{
+                                                 expect(contentType.isPublished).to.equal(NO);
+                                             });
 
                                              [contentType deleteWithSuccess:^{
                                                  done();

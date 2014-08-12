@@ -30,7 +30,7 @@
 }
 
 -(BOOL)isPublished {
-    return self.sys[@"publishedCounter"] != nil;
+    return self.sys[@"publishedVersion"] != nil;
 }
 
 -(NSDictionary*)parametersFromLocalizedFields {

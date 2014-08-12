@@ -62,7 +62,7 @@
 }
 
 -(BOOL)isPublished {
-    return self.sys[@"publishedCounter"] != nil;
+    return self.sys[@"publishedVersion"] != nil;
 }
 
 -(NSArray*)parameterArrayFromFields {
