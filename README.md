@@ -1,6 +1,6 @@
 # contentful-management.objc
 
-[![CI Status](http://img.shields.io/travis/Boris Bügling/contentful-management.objc.svg?style=flat)](https://travis-ci.org/Boris Bügling/contentful-management.objc)
+[![CI Status](http://img.shields.io/travis/contentful/contentful-management.objc.svg?style=flat)](https://travis-ci.org/contentful/contentful-management.objc)
 [![Version](https://img.shields.io/cocoapods/v/contentful-management.objc.svg?style=flat)](http://cocoadocs.org/docsets/contentful-management.objc)
 [![License](https://img.shields.io/cocoapods/l/contentful-management.objc.svg?style=flat)](http://cocoadocs.org/docsets/contentful-management.objc)
 [![Platform](https://img.shields.io/cocoapods/p/contentful-management.objc.svg?style=flat)](http://cocoadocs.org/docsets/contentful-management.objc)
@@ -8,8 +8,6 @@
 Objective-C SDK for [Contentful's][1] Content Management API.
 
 [Contentful][1] is a content management platform for web applications, mobile apps and connected devices. It allows you to create, edit & manage content in the cloud and publish it anywhere via powerful API. Contentful offers tools for managing editorial teams and enabling cooperation between organizations.
-
-## Usage
 
 ## Usage
 
@@ -379,7 +377,7 @@ This is the easiest way to keep your copy of the Contentful Management API updat
 
 The Contentful Management API is fully unit tested. They are using the API token from the environment variable `CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN` so you have to provide that.
 
-The tests can be run either from inside Xcode or using cocoapods-testing from the commandline:
+The tests can be run either from inside Xcode or using [cocoapods-testing][3] from the commandline:
 
 	$ gem install cocoapods-testing
 	$ pod lib testing
@@ -390,3 +388,5 @@ Copyright (c) 2014 Contentful GmbH. See LICENSE for further details.
 
 
 [1]: https://www.contentful.com/
+[2]: http://www.cocoapods.org/
+[3]: https://github.com/neonichu/cocoapods-testing
