@@ -1,11 +1,9 @@
 target 'ManagementSDK', :exclusive => true do
-  pod "ContentfulDeliveryAPI", :git => 'https://github.com/contentful/contentful.objc.git'
+  pod "ContentfulDeliveryAPI"
   pod "ContentfulManagementAPI", :path => "."
 end
 
 target 'Tests', :exclusive => true do
-  pod "ContentfulManagementAPI", :path => "."
-
   pod 'Specta', :git => 'https://github.com/neonichu/specta.git'
   pod 'Expecta'
   pod 'CCLRequestReplay', :git => 'https://github.com/neonichu/CCLRequestReplay.git'
