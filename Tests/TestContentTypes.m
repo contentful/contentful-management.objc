@@ -496,6 +496,38 @@ describe(@"Content Type", ^{
                                  }];
     });
 
+    it(@"can change name during update", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+        [space createContentTypeWithName:@"name"
+                                  fields:nil
+                                 success:^(CDAResponse *response, CMAContentType *contentType) {
+                                     expect(contentType).toNot.beNil();
+                                     expect(contentType.name).to.equal(@"name");
+
+                                     contentType.name = @"changed name";
+                                     [contentType updateWithSuccess:^{
+                                         expect(contentType).toNot.beNil();
+                                         expect(contentType.name).to.equal(@"changed name");
+
+                                         [contentType deleteWithSuccess:^{
+                                             done();
+                                         } failure:^(CDAResponse *response, NSError *error) {
+                                             XCTFail(@"Error: %@", error);
+
+                                             done();
+                                         }];
+                                     } failure:^(CDAResponse *response, NSError *error) {
+                                         XCTFail(@"Error: %@", error);
+
+                                         done();
+                                     }];
+                                 } failure:^(CDAResponse *response, NSError *error) {
+                                     XCTFail(@"Error: %@", error);
+
+                                     done();
+                                 }];
+    });
+
     it(@"does not allow to add two fields with the same name", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"

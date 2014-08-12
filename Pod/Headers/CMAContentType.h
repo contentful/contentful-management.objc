@@ -16,6 +16,11 @@
 @interface CMAContentType : CDAContentType <CMAPublishing, CMAResource>
 
 /**
+ *  The name of the receiver.
+ */
+@property (nonatomic) NSString* name;
+
+/**
  *  Adds a new field to the receiver locally.
  *
  *  Call `updateWithSuccess:failure:` to synchronize local changes to Contentful.
