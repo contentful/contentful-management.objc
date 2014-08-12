@@ -1,11 +1,11 @@
 language: objective-c
 cache:
-  - bundler
+- bundler
 before_install: bundle install
 script: pod lib testing
 notifications:
   slack:
-    secure: QfCvAzriwr2CTqXoAwuQMIIaghWxa3X7VLXEY4HQ83HIfZRnUUMbTeDUfBKjcOsys8OwgOGxNlTESviqWHuek1yu23UvYTBBsMBwcJBGfMXRMvEyZb/GT5wOof9k7SbKGDDu4AkpPNwuY3zqsn3wEijBWk01b4ocOIbYsDMK/ic=
+    secure: LM3GodLDCvADu0UyiTRIvMsku6sLSTYwn/yDFbhnsDajdKMbI8R7d7RmuF2r7ZkA+0qNEPLD5zoHfvxCRTu/03MKXrQ3Rh4MIHc1rJTkzszZIPmdLJ+eEgD5urjvYyqXuzgJXji0aSjSlWy0aSady1OzBsBO880jJltt6s4qWws=
 env:
   global:
-    secure: O6Y6vyCeA9ubuENaQYIeiLiGB0+NeKXj3gjIPFf0Wga3mXpFQqVSIXkETB9a//nj1mAYaSzOZGu+7FLnkek65rwjfh3WpHStqX8RSpYFfoe14eS/BaOFtJZikIwOldyxY7aE2e2RTgaqUDMFtiuchTQdKqxlT7Z2tMX+q/f+9Zw=
+    secure: EmChGpGvvQ++DduzeqBrLZNJjpm3mFPFdHw3K2m/opAWAzJYq10xq8SiU1wmZVGhkVAdZJoNe0NwWGWOvfWiOmWW/+0r0W8pBrwkRcI8c/wzUMMkgpJfVNTyUa2MWnBnVAZNB7bM+dVJ3gvqmUHCquapM+L9Z8+GP0zKBlDsVwo=
