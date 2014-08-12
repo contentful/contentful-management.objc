@@ -77,8 +77,16 @@
     return [self.client postURLPath:@"assets"
                             headers:nil
                          parameters:@{ @"fields": fields }
-                            success:success
-                            failure:failure];
+                            success:^(CDAResponse *response, id responseObject) {
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)),
+                                               dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                                               ^{
+                                                   if (success) {
+                                                       success(response, responseObject);
+                                                   }
+                                               });
+
+                            } failure:failure];
 }
 
 -(CDARequest *)createAssetWithIdentifier:(NSString*)identifier
@@ -89,8 +97,16 @@
     return [self.client putURLPath:[@"assets" stringByAppendingPathComponent:identifier]
                            headers:nil
                         parameters:@{ @"fields": fields }
-                           success:success
-                           failure:failure];
+                           success:^(CDAResponse *response, id responseObject) {
+                               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)),
+                                              dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                                              ^{
+                                                  if (success) {
+                                                      success(response, responseObject);
+                                                  }
+                                              });
+
+                           } failure:failure];
 }
 
 -(void)createAssetWithTitle:(NSDictionary *)titleDictionary
@@ -142,8 +158,16 @@
     return [self.client postURLPath:@"entries"
                             headers:@{ @"X-Contentful-Content-Type": contentType.identifier }
                          parameters:@{ @"fields": CMASanitizeParameterDictionaryForJSON(fields) }
-                            success:success
-                            failure:failure];
+                            success:^(CDAResponse *response, id responseObject) {
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)),
+                                               dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                                               ^{
+                                                   if (success) {
+                                                       success(response, responseObject);
+                                                   }
+                                               });
+
+                            } failure:failure];
 }
 
 -(CDARequest *)createEntryOfContentType:(CMAContentType *)contentType
@@ -155,8 +179,16 @@
     return [self.client putURLPath:[@"entries" stringByAppendingPathComponent:identifier]
                            headers:@{ @"X-Contentful-Content-Type": contentType.identifier }
                         parameters:@{ @"fields": fields }
-                           success:success
-                           failure:failure];
+                           success:^(CDAResponse *response, id responseObject) {
+                               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)),
+                                              dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                                              ^{
+                                                  if (success) {
+                                                      success(response, responseObject);
+                                                  }
+                                              });
+
+                           } failure:failure];
 }
 
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {

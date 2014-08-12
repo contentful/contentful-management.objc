@@ -11,8 +11,6 @@
 #import "BBURecordingHelper.h"
 #import "CMASpace+Private.h"
 
-// TODO: Should cleanup / delete entries after tests
-
 SpecBegin(Entry)
 
 describe(@"Entry", ^{
@@ -36,7 +34,7 @@ describe(@"Entry", ^{
                                      [space fetchContentTypesWithSuccess:^(CDAResponse *response,
                                                                            CDAArray *array) {
                                          expect(array).toNot.beNil();
-                                         expect(array.items.count).to.equal(12);
+                                         expect(array.items.count).to.equal(13);
 
                                          for (CMAContentType* ct in array.items) {
                                              if ([ct.identifier isEqualToString:@"6FxqhReTPUuYAYW8gqOwS"]) {
@@ -136,6 +134,8 @@ describe(@"Entry", ^{
                                     expect(entry).toNot.beNil();
 
                                     [entry deleteWithSuccess:^{
+                                        [NSThread sleepForTimeInterval:5.0];
+
                                         [space fetchEntryWithIdentifier:entry.identifier
                                                                 success:^(CDAResponse *response,
                                                                           CDAEntry *entry) {
@@ -269,8 +269,7 @@ describe(@"Entry", ^{
 
                                     [entry setValue:@"bar" forFieldWithName:@"title"];
                                     [entry updateWithSuccess:^{
-                                        // FIXME: There has to be a better way...
-                                        [NSThread sleepForTimeInterval:5.0];
+                                        [NSThread sleepForTimeInterval:4.0];
 
                                         [space fetchEntryWithIdentifier:entry.identifier success:^  (CDAResponse *response, CDAEntry *newEntry) {
                                             expect(entry.fields[@"title"]).equal(@"bar");

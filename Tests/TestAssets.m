@@ -118,6 +118,8 @@ describe(@"Asset", ^{
                                 expect(asset).toNot.beNil();
 
                                 [asset deleteWithSuccess:^{
+                                    [NSThread sleepForTimeInterval:5.0];
+
                                     [space fetchAssetWithIdentifier:asset.identifier
                                                             success:^(CDAResponse *response,
                                                                       CMAAsset *asset) {
@@ -225,8 +227,7 @@ describe(@"Asset", ^{
                                 asset.title = @"bar";
 
                                 [asset updateWithSuccess:^{
-                                    // FIXME: There has to be a better way...
-                                    [NSThread sleepForTimeInterval:5.0];
+                                    [NSThread sleepForTimeInterval:4.0];
 
                                     [space fetchAssetWithIdentifier:asset.identifier success:^(CDAResponse *response, CMAAsset* newAsset) {
                                         expect(asset.fields[@"title"]).equal(@"bar");
