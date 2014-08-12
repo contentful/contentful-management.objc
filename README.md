@@ -1,9 +1,9 @@
 # contentful-management.objc
 
 [![CI Status](http://img.shields.io/travis/contentful/contentful-management.objc.svg?style=flat)](https://travis-ci.org/contentful/contentful-management.objc)
-[![Version](https://img.shields.io/cocoapods/v/contentful-management.objc.svg?style=flat)](http://cocoadocs.org/docsets/contentful-management.objc)
-[![License](https://img.shields.io/cocoapods/l/contentful-management.objc.svg?style=flat)](http://cocoadocs.org/docsets/contentful-management.objc)
-[![Platform](https://img.shields.io/cocoapods/p/contentful-management.objc.svg?style=flat)](http://cocoadocs.org/docsets/contentful-management.objc)
+[![Version](https://img.shields.io/cocoapods/v/ContentfulManagementAPI.svg?style=flat)](http://cocoadocs.org/docsets/ContentfulManagementAPI)
+[![License](https://img.shields.io/cocoapods/l/ContentfulManagementAPI.svg?style=flat)](http://cocoadocs.org/docsets/ContentfulManagementAPI)
+[![Platform](https://img.shields.io/cocoapods/p/ContentfulManagementAPI.svg?style=flat)](http://cocoadocs.org/docsets/ContentfulManagementAPI)
 
 Objective-C SDK for [Contentful's][1] Content Management API.
 
