@@ -36,7 +36,7 @@ describe(@"Entry", ^{
                                      [space fetchContentTypesWithSuccess:^(CDAResponse *response,
                                                                            CDAArray *array) {
                                          expect(array).toNot.beNil();
-                                         expect(array.items.count).to.equal(9);
+                                         expect(array.items.count).to.equal(10);
 
                                          for (CMAContentType* ct in array.items) {
                                              if ([ct.identifier isEqualToString:@"6FxqhReTPUuYAYW8gqOwS"]) {
