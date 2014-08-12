@@ -9,6 +9,7 @@
 #import "CDAClient+Private.h"
 #import "CDAResource+Management.h"
 #import "CMASpace+Private.h"
+#import "CMAUtilities.h"
 
 @interface CMASpace ()
 
@@ -141,7 +142,7 @@
     NSParameterAssert(self.client);
     return [self.client postURLPath:@"entries"
                             headers:@{ @"X-Contentful-Content-Type": contentType.identifier }
-                         parameters:@{ @"fields": fields }
+                         parameters:@{ @"fields": CMASanitizeParameterDictionaryForJSON(fields) }
                             success:success
                             failure:failure];
 }

@@ -231,6 +231,26 @@ describe(@"Entry", ^{
                                 }];
     });
 
+    it(@"can set a location value", ^AsyncBlock {
+        NSAssert(space, @"Test space could not be found.");
+
+        CLLocationCoordinate2D location = CLLocationCoordinate2DMake(40.0, 50.0);
+        NSData* locationData = [NSData dataWithBytes:&location length:sizeof(location)];
+
+        [space createEntryOfContentType:contentType
+                             withFields:@{ @"location": @{ @"en-US": locationData } }
+                                success:^(CDAResponse *response, CMAEntry *entry) {
+                                    expect(entry).toNot.beNil();
+                                    expect([entry CLLocationCoordinate2DFromFieldWithIdentifier:@"location"]).to.equal(location);
+
+                                    done();
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
+
+                                    done();
+                                }];
+    });
+
     it(@"can be updated", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType

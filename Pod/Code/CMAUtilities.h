@@ -8,4 +8,5 @@
 
 #import <Foundation/Foundation.h>
 
+NSDictionary* CMASanitizeParameterDictionaryForJSON(NSDictionary* fields);
 NSDictionary* CMATransformLocalizedFieldsToParameterDictionary(NSDictionary* localizedFields);
