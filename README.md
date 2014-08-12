@@ -296,7 +296,7 @@ Retrieving an entry by ID:
 
 ```objective-c
 [space fetchEntryWithIdentifier:@"some identifier"
-success:^(CDAResponse* response, CMAEntry* entry) {
+success:^(CDAResponse* response, CDAEntry* entry) {
 	NSLog(@"%@", entry);
 } failure:^(CDAResponse *response, NSError *error) {
 	NSLog(@"Error: %@", error);
@@ -320,7 +320,7 @@ Updating an entry:
 ```objective-c
 [entry setValue:@"bar" forFieldWithName:@"title"];
 [entry updateWithSuccess:^{
-	NSLog(@"Updated successfully")
+	NSLog(@"Updated successfully");
 } failure:^(CDAResponse *response, NSError *error) {
 	NSLog(@"Error: %@", error);
 }];
