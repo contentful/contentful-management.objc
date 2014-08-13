@@ -264,8 +264,14 @@ describe(@"Entry", ^{
 
     it(@"can be updated", ^AsyncBlock {
         NSAssert(space, @"Test space could not be found.");
+
+        NSMutableDictionary* titles = [@{} mutableCopy];
+        for (NSDictionary* locale in space.locales) {
+            titles[locale[@"code"]] = @"foo";
+        }
+
         [space createEntryOfContentType:contentType
-                             withFields:@{ @"title": @{ @"en-US": @"foo" } }
+                             withFields:@{ @"title": titles }
                                 success:^(CDAResponse *response, CMAEntry *entry) {
                                     expect(entry).toNot.beNil();
 

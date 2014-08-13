@@ -88,6 +88,12 @@
                                                        parameters:nil
                                                           success:^(CDAResponse *secondResponse,
                                                                     CDAArray *array) {
+                                                              for (CMALocale* locale in array.items) {
+                                                                  if (locale.isDefault) {
+                                                                      space.defaultLocale = locale.code;
+                                                                  }
+                                                              }
+
                                                               space.locales = [array.items valueForKey:@"dictionaryRepresentation"];
 
                                                               if (success) {

@@ -16,7 +16,12 @@
 /**
  *  The country-code of the receiver.
  */
-@property (nonatomic) NSString* code;
+@property (nonatomic, readonly) NSString* code;
+
+/**
+ *  Whether or not the receiver is the default locale of its space.
+ */
+@property (nonatomic, readonly, getter = isDefault) BOOL defaultLocale;
 
 /**
  *  The name of the receiver.

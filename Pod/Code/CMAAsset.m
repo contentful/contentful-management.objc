@@ -87,6 +87,8 @@
     NSAssert([resource isKindOfClass:[CDAAsset class]], @"Given resource should be an asset.");
     CDAAsset* asset = (CDAAsset*)resource;
 
+    NSString* originalLocale = self.locale;
+
     [self.localizedFields enumerateKeysAndObjectsUsingBlock:^(NSString* language, NSDictionary* fields,
                                                               BOOL *stop) {
         asset.locale = language;
@@ -100,6 +102,8 @@
             }
         }
     }];
+
+    self.locale = originalLocale;
 }
 
 -(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {

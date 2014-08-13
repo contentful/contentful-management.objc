@@ -234,6 +234,7 @@ describe(@"Asset", ^{
                                     }
 
                                     [space fetchAssetWithIdentifier:asset.identifier success:^(CDAResponse *response, CMAAsset* newAsset) {
+                                        expect(asset.locale).to.equal(@"en-US");
                                         expect(asset.fields[@"title"]).equal(@"bar");
                                         expect(asset.sys[@"version"]).equal(@2);
 
