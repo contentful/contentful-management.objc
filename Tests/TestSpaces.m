@@ -116,8 +116,6 @@ describe(@"CMA", ^{
         }];
     });
 
-// FIXME: Deactivated because of rate-limiting, will reactivate once VCR is integrated.
-#if 0
     it(@"can create a new Space", ^AsyncBlock {
         NSAssert(client, @"Client is not available.");
         [client createSpaceWithName:@"MySpace"
@@ -219,7 +217,6 @@ describe(@"CMA", ^{
                                 done();
                             }];
     });
-#endif
 
     it(@"can change the name of a Space", ^AsyncBlock {
         NSAssert(client, @"Client is not available.");
