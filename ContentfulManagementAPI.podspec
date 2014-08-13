@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "ContentfulManagementAPI"
-  s.version          = "0.1.0"
+  s.version          = "0.2.0"
   s.summary          = "Objective-C SDK for Contentful's Content Management API."
   s.homepage         = "https://github.com/contentful/contentful-management.objc"
   s.author           = { "Boris Bügling" => "boris@buegling.com" }
