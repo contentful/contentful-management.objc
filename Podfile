@@ -1,5 +1,4 @@
 target 'ManagementSDK', :exclusive => true do
-  pod "ContentfulDeliveryAPI", :head
   pod "ContentfulManagementAPI", :path => "."
 end
 
