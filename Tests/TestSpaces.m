@@ -257,7 +257,20 @@ describe(@"CMA", ^{
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
             expect(space).toNot.beNil();
-            expect(space.locales).to.equal(@[ @{ @"name": @"U.S. English", @"code": @"en-US" } ]);
+            expect(space.locales.count).to.beGreaterThanOrEqualTo(1);
+            expect(space.defaultLocale).to.equal(@"en-US");
+
+            NSDictionary* engrish = nil;
+
+            for (NSDictionary* locale in space.locales) {
+                if ([locale[@"code"] isEqualToString:@"en-US"]) {
+                    engrish = locale;
+                    break;
+                }
+            }
+
+            expect(engrish).toNot.beNil();
+            expect(engrish[@"name"]).to.equal(@"U.S. English");
 
             done();
         } failure:^(CDAResponse *response, NSError *error) {
