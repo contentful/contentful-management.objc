@@ -66,6 +66,21 @@
                                failure:(CDARequestFailureBlock)failure;
 
 /**
+ *  Create a new locale on Contentful.
+ *
+ *  @param name    The name for the new locale.
+ *  @param code    The code for the new locale.
+ *  @param success Called if creation succeeds.
+ *  @param failure Called if creation fails.
+ *
+ *  @return The request used for creation.
+ */
+-(CDARequest*)createLocaleWithName:(NSString*)name
+                              code:(NSString*)code
+                           success:(CMALocaleFetchedBlock)success
+                           failure:(CDARequestFailureBlock)failure;
+
+/**
  *  Fetch all Assets matching a query from the server.
  *
  *  @param query   The query which retrieved Assets shall match. Queries are expressed as dictionaries,

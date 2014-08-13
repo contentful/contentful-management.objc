@@ -191,6 +191,18 @@
                            } failure:failure];
 }
 
+-(CDARequest *)createLocaleWithName:(NSString *)name
+                               code:(NSString *)code
+                            success:(CMALocaleFetchedBlock)success
+                            failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client postURLPath:@"locales"
+                            headers:nil
+                         parameters:@{ @"name": name, @"code": code }
+                            success:success
+                            failure:failure];
+}
+
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
 }

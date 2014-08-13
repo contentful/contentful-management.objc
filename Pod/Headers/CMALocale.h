@@ -28,4 +28,14 @@
  */
 @property (nonatomic) NSString* name;
 
+/**
+ *  Update the receiver with new values.
+ *
+ *  @param success Called if the update succeeds.
+ *  @param failure Called if the update fails.
+ *
+ *  @return The request used for updating.
+ */
+-(CDARequest*)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
+
 @end

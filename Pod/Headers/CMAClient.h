@@ -11,12 +11,14 @@
 @class CMAAsset;
 @class CMAContentType;
 @class CMAEntry;
+@class CMALocale;
 @class CMAOrganization;
 @class CMASpace;
 
 typedef void(^CMAAssetFetchedBlock)(CDAResponse* response, CMAAsset* asset);
 typedef void(^CMAContentTypeFetchedBlock)(CDAResponse* response, CMAContentType* contentType);
 typedef void(^CMAEntryFetchedBlock)(CDAResponse* response, CMAEntry* entry);
+typedef void(^CMALocaleFetchedBlock)(CDAResponse* response, CMALocale* locale);
 typedef void(^CMASpaceFetchedBlock)(CDAResponse* response, CMASpace* space);
 
 /**

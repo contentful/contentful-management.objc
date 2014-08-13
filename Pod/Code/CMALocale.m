@@ -41,4 +41,15 @@
     return self;
 }
 
+-(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performPutToFragment:@""
+                       withParameters:@{ @"name": self.name }
+                              success:success
+                              failure:failure];
+}
+
+-(NSString *)URLPath {
+    return [@"locales" stringByAppendingPathComponent:self.identifier];
+}
+
 @end
