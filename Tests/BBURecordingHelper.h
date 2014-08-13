@@ -20,6 +20,8 @@ afterAll(^{ \
 
 +(instancetype)sharedHelper;
 
+@property (nonatomic, readonly, getter = isReplaying) BOOL replaying;
+
 -(void)loadRecordingsForTestCase:(Class)testCase;
 -(void)storeRecordingsForTestCase:(Class)testCase;
 

@@ -251,7 +251,9 @@ describe(@"Content Type", ^{
                                      expect(contentType.fields.count).equal(0);
 
                                      [contentType deleteWithSuccess:^{
-                                         [NSThread sleepForTimeInterval:2.0];
+                                         if (![BBURecordingHelper sharedHelper].isReplaying) {
+                                             [NSThread sleepForTimeInterval:2.0];
+                                         }
 
                                          [space fetchContentTypeWithIdentifier:contentType.identifier
                                                                        success:^(CDAResponse *response,

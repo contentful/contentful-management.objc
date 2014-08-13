@@ -134,7 +134,9 @@ describe(@"Entry", ^{
                                     expect(entry).toNot.beNil();
 
                                     [entry deleteWithSuccess:^{
-                                        [NSThread sleepForTimeInterval:5.0];
+                                        if (![BBURecordingHelper sharedHelper].isReplaying) {
+                                            [NSThread sleepForTimeInterval:5.0];
+                                        }
 
                                         [space fetchEntryWithIdentifier:entry.identifier
                                                                 success:^(CDAResponse *response,
@@ -269,7 +271,9 @@ describe(@"Entry", ^{
 
                                     [entry setValue:@"bar" forFieldWithName:@"title"];
                                     [entry updateWithSuccess:^{
-                                        [NSThread sleepForTimeInterval:4.0];
+                                        if (![BBURecordingHelper sharedHelper].isReplaying) {
+                                            [NSThread sleepForTimeInterval:4.0];
+                                        }
 
                                         [space fetchEntryWithIdentifier:entry.identifier success:^  (CDAResponse *response, CDAEntry *newEntry) {
                                             expect(entry.fields[@"title"]).equal(@"bar");

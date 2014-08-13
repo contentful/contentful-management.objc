@@ -118,7 +118,9 @@ describe(@"Asset", ^{
                                 expect(asset).toNot.beNil();
 
                                 [asset deleteWithSuccess:^{
-                                    [NSThread sleepForTimeInterval:5.0];
+                                    if (![BBURecordingHelper sharedHelper].isReplaying) {
+                                        [NSThread sleepForTimeInterval:5.0];
+                                    }
 
                                     [space fetchAssetWithIdentifier:asset.identifier
                                                             success:^(CDAResponse *response,
@@ -227,7 +229,9 @@ describe(@"Asset", ^{
                                 asset.title = @"bar";
 
                                 [asset updateWithSuccess:^{
-                                    [NSThread sleepForTimeInterval:4.0];
+                                    if (![BBURecordingHelper sharedHelper].isReplaying) {
+                                        [NSThread sleepForTimeInterval:4.0];
+                                    }
 
                                     [space fetchAssetWithIdentifier:asset.identifier success:^(CDAResponse *response, CMAAsset* newAsset) {
                                         expect(asset.fields[@"title"]).equal(@"bar");

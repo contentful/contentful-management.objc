@@ -14,6 +14,7 @@
 @interface BBURecordingHelper ()
 
 @property (nonatomic) CCLRequestReplayManager* manager;
+@property (nonatomic, getter = isReplaying) BOOL replaying;
 
 @end
 
@@ -40,10 +41,12 @@
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:recordingPath]) {
         self.manager = [NSKeyedUnarchiver unarchiveObjectWithFile:recordingPath];
+        self.replaying = YES;
 
         [self.manager replay];
     } else {
         self.manager = [CCLRequestReplayManager new];
+        self.replaying = NO;
         
         [self.manager record];
     }
