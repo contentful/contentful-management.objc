@@ -35,6 +35,15 @@
     return self.fields[@"description"];
 }
 
+-(void)increaseVersion {
+    NSInteger newVersion = [self.sys[@"version"] intValue] + 1;
+
+    NSDictionary* resourceDict = @{ @"sys": @{ @"type": @"Asset", @"version": @(newVersion) } };
+    CDAResource* dummyResource = [CDAResource resourceObjectForDictionary:resourceDict
+                                                                   client:self.client];
+    [self updateWithResource:dummyResource];
+}
+
 -(BOOL)isArchived {
     return self.sys[@"archivedVersion"] != nil;
 }
@@ -49,8 +58,13 @@
 
 -(CDARequest *)processWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performPutToFragment:[NSString stringWithFormat:@"files/%@/process", self.locale]
-                          withSuccess:success
-                              failure:failure];
+                          withSuccess:^{
+                              [self increaseVersion];
+
+                              if (success) {
+                                  success();
+                              }
+                          } failure:failure];
 }
 
 -(CDARequest *)publishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
