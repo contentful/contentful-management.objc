@@ -2,7 +2,7 @@ language: objective-c
 cache:
 - bundler
 before_install: bundle install
-script: pod lib testing
+script: /usr/bin/xcodebuild -workspace /Users/boris/Projects/contentful-management.objc/ManagementSDK.xcworkspace -scheme 'ManagementSDK' -sdk iphonesimulator7.1 -destination name\=iPhone\ Retina\ \(4-inch\) clean build test | xcpretty -c ; exit ${PIPESTATUS[0]}
 notifications:
   slack:
     secure: LM3GodLDCvADu0UyiTRIvMsku6sLSTYwn/yDFbhnsDajdKMbI8R7d7RmuF2r7ZkA+0qNEPLD5zoHfvxCRTu/03MKXrQ3Rh4MIHc1rJTkzszZIPmdLJ+eEgD5urjvYyqXuzgJXji0aSjSlWy0aSady1OzBsBO880jJltt6s4qWws=
