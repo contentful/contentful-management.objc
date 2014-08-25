@@ -5,7 +5,7 @@ before_install: bundle install
 script: /usr/bin/xcodebuild -workspace ManagementSDK.xcworkspace -scheme 'ManagementSDK' -sdk iphonesimulator7.1 -destination name\=iPhone\ Retina\ \(4-inch\) clean build test
 notifications:
   slack:
-    secure: LM3GodLDCvADu0UyiTRIvMsku6sLSTYwn/yDFbhnsDajdKMbI8R7d7RmuF2r7ZkA+0qNEPLD5zoHfvxCRTu/03MKXrQ3Rh4MIHc1rJTkzszZIPmdLJ+eEgD5urjvYyqXuzgJXji0aSjSlWy0aSady1OzBsBO880jJltt6s4qWws=
+    secure: rVGQq6qThM/5m49iaXrVxNa+r4pc1X4CP/jcqClLsBYePnxghTOYMe903yjOoPCkTYUh8LY7GYX0LjkxGoo/rxwRiPNVRxRV0SsFEfOR2xBfBcw8WqxGCq8X0pKCwP1aSIl13tAdgxvtq6N/VrC8chWlX9RmxwAHzZqRTRR1ukk=
 env:
   global:
-    secure: EmChGpGvvQ++DduzeqBrLZNJjpm3mFPFdHw3K2m/opAWAzJYq10xq8SiU1wmZVGhkVAdZJoNe0NwWGWOvfWiOmWW/+0r0W8pBrwkRcI8c/wzUMMkgpJfVNTyUa2MWnBnVAZNB7bM+dVJ3gvqmUHCquapM+L9Z8+GP0zKBlDsVwo=
+    secure: L6HcaW+lYEBgPwuA6VnkiqBmnh+NkZMqsGOd+lhkkQABpduauln3vxkZ8DJ4SggmRLwM0XG1Fe+rkIZ9oVVovuNL58+vpQzAsWplPNvHpGt2InrVHauCqp4r5dr23XA6B118cz+hkmUx64NX/zZEgTD9IphkZEMTzU1jHHgIb2c=
