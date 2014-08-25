@@ -373,6 +373,8 @@ pod 'ContentfulManagementAPI'
 
 This is the easiest way to keep your copy of the Contentful Management API updated.
 
+Alternatively, you can use [pre-built static frameworks][4] for iOS and OS X, which have all the depedencies built-in. Or you include this repository as a Git submodule and include all the code from the Pod/ directory.
+
 ## Unit Tests
 
 The Contentful Management API is fully unit tested. They are using the API token from the environment variable `CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN` so you have to provide that.
@@ -390,4 +392,5 @@ Copyright (c) 2014 Contentful GmbH. See LICENSE for further details.
 [1]: https://www.contentful.com/
 [2]: http://www.cocoapods.org/
 [3]: https://github.com/neonichu/cocoapods-testing
+[4]: https://github.com/contentful/contentful-management.objc/releases/download/0.3.0/ContentfulManagementAPI-0.3.0.zip
 
