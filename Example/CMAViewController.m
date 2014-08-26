@@ -28,6 +28,7 @@
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:NSStringFromClass(self.class)];
 
+    NSLog(@"%@", [[NSProcessInfo processInfo] environment]);
     NSString* token = [[[NSProcessInfo processInfo] environment]
                        valueForKey:@"CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN"];
 
