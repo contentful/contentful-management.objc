@@ -20,6 +20,7 @@ describe(@"Asset", ^{
     RECORD_TESTCASE
 
     beforeEach(^AsyncBlock {
+        NSLog(@"%@", [[NSProcessInfo processInfo] environment]);
         NSString* token = [[[NSProcessInfo processInfo] environment]
                            valueForKey:@"CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN"];
 
