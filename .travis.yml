@@ -2,7 +2,7 @@ language: objective-c
 cache:
 - bundler
 before_install: bundle install
-script: /usr/bin/xcodebuild -workspace ManagementSDK.xcworkspace -scheme 'ManagementSDK' -sdk iphonesimulator7.1 -destination name\=iPhone\ Retina\ \(4-inch\) clean build test
+script: CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN=$CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN sh -c '/usr/bin/xcodebuild -workspace ManagementSDK.xcworkspace -scheme 'ManagementSDK' -sdk iphonesimulator7.1 -destination name\=iPhone\ Retina\ \(4-inch\) clean build test'
 notifications:
   slack:
     secure: rVGQq6qThM/5m49iaXrVxNa+r4pc1X4CP/jcqClLsBYePnxghTOYMe903yjOoPCkTYUh8LY7GYX0LjkxGoo/rxwRiPNVRxRV0SsFEfOR2xBfBcw8WqxGCq8X0pKCwP1aSIl13tAdgxvtq6N/VrC8chWlX9RmxwAHzZqRTRR1ukk=
