@@ -51,14 +51,7 @@
 }
 
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
-    // Delay is needed to avoid issues with deleted Content Types still showing up in search.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)),
-                   dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-                   ^{
-                       [self performDeleteToFragment:@"" withSuccess:success failure:failure];
-                   });
-    
-    return nil;
+    return [self performDeleteToFragment:@"" withSuccess:success failure:failure];;
 }
 
 -(NSArray *)fields {
@@ -104,16 +97,7 @@
 }
 
 -(CDARequest *)unpublishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
-    return [self performDeleteToFragment:@"published" withSuccess:^{
-        // Delay is needed to avoid issues with deleted Content Types still showing up in search.
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)),
-                       dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-                       ^{
-                           if (success) {
-                               success();
-                           }
-                       });
-    } failure:failure];
+    return [self performDeleteToFragment:@"published" withSuccess:success failure:failure];
 }
 
 -(void)updateName:(NSString *)newName ofFieldWithIdentifier:(NSString *)identifier {

@@ -92,9 +92,7 @@ describe(@"Content Type", ^{
                                          expect(contentType.isPublished).to.equal(YES);
 
                                          [contentType unpublishWithSuccess:^{
-                                             dispatch_sync(dispatch_get_main_queue(), ^{
-                                                 expect(contentType.isPublished).to.equal(NO);
-                                             });
+                                             expect(contentType.isPublished).to.equal(NO);
 
                                              [contentType deleteWithSuccess:^{
                                                  done();
@@ -131,9 +129,7 @@ describe(@"Content Type", ^{
                                          expect(contentType.sys[@"publishedVersion"]).equal(@1);
 
                                          [contentType unpublishWithSuccess:^{
-                                             dispatch_sync(dispatch_get_main_queue(), ^{
-                                                 expect(contentType.sys[@"publishedVersion"]).to.beNil();
-                                             });
+                                             expect(contentType.sys[@"publishedVersion"]).to.beNil();
 
                                              [contentType deleteWithSuccess:^{
                                                  done();
