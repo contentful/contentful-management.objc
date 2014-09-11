@@ -51,7 +51,7 @@
 -(CDARequest *)fetchAllSpacesWithSuccess:(CDAArrayFetchedBlock)success
                                  failure:(CDARequestFailureBlock)failure {
     return [self.client fetchArrayAtURLPath:@"spaces"
-                                 parameters:@{}
+                                 parameters:@{ @"limit": @100 }
                                     success:success
                                     failure:failure];
 }
