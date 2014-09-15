@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
+#import <CocoaPods-Keys/ManagementSDKKeys.h>
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
 #import "BBURecordingHelper.h"
@@ -20,9 +21,7 @@ describe(@"Asset", ^{
     RECORD_TESTCASE
 
     beforeEach(^AsyncBlock {
-        NSLog(@"%@", [[NSProcessInfo processInfo] environment]);
-        NSString* token = [[[NSProcessInfo processInfo] environment]
-                           valueForKey:@"CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN"];
+        NSString* token = [ManagementSDKKeys new].managementAPIAccessToken;
 
         client = [[CMAClient alloc] initWithAccessToken:token];
 
