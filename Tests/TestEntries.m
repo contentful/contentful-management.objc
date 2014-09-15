@@ -278,7 +278,7 @@ describe(@"Entry", ^{
                                     [entry setValue:@"bar" forFieldWithName:@"title"];
                                     [entry updateWithSuccess:^{
                                         if (![BBURecordingHelper sharedHelper].isReplaying) {
-                                            [NSThread sleepForTimeInterval:4.0];
+                                            [NSThread sleepForTimeInterval:5.0];
                                         }
 
                                         [space fetchEntryWithIdentifier:entry.identifier success:^  (CDAResponse *response, CDAEntry *newEntry) {
