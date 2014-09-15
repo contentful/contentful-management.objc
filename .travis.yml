@@ -1,7 +1,9 @@
 language: objective-c
 cache:
 - bundler
-before_install: bundle install
+before_install:
+- bundle install
+- pod keys ManagementAPIAccessToken $CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN ManagementSDK.xcodeproj
 script: pod lib testing
 notifications:
   slack:
