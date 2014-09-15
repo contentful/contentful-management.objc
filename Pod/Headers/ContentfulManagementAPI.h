@@ -22,3 +22,4 @@
 #import <ContentfulManagementAPI/CMALocale.h>
 #import <ContentfulManagementAPI/CMAOrganization.h>
 #import <ContentfulManagementAPI/CMASpace.h>
+#import <ContentfulManagementAPI/CMAUser.h>

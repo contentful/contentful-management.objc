@@ -104,6 +104,13 @@
                              failure:failure];
 }
 
+-(CDARequest *)fetchUserWithSuccess:(CMAUserFetchedBlock)success failure:(CDARequestFailureBlock)failure {
+    return [self.client fetchURLPath:@"user"
+                          parameters:nil
+                             success:success
+                             failure:failure];
+}
+
 -(id)initWithAccessToken:(NSString *)accessToken {
     self = [super init];
     if (self) {

@@ -279,6 +279,21 @@ describe(@"CMA", ^{
             done();
         }];
     });
+
+    it(@"can retrieve the user associated with the API client", ^AsyncBlock {
+        NSAssert(client, @"Client is not available.");
+        [client fetchUserWithSuccess:^(CDAResponse *response, CMAUser *user) {
+            expect(user.firstName).to.equal(@"Boris");
+            expect(user.lastName).to.equal(@"Bügling");
+            expect(user.avatarURL).to.equal([NSURL URLWithString:@"https://www.gravatar.com/avatar/66d863ad05a1af75a0e3c5cedc816943?s=50&d=https%3A%2F%2Fstatic.contentful.com%2Fgatekeeper%2Fusers%2Fdefault-d0b7b1bc0b41f91b152c6af7dbc1d9cf.png"]);
+            
+            done();
+        } failure:^(CDAResponse *response, NSError *error) {
+            XCTFail(@"Error: %@", error);
+
+            done();
+        }];
+    });
 });
 
 SpecEnd

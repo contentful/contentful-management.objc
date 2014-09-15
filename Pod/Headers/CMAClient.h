@@ -14,12 +14,14 @@
 @class CMALocale;
 @class CMAOrganization;
 @class CMASpace;
+@class CMAUser;
 
 typedef void(^CMAAssetFetchedBlock)(CDAResponse* response, CMAAsset* asset);
 typedef void(^CMAContentTypeFetchedBlock)(CDAResponse* response, CMAContentType* contentType);
 typedef void(^CMAEntryFetchedBlock)(CDAResponse* response, CMAEntry* entry);
 typedef void(^CMALocaleFetchedBlock)(CDAResponse* response, CMALocale* locale);
 typedef void(^CMASpaceFetchedBlock)(CDAResponse* response, CMASpace* space);
+typedef void(^CMAUserFetchedBlock)(CDAResponse* response, CMAUser* user);
 
 /**
  *  The CMAClient is used to request information from the server. Contrary to the delivery API,
@@ -100,5 +102,15 @@ typedef void(^CMASpaceFetchedBlock)(CDAResponse* response, CMASpace* space);
 -(CDARequest*)fetchSpaceWithIdentifier:(NSString*)identifier
                                success:(CMASpaceFetchedBlock)success
                                failure:(CDARequestFailureBlock)failure;
+
+/**
+ *  Fetch the user whom the access token of this client belongs to.
+ *
+ *  @param success Called if fetching succeeds.
+ *  @param failure Called if fetching fails.
+ *
+ *  @return The request used for fetching data.
+ */
+-(CDARequest*)fetchUserWithSuccess:(CMAUserFetchedBlock)success failure:(CDARequestFailureBlock)failure;
 
 @end
