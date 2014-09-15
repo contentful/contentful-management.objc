@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/orta/cocoapods-keys.git
+  revision: 410fe3d21a8a1880f3b9650e9bbb41d3d2d703b2
+  specs:
+    cocoapods-keys (0.6.0)
+      osx_keychain
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -29,8 +36,6 @@ GEM
       json_pure (~> 1.8)
       nap (~> 0.8.0)
     cocoapods-downloader (0.7.0)
-    cocoapods-keys (0.6.0)
-      osx_keychain
     cocoapods-plugins (0.3.1)
       nap
     cocoapods-testing (0.0.2)
@@ -69,6 +74,6 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods (>= 0.34.0.beta)
-  cocoapods-keys
+  cocoapods-keys!
   cocoapods-testing
   xcpretty
