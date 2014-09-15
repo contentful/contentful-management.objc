@@ -3,7 +3,7 @@ cache:
 - bundler
 before_install:
 - bundle install
-- pod keys ManagementAPIAccessToken $CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN ManagementSDK.xcodeproj
+- pod keys set ManagementAPIAccessToken $CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN ManagementSDK.xcodeproj
 script: pod lib testing
 notifications:
   slack:
