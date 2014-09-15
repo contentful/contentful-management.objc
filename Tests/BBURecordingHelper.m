@@ -57,8 +57,14 @@
     [self.manager stopRecording];
 
     NSString* recordingName = [NSStringFromClass(testCase) stringByAppendingPathExtension:@"recording"];
-    [NSKeyedArchiver archiveRootObject:self.manager
-                                toFile:[@"/tmp" stringByAppendingPathComponent:recordingName]];
+    NSString* path = [NSTemporaryDirectory() stringByAppendingPathComponent:recordingName];
+    BOOL result = [NSKeyedArchiver archiveRootObject:self.manager
+                                              toFile:path];
+
+    if (!result) {
+        [NSException raise:NSInternalInconsistencyException format:@"Recording %@ could not be stored",
+         path];
+    }
 
     self.manager = nil;
 }
