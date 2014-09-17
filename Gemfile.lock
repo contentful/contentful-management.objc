@@ -16,6 +16,7 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     claide (0.7.0)
+    clamp (0.6.3)
     cocoapods (0.34.0.rc1)
       activesupport (>= 3.2.15, < 4)
       claide (~> 0.7.0)
@@ -35,6 +36,9 @@ GEM
       fuzzy_match (~> 2.0.4)
       json_pure (~> 1.8)
       nap (~> 0.8.0)
+    cocoapods-coverage (0.0.2)
+      cocoapods-testing
+      slather
     cocoapods-downloader (0.7.0)
     cocoapods-plugins (0.3.1)
       nap
@@ -60,6 +64,9 @@ GEM
     osx_keychain (1.0.0)
       RubyInline (~> 3)
     rake (10.3.2)
+    slather (1.2.1)
+      clamp (~> 0.6)
+      xcodeproj (~> 0.17)
     xcodeproj (0.19.1)
       CFPropertyList (~> 2.2)
       activesupport (~> 3.0)
@@ -74,6 +81,7 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods (>= 0.34.0.beta)
+  cocoapods-coverage
   cocoapods-keys!
   cocoapods-testing
   xcpretty
