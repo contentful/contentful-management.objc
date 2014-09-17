@@ -36,13 +36,13 @@ GEM
       fuzzy_match (~> 2.0.4)
       json_pure (~> 1.8)
       nap (~> 0.8.0)
-    cocoapods-coverage (0.0.2)
-      cocoapods-testing
+    cocoapods-coverage (0.0.3)
+      cocoapods-testing (>= 0.0.4)
       slather
     cocoapods-downloader (0.7.0)
     cocoapods-plugins (0.3.1)
       nap
-    cocoapods-testing (0.0.2)
+    cocoapods-testing (0.0.4)
       xctasks
     cocoapods-trunk (0.2.0)
       json_pure (~> 1.8)
@@ -81,7 +81,6 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods (>= 0.34.0.beta)
-  cocoapods-coverage
+  cocoapods-coverage (>= 0.0.3)
   cocoapods-keys!
-  cocoapods-testing
   xcpretty
