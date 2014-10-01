@@ -111,17 +111,25 @@
                              failure:failure];
 }
 
--(id)initWithAccessToken:(NSString *)accessToken {
+-(id)initWithAccessToken:(NSString *)accessToken configuration:(CDAConfiguration*)configuration {
     self = [super init];
     if (self) {
-        CDAConfiguration* configuration = [CDAConfiguration defaultConfiguration];
         configuration.server = @"api.contentful.com";
+
+        if (!configuration.userAgent) {
+            configuration.userAgent = @"contentful-management.objc/0.3.1";
+        }
+
         self.client = [[CDAClient alloc] initWithSpaceKey:nil
                                               accessToken:accessToken
                                             configuration:configuration];
         self.client.resourceClassPrefix = @"CMA";
     }
     return self;
+}
+
+-(id)initWithAccessToken:(NSString *)accessToken {
+    return [self initWithAccessToken:accessToken configuration:[CDAConfiguration defaultConfiguration]];
 }
 
 @end

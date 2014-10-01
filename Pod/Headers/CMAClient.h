@@ -41,6 +41,18 @@ typedef void(^CMAUserFetchedBlock)(CDAResponse* response, CMAUser* user);
 -(id)initWithAccessToken:(NSString*)accessToken;
 
 /**
+ *  Initialize a new client for requesting information from the server with a custom configuration.
+ *
+ *  Access tokens can be obtained [from here](https://www.contentful.com/developers/documentation/content-management-api/#getting-started).
+ *
+ *  @param accessToken   The access token for a given user account.
+ *  @param configuration The custom configuration to use when creating the client.
+ *
+ *  @return A new initialized client instance.
+ */
+-(id)initWithAccessToken:(NSString *)accessToken configuration:(CDAConfiguration*)configuration;
+
+/**
  *  Create a new space on Contentful, in the user default organization.
  *
  *  @param name    The name of the new space.

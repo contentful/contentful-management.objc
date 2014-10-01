@@ -39,10 +39,17 @@ describe(@"CMA", ^{
         }];
     });
 
+    it(@"uses the correct user-agent", ^{
+        NSAssert(client, @"Client is not available.");
+        CDARequest* request = [client fetchOrganizationsWithSuccess:nil failure:nil];
+        NSString* userAgent = request.request.allHTTPHeaderFields[@"User-Agent"];
+        expect([userAgent hasPrefix:@"contentful-management.objc"]).to.beTruthy();
+    });
+
     it(@"can retrieve all Organizations of an account", ^AsyncBlock {
         NSAssert(client, @"Client is not available.");
         [client fetchOrganizationsWithSuccess:^(CDAResponse *response, CDAArray *array) {
-            expect(array.items.count).equal(5);
+            expect(array.items.count).equal(6);
 
             for (CMAOrganization* organization in array.items) {
                 expect(organization.name).toNot.beNil();
@@ -63,7 +70,7 @@ describe(@"CMA", ^{
             expect(response).toNot.beNil();
 
             expect(array).toNot.beNil();
-            expect(array.items.count).to.equal(29);
+            expect(array.items.count).to.equal(31);
             expect([array.items[0] class]).to.equal([CMASpace class]);
 
             done();
