@@ -3,8 +3,8 @@ cache:
 - bundler
 before_install:
 - bundle install
-- pod keys set ManagementAPIAccessToken $CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN ManagementSDK.xcodeproj
-script: pod lib coverage
+- bundle exec pod keys set ManagementAPIAccessToken $CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN ManagementSDK.xcodeproj
+script: bundle exec pod lib coverage
 notifications:
   slack:
     secure: l7SPBap61u7msNFFgMjqdHwm08f6hf+8qDUL7zXoXYShnGVDEk8qVCeij6J3yFy96OM5NP8zxbcgJLL0gwyG5M8qoOaGsX2kGd2naD3UDwFR0TotJRybql5jeaNkqYGmOymoF4wD+7Y/+hCN9x6slNqs99tANotqBpCld0NseMI=
