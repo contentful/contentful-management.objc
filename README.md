@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/ContentfulManagementAPI.svg?style=flat)](http://cocoadocs.org/docsets/ContentfulManagementAPI)
 [![License](https://img.shields.io/cocoapods/l/ContentfulManagementAPI.svg?style=flat)](http://cocoadocs.org/docsets/ContentfulManagementAPI)
 [![Platform](https://img.shields.io/cocoapods/p/ContentfulManagementAPI.svg?style=flat)](http://cocoadocs.org/docsets/ContentfulManagementAPI)
+[![Coverage Status](https://img.shields.io/coveralls/contentful/contentful-management.objc.svg)](https://coveralls.io/r/contentful/contentful-management.objc?branch=master)
 
 Objective-C SDK for [Contentful's][1] Content Management API.
 
