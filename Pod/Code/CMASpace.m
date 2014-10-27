@@ -26,8 +26,11 @@
 #pragma mark -
 
 +(NSString*)determineMIMETypeOfResourceAtURL:(NSURL*)url error:(NSError**)error {
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"HEAD";
+
     NSHTTPURLResponse* response;
-    NSData* data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
+    NSData* data = [NSURLConnection sendSynchronousRequest:[request copy]
                                          returningResponse:&response
                                                      error:error];
 
