@@ -132,14 +132,18 @@
                                   failure:(CDARequestFailureBlock)failure {
     NSMutableDictionary* parameters = [[self parametersFromLocalizedFields] mutableCopy];
 
-    if (localizedUploads.count > 0) {
-        parameters[@"file"] = [CMASpace fileUploadDictionaryFromLocalizedUploads:localizedUploads];
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (localizedUploads.count > 0) {
+            parameters[@"file"] = [CMASpace fileUploadDictionaryFromLocalizedUploads:localizedUploads];
+        }
 
-    return [self performPutToFragment:@""
-                       withParameters:@{ @"fields" : parameters }
-                              success:success
-                              failure:failure];
+        [self performPutToFragment:@""
+                    withParameters:@{ @"fields" : parameters }
+                           success:success
+                           failure:failure];
+    });
+
+    return nil;
 }
 
 -(NSString *)URLPath {
