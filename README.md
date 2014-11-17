@@ -396,6 +396,10 @@ The tests can be run either from inside Xcode or using [cocoapods-testing][3] fr
 	$ gem install cocoapods-testing
 	$ pod lib testing
 
+## Examples
+
+You can find a very simple example which uses the CMA in our [demo app][5] for the iOS webinar.
+
 ## License
 
 Copyright (c) 2014 Contentful GmbH. See LICENSE for further details.
@@ -405,4 +409,4 @@ Copyright (c) 2014 Contentful GmbH. See LICENSE for further details.
 [2]: http://www.cocoapods.org/
 [3]: https://github.com/neonichu/cocoapods-testing
 [4]: https://github.com/contentful/contentful-management.objc/releases/download/0.3.0/ContentfulManagementAPI-0.3.0.zip
-
+[5]: https://github.com/contentful/webinar-ios-demo
