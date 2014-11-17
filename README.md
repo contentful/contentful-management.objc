@@ -22,6 +22,17 @@ CMAClient* client = [[CMAClient alloc] initWithAccessToken:@"access-token"];
 
 The access token can easily be obtained through the [management API documentation](https://www.contentful.com/developers/documentation/content-management-api/#getting-started).
 
+Alternatively, you can opt into automatic handling of the CMA's rate-limiting, like this:
+
+```objective-c
+CDAConfiguration* configuration = [CDAConfiguration defaultConfiguration];
+configuration.rateLimiting = YES;
+
+CMAClient* client = [[CMAClient alloc] initWithAccessToken:@"access-token" configuration:configuration];
+```
+
+This will make the client do automatic retries with back-off, so that your application does not have to deal with rate-limiting at all.
+
 ### Spaces
 
 Retrieving all spaces:
