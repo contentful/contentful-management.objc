@@ -28,7 +28,7 @@ describe(@"Locale", ^{
 
     RECORD_TESTCASE
 
-    beforeEach(^AsyncBlock {
+    beforeEach(^{ waitUntil(^(DoneCallback done) {
         NSString* token = [ManagementSDKKeys new].managementAPIAccessToken;
 
         client = [[CMAClient alloc] initWithAccessToken:token];
@@ -44,9 +44,9 @@ describe(@"Locale", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can be created", ^AsyncBlock {
+    it(@"can be created", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createLocaleWithName:@"German"
                                code:randomLocaleCode()
@@ -61,9 +61,9 @@ describe(@"Locale", ^{
 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"can be updated", ^AsyncBlock {
+    it(@"can be updated", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createLocaleWithName:@"German"
                                code:randomLocaleCode()
@@ -85,7 +85,7 @@ describe(@"Locale", ^{
 
                                 done();
                             }];
-    });
+    }); });
 });
 
 SpecEnd

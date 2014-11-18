@@ -19,7 +19,7 @@ describe(@"CMA", ^{
 
     RECORD_TESTCASE
 
-    beforeEach(^AsyncBlock {
+    beforeEach(^{ waitUntil(^(DoneCallback done) {
         NSString* token = [ManagementSDKKeys new].managementAPIAccessToken;
 
         client = [[CMAClient alloc] initWithAccessToken:token];
@@ -37,7 +37,7 @@ describe(@"CMA", ^{
 
             done();
         }];
-    });
+    }); });
 
     it(@"uses the correct user-agent", ^{
         NSAssert(client, @"Client is not available.");
@@ -46,7 +46,7 @@ describe(@"CMA", ^{
         expect([userAgent hasPrefix:@"contentful-management.objc"]).to.beTruthy();
     });
 
-    it(@"can retrieve all Organizations of an account", ^AsyncBlock {
+    it(@"can retrieve all Organizations of an account", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client fetchOrganizationsWithSuccess:^(CDAResponse *response, CDAArray *array) {
             expect(array.items.count).equal(6);
@@ -62,9 +62,9 @@ describe(@"CMA", ^{
 
             done();
         }];
-    });
+    }); });
 
-    it(@"can retrieve all Spaces of an account", ^AsyncBlock {
+    it(@"can retrieve all Spaces of an account", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client fetchAllSpacesWithSuccess:^(CDAResponse *response, CDAArray *array) {
             expect(response).toNot.beNil();
@@ -79,9 +79,9 @@ describe(@"CMA", ^{
 
             done();
         }];
-    });
+    }); });
 
-    it(@"can retrieve a single Space", ^AsyncBlock {
+    it(@"can retrieve a single Space", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
@@ -97,9 +97,9 @@ describe(@"CMA", ^{
 
             done();
         }];
-    });
+    }); });
 
-    it(@"can retrieve the Content Types of a Space", ^AsyncBlock {
+    it(@"can retrieve the Content Types of a Space", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
@@ -121,9 +121,9 @@ describe(@"CMA", ^{
 
             done();
         }];
-    });
+    }); });
 
-    it(@"can create a new Space", ^AsyncBlock {
+    it(@"can create a new Space", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client createSpaceWithName:@"MySpace"
                             success:^(CDAResponse *response, CMASpace *space) {
@@ -156,9 +156,9 @@ describe(@"CMA", ^{
 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"can create a new Space within a specific Organization", ^AsyncBlock {
+    it(@"can create a new Space within a specific Organization", ^{ waitUntil(^(DoneCallback done) {
         expect(organization).toNot.beNil;
 
         NSAssert(client, @"Client is not available.");
@@ -194,9 +194,9 @@ describe(@"CMA", ^{
 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"can delete an existing Space", ^AsyncBlock  {
+    it(@"can delete an existing Space", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client createSpaceWithName:@"MySpace"
                             success:^(CDAResponse *response, CMASpace *space) {
@@ -223,9 +223,9 @@ describe(@"CMA", ^{
 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"can change the name of a Space", ^AsyncBlock {
+    it(@"can change the name of a Space", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
@@ -257,9 +257,9 @@ describe(@"CMA", ^{
 
             done();
         }];
-    });
+    }); });
 
-    it(@"can retrieve all locales of a Space", ^AsyncBlock {
+    it(@"can retrieve all locales of a Space", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
                                                                    CMASpace *space) {
@@ -285,9 +285,9 @@ describe(@"CMA", ^{
 
             done();
         }];
-    });
+    }); });
 
-    it(@"can retrieve the user associated with the API client", ^AsyncBlock {
+    it(@"can retrieve the user associated with the API client", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client fetchUserWithSuccess:^(CDAResponse *response, CMAUser *user) {
             expect(user.firstName).to.equal(@"Boris");
@@ -300,7 +300,7 @@ describe(@"CMA", ^{
 
             done();
         }];
-    });
+    }); });
 });
 
 SpecEnd

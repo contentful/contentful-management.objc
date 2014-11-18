@@ -21,7 +21,7 @@ describe(@"Entry", ^{
 
     RECORD_TESTCASE
 
-    beforeEach(^AsyncBlock {
+    beforeEach(^{ waitUntil(^(DoneCallback done) {
         NSString* token = [ManagementSDKKeys new].managementAPIAccessToken;
 
         client = [[CMAClient alloc] initWithAccessToken:token];
@@ -53,12 +53,12 @@ describe(@"Entry", ^{
                                      }];
                                  } failure:^(CDAResponse *response, NSError *error) {
                                      XCTFail(@"Error: %@", error);
-
+                                     
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can be archived", ^AsyncBlock {
+    it(@"can be archived", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
@@ -77,12 +77,12 @@ describe(@"Entry", ^{
                                     }];
                                 } failure:^(CDAResponse *response, NSError *error) {
                                     XCTFail(@"Error: %@", error);
-                                    
+
                                     done();
                                 }];
-    });
+    }); });
 
-    it(@"can be created", ^AsyncBlock {
+    it(@"can be created", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{ @"title": @{ @"en-US": @"Mr. President" } }
@@ -99,9 +99,9 @@ describe(@"Entry", ^{
 
                                     done();
                                 }];
-    });
+    }); });
 
-    it(@"can be created with user-defined identifier", ^AsyncBlock {
+    it(@"can be created with user-defined identifier", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                          withIdentifier:@"foo"
@@ -124,9 +124,9 @@ describe(@"Entry", ^{
 
                                     done();
                                 }];
-    });
+    }); });
 
-    it(@"can be deleted", ^AsyncBlock {
+    it(@"can be deleted", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
@@ -158,9 +158,9 @@ describe(@"Entry", ^{
 
                                     done();
                                 }];
-    });
+    }); });
 
-    it(@"can be published", ^AsyncBlock {
+    it(@"can be published", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
@@ -182,9 +182,9 @@ describe(@"Entry", ^{
 
                                     done();
                                 }];
-    });
+    }); });
 
-    it(@"can be unarchived", ^AsyncBlock {
+    it(@"can be unarchived", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
@@ -211,9 +211,9 @@ describe(@"Entry", ^{
                                     
                                     done();
                                 }];
-    });
+    }); });
 
-    it(@"can be unpublished", ^AsyncBlock {
+    it(@"can be unpublished", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createEntryOfContentType:contentType
                              withFields:@{}
@@ -240,9 +240,9 @@ describe(@"Entry", ^{
                                     
                                     done();
                                 }];
-    });
+    }); });
 
-    it(@"can set a location value", ^AsyncBlock {
+    it(@"can set a location value", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
 
         CLLocationCoordinate2D location = CLLocationCoordinate2DMake(40.0, 50.0);
@@ -260,9 +260,9 @@ describe(@"Entry", ^{
 
                                     done();
                                 }];
-    });
+    }); });
 
-    it(@"can be updated", ^AsyncBlock {
+    it(@"can be updated", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
 
         NSMutableDictionary* titles = [@{} mutableCopy];
@@ -305,7 +305,7 @@ describe(@"Entry", ^{
 
                                     done();
                                 }];
-    });
+    }); });
 });
 
 SpecEnd

@@ -20,7 +20,7 @@ describe(@"Asset", ^{
 
     RECORD_TESTCASE
 
-    beforeEach(^AsyncBlock {
+    beforeEach(^{ waitUntil(^(DoneCallback done) {
         NSString* token = [ManagementSDKKeys new].managementAPIAccessToken;
 
         client = [[CMAClient alloc] initWithAccessToken:token];
@@ -36,9 +36,9 @@ describe(@"Asset", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can be archived", ^AsyncBlock {
+    it(@"can be archived", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
                         description:nil
@@ -62,9 +62,9 @@ describe(@"Asset", ^{
                                 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"can be created", ^AsyncBlock {
+    it(@"can be created", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:@{ @"en-US": @"My Asset" }
                         description:nil
@@ -82,9 +82,9 @@ describe(@"Asset", ^{
 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"can be created with user-defined identifier", ^AsyncBlock {
+    it(@"can be created with user-defined identifier", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithIdentifier:@"foo"
                                   fields:@{ @"title": @{ @"en-US": @"My Asset" } }
@@ -107,9 +107,9 @@ describe(@"Asset", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can be deleted", ^AsyncBlock {
+    it(@"can be deleted", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
                         description:nil
@@ -142,9 +142,9 @@ describe(@"Asset", ^{
                                 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"can process its file", ^AsyncBlock {
+    it(@"can process its file", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:@{ @"en-US": @"Bacon Pancakes" }
                         description:nil
@@ -162,9 +162,9 @@ describe(@"Asset", ^{
 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"cannot be published without associated file", ^AsyncBlock {
+    it(@"cannot be published without associated file", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
                         description:nil
@@ -184,9 +184,9 @@ describe(@"Asset", ^{
 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"can be unarchived", ^AsyncBlock {
+    it(@"can be unarchived", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
                         description:nil
@@ -216,9 +216,9 @@ describe(@"Asset", ^{
                                 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"can be updated", ^AsyncBlock {
+    it(@"can be updated", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:@{ @"en-US": @"foo" }
                         description:nil
@@ -258,9 +258,9 @@ describe(@"Asset", ^{
                                 
                                 done();
                             }];
-    });
+    }); });
 
-    it(@"can update its file", ^AsyncBlock {
+    it(@"can update its file", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
                         description:nil
@@ -286,7 +286,7 @@ describe(@"Asset", ^{
 
                                 done();
                             }];
-    });
+    }); });
 });
 
 SpecEnd

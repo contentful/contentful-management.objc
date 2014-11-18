@@ -61,7 +61,7 @@ describe(@"Content Type", ^{
 
     RECORD_TESTCASE
 
-    beforeEach(^AsyncBlock {
+    beforeEach(^{ waitUntil(^(DoneCallback done) {
         NSString* token = [ManagementSDKKeys new].managementAPIAccessToken;
 
         client = [[CMAClient alloc] initWithAccessToken:token];
@@ -77,9 +77,9 @@ describe(@"Content Type", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can be activated", ^AsyncBlock {
+    it(@"can be activated", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
@@ -116,9 +116,9 @@ describe(@"Content Type", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can be deactivated", ^AsyncBlock {
+    it(@"can be deactivated", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"foo" type:CDAFieldTypeDate] ]
@@ -153,9 +153,9 @@ describe(@"Content Type", ^{
                                      
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can be created", ^AsyncBlock {
+    it(@"can be created", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"Date" type:CDAFieldTypeDate],
@@ -182,21 +182,21 @@ describe(@"Content Type", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can be created with an array field of symbols", ^AsyncBlock {
+    it(@"can be created with an array field of symbols", ^{ waitUntil(^(DoneCallback done) {
         ArrayTestWithItemType(CDAFieldTypeSymbol);
-    });
+    }); });
 
-    it(@"can be created with an array field of entries", ^AsyncBlock {
+    it(@"can be created with an array field of entries", ^{ waitUntil(^(DoneCallback done) {
         ArrayTestWithItemType(CDAFieldTypeEntry);
-    });
+    }); });
 
-    it(@"can be created with an array field of assets", ^AsyncBlock {
+    it(@"can be created with an array field of assets", ^{ waitUntil(^(DoneCallback done) {
         ArrayTestWithItemType(CDAFieldTypeAsset);
-    });
+    }); });
 
-    it(@"can be created with a link to an entry", ^AsyncBlock {
+    it(@"can be created with a link to an entry", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"Link" type:CDAFieldTypeEntry] ]
@@ -236,9 +236,9 @@ describe(@"Content Type", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can be deleted", ^AsyncBlock {
+    it(@"can be deleted", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:nil
@@ -273,9 +273,9 @@ describe(@"Content Type", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"does not change during update", ^AsyncBlock {
+    it(@"does not change during update", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"Date" type:CDAFieldTypeDate],
@@ -311,9 +311,9 @@ describe(@"Content Type", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can add a new field during update", ^AsyncBlock {
+    it(@"can add a new field during update", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"field" type:CDAFieldTypeText] ]
@@ -344,9 +344,9 @@ describe(@"Content Type", ^{
                                      
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can add a new field created manually", ^AsyncBlock {
+    it(@"can add a new field created manually", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"field" type:CDAFieldTypeText] ]
@@ -379,9 +379,9 @@ describe(@"Content Type", ^{
                                      
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can delete an existing field during update", ^AsyncBlock {
+    it(@"can delete an existing field during update", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"field1" type:CDAFieldTypeText],
@@ -416,9 +416,9 @@ describe(@"Content Type", ^{
                                      
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can update the name of an existing field during update", ^AsyncBlock {
+    it(@"can update the name of an existing field during update", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"field1" type:CDAFieldTypeText]]
@@ -451,9 +451,9 @@ describe(@"Content Type", ^{
                                      
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can update the type of an existing field during update", ^AsyncBlock {
+    it(@"can update the type of an existing field during update", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"field1" type:CDAFieldTypeText]]
@@ -490,9 +490,9 @@ describe(@"Content Type", ^{
                                      
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can change name during update", ^AsyncBlock {
+    it(@"can change name during update", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"name"
                                   fields:nil
@@ -522,9 +522,9 @@ describe(@"Content Type", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"can change description during update", ^AsyncBlock {
+    it(@"can change description during update", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"name"
                                   fields:nil
@@ -554,9 +554,9 @@ describe(@"Content Type", ^{
                                      
                                      done();
                                  }];
-    });
+    }); });
 
-    it(@"does not allow to add two fields with the same name", ^AsyncBlock {
+    it(@"does not allow to add two fields with the same name", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createContentTypeWithName:@"foobar"
                                   fields:@[ [CMAField fieldWithName:@"field" type:CDAFieldTypeText] ]
@@ -586,7 +586,7 @@ describe(@"Content Type", ^{
 
                                      done();
                                  }];
-    });
+    }); });
 });
 
 SpecEnd

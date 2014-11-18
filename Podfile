@@ -5,7 +5,7 @@ target 'ManagementSDK', :exclusive => true do
 end
 
 target 'Tests', :exclusive => true do
-  pod 'Specta', :git => 'https://github.com/neonichu/specta.git'
+  pod 'Specta', :git => 'https://github.com/specta/specta.git'
   pod 'Expecta'
   pod 'CCLRequestReplay', :git => 'https://github.com/neonichu/CCLRequestReplay.git'
 end
