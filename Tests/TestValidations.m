@@ -115,6 +115,8 @@ describe(@"Validation", ^{
 
     _itTestWithValidation(self, __LINE__, __FILE__, @"can create content-type with content type validation", [CMAValidation validationOfLinksAgainstContentTypeIdentifiers:@[@"6FxqhReTPUuYAYW8gqOwS"]], CDAFieldTypeEntry, CDAFieldTypeNone);
 
+    _itTestWithValidation(self, __LINE__, __FILE__, @"can create content-type with content type validation on array", [CMAValidation validationOfLinksAgainstContentTypeIdentifiers:@[@"6FxqhReTPUuYAYW8gqOwS"]], CDAFieldTypeArray, CDAFieldTypeEntry);
+
     _itTestWithValidation(self, __LINE__, __FILE__, @"can create content-type with mime type group validation", [CMAValidation validationOfLinksAgainstMimeTypeGroup:@"image"], CDAFieldTypeLink,CDAFieldTypeAsset);
 
     _itTestWithValidation(self, __LINE__, __FILE__, @"can create content-type with regex validation", [CMAValidation validationOfRegularExpression:@"[A-Z]*" flags:@""], CDAFieldTypeSymbol, CDAFieldTypeNone);

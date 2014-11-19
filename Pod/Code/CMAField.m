@@ -63,7 +63,28 @@
 
 -(NSDictionary*)dictionaryRepresentation {
     NSMutableDictionary* base = [NSMutableDictionary dictionaryWithDictionary:[super dictionaryRepresentation]];
-    base[@"validations"] = [self.mutableValidations valueForKey:@"dictionaryRepresentation"];
+
+    NSMutableArray* allValidations = [[self.mutableValidations valueForKey:@"dictionaryRepresentation"] mutableCopy];
+
+    if (self.type == CDAFieldTypeArray) {
+        NSMutableArray* itemValidations = [@[] mutableCopy];
+
+        NSArray* const itemValidationNames = @[@"linkContentType", @"linkMimetypeGroup"];
+        for (NSDictionary* validation in allValidations) {
+            if (![itemValidationNames containsObject:validation.allKeys.firstObject]) {
+                continue;
+            }
+
+            [itemValidations addObject:validation];
+            [allValidations removeObject:validation];
+        }
+
+        NSMutableDictionary* items = [base[@"items"] mutableCopy];
+        items[@"validations"] = itemValidations;
+        base[@"items"] = items;
+    }
+
+    base[@"validations"] = allValidations;
     return [base copy];
 }
 
@@ -72,8 +93,10 @@
     if (self) {
         self.mutableValidations = [@[] mutableCopy];
 
-        for (NSDictionary* validation in dictionary[@"validations"]) {
-            [self.mutableValidations addObject:[[CMAValidation alloc] initWithDictionary:validation]];
+        for (NSArray* validations in @[dictionary[@"validations"] ?: @[], dictionary[@"items"][@"validations"] ?: @[]]) {
+            for (NSDictionary* validation in validations) {
+                [self.mutableValidations addObject:[[CMAValidation alloc] initWithDictionary:validation]];
+            }
         }
     }
     return self;
