@@ -111,7 +111,7 @@ describe(@"Validation", ^{
 
     _itTestWithValidation(self, __LINE__, __FILE__, @"can create content-type with size validation", [CMAValidation validationOfArraySizeWithMinimumValue:@5 maximumValue:@10], CDAFieldTypeArray, CDAFieldTypeEntry);
 
-    _itTestWithValidation(self, __LINE__, __FILE__, @"can create content-type with size validation", [CMAValidation validationOfArraySizeWithMinimumValue:@3 maximumValue:nil], CDAFieldTypeArray, CDAFieldTypeEntry);
+    _itTestWithValidation(self, __LINE__, __FILE__, @"can create content-type with size validation without maximum value", [CMAValidation validationOfArraySizeWithMinimumValue:@3 maximumValue:nil], CDAFieldTypeArray, CDAFieldTypeEntry);
 
     _itTestWithValidation(self, __LINE__, __FILE__, @"can create content-type with content type validation", [CMAValidation validationOfLinksAgainstContentTypeIdentifiers:@[@"6FxqhReTPUuYAYW8gqOwS"]], CDAFieldTypeEntry, CDAFieldTypeNone);
 
