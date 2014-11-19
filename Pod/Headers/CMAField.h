@@ -8,6 +8,8 @@
 
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
+@class CMAValidation;
+
 /**
  *  Management extensions for fields.
  */
@@ -26,5 +28,15 @@
 
 /** Field type of items if the field is an Array, `CDAFieldTypeNone` otherwise. */
 @property (nonatomic) CDAFieldType itemType;
+
+/** List of currently active validations for the receiver. */
+@property (nonatomic, readonly) NSArray* validations;
+
+/**
+ *  Add a validation for the receiver. It will be applied whenever a value of that field is set.
+ *
+ *  @param validation A validation to apply to values of the receiver.
+ */
+-(void)addValidation:(CMAValidation*)validation;
 
 @end

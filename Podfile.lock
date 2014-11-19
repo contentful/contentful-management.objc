@@ -31,7 +31,7 @@ PODS:
   - CCLRequestReplay/Manager (0.9.0)
   - CCLRequestReplay/Record (0.9.0)
   - CCLRequestReplay/Replay (0.9.0)
-  - ContentfulDeliveryAPI (1.4.4):
+  - ContentfulDeliveryAPI (HEAD based on 1.4.6):
     - AFNetworking
     - HRCoder
     - ISO8601DateFormatter
@@ -44,6 +44,7 @@ PODS:
 
 DEPENDENCIES:
   - CCLRequestReplay (from `https://github.com/neonichu/CCLRequestReplay.git`)
+  - ContentfulDeliveryAPI (HEAD)
   - ContentfulManagementAPI (from `.`)
   - Expecta
   - Specta (from `https://github.com/specta/specta.git`)
@@ -59,7 +60,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   CCLRequestReplay: 53ac44276845cd49bddc0050e7e8f76b8a028ea4
-  ContentfulDeliveryAPI: 8a90c97ccd75beebab3d47e29e9647308bcc7024
+  ContentfulDeliveryAPI: 2f88652f316485123ce4d191798200b1ce5af07e
   ContentfulManagementAPI: ae315bcd6d5b7428d4817c9347c51db5a60e40f0
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   HRCoder: 492f8e2e0b69b54842564d4bbeb1c0e151d4f95f

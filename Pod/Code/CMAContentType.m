@@ -27,6 +27,12 @@
 
 #pragma mark -
 
++(Class)fieldClass {
+    return CMAField.class;
+}
+
+#pragma mark -
+
 -(BOOL)addField:(CMAField *)field {
     if ([[self.mutableFields valueForKey:@"identifier"] containsObject:field.identifier]) {
         return NO;

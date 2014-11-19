@@ -25,6 +25,7 @@
 		A1BB173B1986933D00B55DCA /* TestAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB173A1986933D00B55DCA /* TestAssets.m */; };
 		A1BEFF2B19891654002E8EC5 /* BBURecordingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BEFF2A19891654002E8EC5 /* BBURecordingHelper.m */; };
 		A1BEFF2D19892243002E8EC5 /* Recordings in Resources */ = {isa = PBXBuildFile; fileRef = A1BEFF2C19892243002E8EC5 /* Recordings */; };
+		A1CF91491A1B787400C065CE /* TestValidations.m in Sources */ = {isa = PBXBuildFile; fileRef = A1CF91481A1B787400C065CE /* TestValidations.m */; };
 		A1D14EAE199B6A210076EB56 /* TestLocales.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D14EAD199B6A210076EB56 /* TestLocales.m */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		A1BEFF2919891654002E8EC5 /* BBURecordingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBURecordingHelper.h; sourceTree = "<group>"; };
 		A1BEFF2A19891654002E8EC5 /* BBURecordingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBURecordingHelper.m; sourceTree = "<group>"; };
 		A1BEFF2C19892243002E8EC5 /* Recordings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Recordings; sourceTree = "<group>"; };
+		A1CF91481A1B787400C065CE /* TestValidations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestValidations.m; sourceTree = "<group>"; };
 		A1D14EAD199B6A210076EB56 /* TestLocales.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLocales.m; sourceTree = "<group>"; };
 		A93B57B77DCB446FB1CC2796 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E6B5F085A26E4E618F0FE90D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				A1757CCE19800B11008F52E1 /* TestEntries.m */,
 				A1D14EAD199B6A210076EB56 /* TestLocales.m */,
 				6003F5BB195388D20070C39A /* TestSpaces.m */,
+				A1CF91481A1B787400C065CE /* TestValidations.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 			files = (
 				A1757CCF19800B11008F52E1 /* TestEntries.m in Sources */,
 				A1D14EAE199B6A210076EB56 /* TestLocales.m in Sources */,
+				A1CF91491A1B787400C065CE /* TestValidations.m in Sources */,
 				A1A8C0EC1987E31700640A45 /* TestContentTypes.m in Sources */,
 				A1BB173B1986933D00B55DCA /* TestAssets.m in Sources */,
 				A1BEFF2B19891654002E8EC5 /* BBURecordingHelper.m in Sources */,
