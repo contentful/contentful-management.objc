@@ -1,7 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ManagementSDK', :exclusive => true do
-  pod "ContentfulDeliveryAPI", :head
   pod "ContentfulManagementAPI", :path => "."
 end
 
