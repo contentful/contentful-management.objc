@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.4.1):
-    - AFNetworking/NSURLConnection (= 2.4.1)
-    - AFNetworking/NSURLSession (= 2.4.1)
-    - AFNetworking/Reachability (= 2.4.1)
-    - AFNetworking/Security (= 2.4.1)
-    - AFNetworking/Serialization (= 2.4.1)
-    - AFNetworking/UIKit (= 2.4.1)
-  - AFNetworking/NSURLConnection (2.4.1):
+  - AFNetworking (2.5.0):
+    - AFNetworking/NSURLConnection (= 2.5.0)
+    - AFNetworking/NSURLSession (= 2.5.0)
+    - AFNetworking/Reachability (= 2.5.0)
+    - AFNetworking/Security (= 2.5.0)
+    - AFNetworking/Serialization (= 2.5.0)
+    - AFNetworking/UIKit (= 2.5.0)
+  - AFNetworking/NSURLConnection (2.5.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
+  - AFNetworking/NSURLSession (2.5.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
-  - AFNetworking/UIKit (2.4.1):
+  - AFNetworking/Reachability (2.5.0)
+  - AFNetworking/Security (2.5.0)
+  - AFNetworking/Serialization (2.5.0)
+  - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CCLRequestReplay (0.9.0):
@@ -31,12 +31,12 @@ PODS:
   - CCLRequestReplay/Manager (0.9.0)
   - CCLRequestReplay/Record (0.9.0)
   - CCLRequestReplay/Replay (0.9.0)
-  - ContentfulDeliveryAPI (1.4.4):
+  - ContentfulDeliveryAPI (1.4.7):
     - AFNetworking
     - HRCoder
     - ISO8601DateFormatter
   - ContentfulManagementAPI (0.3.1):
-    - ContentfulDeliveryAPI
+    - ContentfulDeliveryAPI (~> 1.4.7)
   - Expecta (0.3.1)
   - HRCoder (1.3.2)
   - ISO8601DateFormatter (0.7)
@@ -56,14 +56,22 @@ EXTERNAL SOURCES:
   Specta:
     :git: https://github.com/specta/specta.git
 
+CHECKOUT OPTIONS:
+  CCLRequestReplay:
+    :commit: e2d771c32c5327ef18b367acaed299e3c841b9ed
+    :git: https://github.com/neonichu/CCLRequestReplay.git
+  Specta:
+    :commit: 9371f3a3a2a4316efae04ebc135cdcf89086e975
+    :git: https://github.com/specta/specta.git
+
 SPEC CHECKSUMS:
-  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   CCLRequestReplay: 53ac44276845cd49bddc0050e7e8f76b8a028ea4
-  ContentfulDeliveryAPI: 8a90c97ccd75beebab3d47e29e9647308bcc7024
-  ContentfulManagementAPI: ae315bcd6d5b7428d4817c9347c51db5a60e40f0
+  ContentfulDeliveryAPI: c3815bd863ddc5ae8a9039051bc7ab6962bfc031
+  ContentfulManagementAPI: 4cb2e6619aea63781b0d24620f142428b6842c45
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   HRCoder: 492f8e2e0b69b54842564d4bbeb1c0e151d4f95f
   ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
   Specta: 63e8ac8e07db6675c7096d37f77a266a1be4c02d
 
-COCOAPODS: 0.35.0.rc2
+COCOAPODS: 0.35.0

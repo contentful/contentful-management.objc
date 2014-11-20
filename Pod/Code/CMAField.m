@@ -8,9 +8,13 @@
 
 #import "CDAField+Private.h"
 #import "CMAField.h"
+#import "CMAValidation+Private.h"
 
 @interface CDAField ()
 
+@property (nonatomic) NSMutableArray* mutableValidations;
+
+-(NSDictionary*)dictionaryRepresentation;
 -(void)setIdentifier:(NSString*)identifier;
 -(void)setName:(NSString*)name;
 -(void)setType:(CDAFieldType)type;
@@ -22,6 +26,7 @@
 @implementation CMAField
 
 @dynamic itemType;
+@synthesize mutableValidations = _mutableValidations;
 
 #pragma mark -
 
@@ -48,6 +53,57 @@
     }
 
     return [identifier copy];
+}
+
+#pragma mark -
+
+-(void)addValidation:(CMAValidation*)validation {
+    [self.mutableValidations addObject:validation];
+}
+
+-(NSDictionary*)dictionaryRepresentation {
+    NSMutableDictionary* base = [NSMutableDictionary dictionaryWithDictionary:[super dictionaryRepresentation]];
+
+    NSMutableArray* allValidations = [[self.mutableValidations valueForKey:@"dictionaryRepresentation"] mutableCopy];
+
+    if (self.type == CDAFieldTypeArray) {
+        NSMutableArray* itemValidations = [@[] mutableCopy];
+
+        NSArray* const itemValidationNames = @[@"linkContentType", @"linkMimetypeGroup"];
+        for (NSDictionary* validation in allValidations) {
+            if (![itemValidationNames containsObject:validation.allKeys.firstObject]) {
+                continue;
+            }
+
+            [itemValidations addObject:validation];
+            [allValidations removeObject:validation];
+        }
+
+        NSMutableDictionary* items = [base[@"items"] mutableCopy];
+        items[@"validations"] = itemValidations;
+        base[@"items"] = items;
+    }
+
+    base[@"validations"] = allValidations;
+    return [base copy];
+}
+
+-(id)initWithDictionary:(NSDictionary *)dictionary client:(CDAClient *)client {
+    self = [super initWithDictionary:dictionary client:client];
+    if (self) {
+        self.mutableValidations = [@[] mutableCopy];
+
+        for (NSArray* validations in @[dictionary[@"validations"] ?: @[], dictionary[@"items"][@"validations"] ?: @[]]) {
+            for (NSDictionary* validation in validations) {
+                [self.mutableValidations addObject:[[CMAValidation alloc] initWithDictionary:validation]];
+            }
+        }
+    }
+    return self;
+}
+
+-(NSArray *)validations {
+    return [self.mutableValidations copy];
 }
 
 @end
