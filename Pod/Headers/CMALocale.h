@@ -6,7 +6,7 @@
 //
 //
 
-#import "CDAResource.h"
+#import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
 /**
  *  Models the localization of a space into one specific language.
