@@ -230,7 +230,7 @@ describe(@"Asset", ^{
 
                                 [asset updateWithSuccess:^{
                                     if (![BBURecordingHelper sharedHelper].isReplaying) {
-                                        [NSThread sleepForTimeInterval:5.0];
+                                        [NSThread sleepForTimeInterval:8.0];
                                     }
 
                                     [space fetchAssetWithIdentifier:asset.identifier success:^(CDAResponse *response, CMAAsset* newAsset) {

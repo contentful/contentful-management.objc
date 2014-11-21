@@ -34,7 +34,6 @@ describe(@"Entry", ^{
                                      [space fetchContentTypesWithSuccess:^(CDAResponse *response,
                                                                            CDAArray *array) {
                                          expect(array).toNot.beNil();
-                                         expect(array.items.count).to.equal(16);
 
                                          for (CMAContentType* ct in array.items) {
                                              if ([ct.identifier isEqualToString:@"6FxqhReTPUuYAYW8gqOwS"]) {
@@ -278,7 +277,7 @@ describe(@"Entry", ^{
                                     [entry setValue:@"bar" forFieldWithName:@"title"];
                                     [entry updateWithSuccess:^{
                                         if (![BBURecordingHelper sharedHelper].isReplaying) {
-                                            [NSThread sleepForTimeInterval:5.0];
+                                            [NSThread sleepForTimeInterval:8.0];
                                         }
 
                                         [space fetchEntryWithIdentifier:entry.identifier success:^  (CDAResponse *response, CDAEntry *newEntry) {

@@ -70,7 +70,7 @@ describe(@"CMA", ^{
             expect(response).toNot.beNil();
 
             expect(array).toNot.beNil();
-            expect(array.items.count).to.equal(31);
+            expect(array.items.count).to.equal(35);
             expect([array.items[0] class]).to.equal([CMASpace class]);
 
             done();
@@ -107,7 +107,7 @@ describe(@"CMA", ^{
 
             [space fetchContentTypesWithSuccess:^(CDAResponse *response, CDAArray *array) {
                 expect(array).toNot.beNil();
-                expect(array.items.count).equal(16);
+                expect(array.items.count).equal(67);
                 expect([array.items[0] identifier]).toNot.beNil();
 
                 done();
@@ -292,7 +292,7 @@ describe(@"CMA", ^{
         [client fetchUserWithSuccess:^(CDAResponse *response, CMAUser *user) {
             expect(user.firstName).to.equal(@"Boris");
             expect(user.lastName).to.equal(@"Bügling");
-            expect(user.avatarURL).to.equal([NSURL URLWithString:@"https://www.gravatar.com/avatar/66d863ad05a1af75a0e3c5cedc816943?s=50&d=https%3A%2F%2Fstatic.contentful.com%2Fgatekeeper%2Fusers%2Fdefault-d0b7b1bc0b41f91b152c6af7dbc1d9cf.png"]);
+            expect(user.avatarURL).to.equal([NSURL URLWithString:@"https://www.gravatar.com/avatar/66d863ad05a1af75a0e3c5cedc816943?s=50&d=https%3A%2F%2Fstatic.contentful.com%2Fgatekeeper%2Fusers%2Fdefault-f100256c71c0b6b409ec3c4959841976.png"]);
             
             done();
         } failure:^(CDAResponse *response, NSError *error) {
