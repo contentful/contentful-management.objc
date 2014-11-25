@@ -6,7 +6,7 @@
 //
 //
 
-#import <Foundation/Foundation.h>
+#import <ContentfulDeliveryAPI/ContentfulDeliveryAPI.h>
 
 /**
  *  Protocol for resources which support archiving.
