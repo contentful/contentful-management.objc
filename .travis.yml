@@ -3,7 +3,7 @@ cache:
 - bundler
 before_install:
 - bundle install
-- bundle exec pod keys set ManagementAPIAccessToken $CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN ManagementSDK.xcworkspace
+- bundle exec pod keys set ManagementAPIAccessToken $CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN ManagementSDK
 - bundle exec pod install
 script: bundle exec pod lib coverage
 notifications:
