@@ -587,6 +587,16 @@ describe(@"Content Type", ^{
                                      done();
                                  }];
     }); });
+
+    it(@"does not crash when creating a field with an empty name", ^{
+        CMAField* field = [CMAField fieldWithName:@"" type:CDAFieldTypeBoolean];
+        expect(field.identifier).equal(@"");
+    });
+
+    it(@"correctly generates identifiers for fields with spaces in the name", ^{
+        CMAField* field = [CMAField fieldWithName:@"my field" type:CDAFieldTypeBoolean];
+        expect(field.identifier).equal(@"myField");
+    });
 });
 
 SpecEnd

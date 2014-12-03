@@ -67,7 +67,7 @@ void _itTestWithValidation(id self, int lineNumber, const char *fileName, NSStri
 
 SpecBegin(Validation)
 
-describe(@"Validation", ^{
+describe(@"CMA", ^{
     __block CMAClient* client;
     __block CMAContentType* contentType;
 
@@ -124,6 +124,20 @@ describe(@"Validation", ^{
     _itTestWithValidation(self, __LINE__, __FILE__, @"can create content-type with value validation", [CMAValidation validationOfValueInArray:@[@"a", @"b"]], CDAFieldTypeSymbol, CDAFieldTypeNone);
 
     _itTestWithValidation(self, __LINE__, __FILE__, @"can create content-type with range validation", [CMAValidation validationOfValueRangeWithMinimumValue:@3 maximumValue:@5], CDAFieldTypeInteger, CDAFieldTypeNone);
+
+    it(@"implements -hash for validations", ^{
+        CMAValidation* v1 = [CMAValidation validationOfValueInArray:@[@"a", @"b"]];
+        CMAValidation* v2 = [CMAValidation validationOfValueInArray:@[@"a", @"b"]];
+
+        expect(v1.hash).to.equal(v2.hash);
+    });
+
+    it(@"implements -isEqual for validations", ^{
+        CMAValidation* v1 = [CMAValidation validationOfValueInArray:@[@"a", @"b"]];
+        CMAValidation* v2 = [CMAValidation validationOfValueInArray:@[@"a", @"b"]];
+
+        expect([v1 isEqual:v2]).to.beTruthy();
+    });
 });
 
 SpecEnd

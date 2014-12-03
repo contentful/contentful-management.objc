@@ -67,7 +67,7 @@ describe(@"Asset", ^{
     it(@"can be created", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:@{ @"en-US": @"My Asset" }
-                        description:nil
+                        description:@{ @"en-US": @"some description" }
                        fileToUpload:nil
                             success:^(CDAResponse *response, CMAAsset *asset) {
                                 expect(asset).toNot.beNil();
@@ -75,6 +75,7 @@ describe(@"Asset", ^{
                                 expect(asset.identifier).toNot.beNil();
                                 expect(asset.sys[@"version"]).equal(@1);
                                 expect(asset.fields[@"title"]).equal(@"My Asset");
+                                expect(asset.title).equal(@"My Asset");
 
                                 done();
                             } failure:^(CDAResponse *response, NSError *error) {
@@ -164,6 +165,38 @@ describe(@"Asset", ^{
                             }];
     }); });
 
+    it(@"can be published successfully", ^{ waitUntil(^(DoneCallback done) {
+        NSAssert(space, @"Test space could not be found.");
+        [space createAssetWithTitle:@{ @"en-US": @"Bacon Pancakes" }
+                        description:nil
+                       fileToUpload:@{ @"en-US": @"http://i.imgur.com/vaa4by0.png" }
+                            success:^(CDAResponse *response, CMAAsset *asset) {
+                                [asset processWithSuccess:^{
+                                    if (![BBURecordingHelper sharedHelper].isReplaying) {
+                                        [NSThread sleepForTimeInterval:5.0];
+                                    }
+
+                                    [asset publishWithSuccess:^{
+                                        expect(asset.isPublished).to.beTruthy();
+
+                                        done();
+                                    } failure:^(CDAResponse *response, NSError *error) {
+                                        XCTFail(@"Error: %@", error);
+
+                                        done();
+                                    }];
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    XCTFail(@"Error: %@", error);
+
+                                    done();
+                                }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
+
+                                done();
+                            }];
+    }); });
+
     it(@"cannot be published without associated file", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space createAssetWithTitle:nil
@@ -173,6 +206,28 @@ describe(@"Asset", ^{
                                 expect(asset).toNot.beNil();
 
                                 [asset publishWithSuccess:^{
+                                    XCTFail(@"Should not succeed.");
+
+                                    done();
+                                } failure:^(CDAResponse *response, NSError *error) {
+                                    done();
+                                }];
+                            } failure:^(CDAResponse *response, NSError *error) {
+                                XCTFail(@"Error: %@", error);
+
+                                done();
+                            }];
+    }); });
+
+    it(@"cannot be unpublished from draft state", ^{ waitUntil(^(DoneCallback done) {
+        NSAssert(space, @"Test space could not be found.");
+        [space createAssetWithTitle:nil
+                        description:nil
+                       fileToUpload:nil
+                            success:^(CDAResponse *response, CMAAsset *asset) {
+                                expect(asset).toNot.beNil();
+
+                                [asset unpublishWithSuccess:^{
                                     XCTFail(@"Should not succeed.");
 
                                     done();
@@ -227,6 +282,7 @@ describe(@"Asset", ^{
                                 expect(asset).toNot.beNil();
 
                                 asset.title = @"bar";
+                                asset.description = @"description";
 
                                 [asset updateWithSuccess:^{
                                     if (![BBURecordingHelper sharedHelper].isReplaying) {
@@ -237,6 +293,7 @@ describe(@"Asset", ^{
                                         expect(asset.locale).to.equal(@"en-US");
                                         expect(asset.fields[@"title"]).equal(@"bar");
                                         expect(asset.sys[@"version"]).equal(@2);
+                                        expect(asset.description).equal(@"description");
 
                                         expect(newAsset).toNot.beNil();
                                         expect(newAsset.fields[@"title"]).equal(@"bar");

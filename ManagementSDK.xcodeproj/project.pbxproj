@@ -27,6 +27,8 @@
 		A1BEFF2D19892243002E8EC5 /* Recordings in Resources */ = {isa = PBXBuildFile; fileRef = A1BEFF2C19892243002E8EC5 /* Recordings */; };
 		A1CF91491A1B787400C065CE /* TestValidations.m in Sources */ = {isa = PBXBuildFile; fileRef = A1CF91481A1B787400C065CE /* TestValidations.m */; };
 		A1D14EAE199B6A210076EB56 /* TestLocales.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D14EAD199B6A210076EB56 /* TestLocales.m */; };
+		A1D8AEA01A2F1D9D0021E538 /* TestErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D8AE9F1A2F1D9D0021E538 /* TestErrors.m */; };
+		A1D8AEA21A2F3D3D0021E538 /* TestFetching.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D8AEA11A2F3D3D0021E538 /* TestFetching.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		A1BEFF2C19892243002E8EC5 /* Recordings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Recordings; sourceTree = "<group>"; };
 		A1CF91481A1B787400C065CE /* TestValidations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestValidations.m; sourceTree = "<group>"; };
 		A1D14EAD199B6A210076EB56 /* TestLocales.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLocales.m; sourceTree = "<group>"; };
+		A1D8AE9F1A2F1D9D0021E538 /* TestErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestErrors.m; sourceTree = "<group>"; };
+		A1D8AEA11A2F3D3D0021E538 /* TestFetching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFetching.m; sourceTree = "<group>"; };
 		A93B57B77DCB446FB1CC2796 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E6B5F085A26E4E618F0FE90D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		EB914584BB6A45C171319FEB /* Pods-ManagementSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagementSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-ManagementSDK/Pods-ManagementSDK.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,10 +122,10 @@
 			children = (
 				6003F593195388D20070C39A /* Example */,
 				6003F58C195388D20070C39A /* Frameworks */,
+				33D6802F19593864878F6A25 /* Pods */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F58B195388D20070C39A /* Products */,
 				6003F5B5195388D20070C39A /* Tests */,
-				33D6802F19593864878F6A25 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,6 +184,8 @@
 				A1BB173A1986933D00B55DCA /* TestAssets.m */,
 				A1A8C0EB1987E31700640A45 /* TestContentTypes.m */,
 				A1757CCE19800B11008F52E1 /* TestEntries.m */,
+				A1D8AE9F1A2F1D9D0021E538 /* TestErrors.m */,
+				A1D8AEA11A2F3D3D0021E538 /* TestFetching.m */,
 				A1D14EAD199B6A210076EB56 /* TestLocales.m */,
 				6003F5BB195388D20070C39A /* TestSpaces.m */,
 				A1CF91481A1B787400C065CE /* TestValidations.m */,
@@ -382,7 +388,9 @@
 				A1757CCF19800B11008F52E1 /* TestEntries.m in Sources */,
 				A1D14EAE199B6A210076EB56 /* TestLocales.m in Sources */,
 				A1CF91491A1B787400C065CE /* TestValidations.m in Sources */,
+				A1D8AEA21A2F3D3D0021E538 /* TestFetching.m in Sources */,
 				A1A8C0EC1987E31700640A45 /* TestContentTypes.m in Sources */,
+				A1D8AEA01A2F1D9D0021E538 /* TestErrors.m in Sources */,
 				A1BB173B1986933D00B55DCA /* TestAssets.m in Sources */,
 				A1BEFF2B19891654002E8EC5 /* BBURecordingHelper.m in Sources */,
 				6003F5BC195388D20070C39A /* TestSpaces.m in Sources */,

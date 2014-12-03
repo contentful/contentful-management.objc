@@ -53,7 +53,9 @@ describe(@"CMA", ^{
 
             for (CMAOrganization* organization in array.items) {
                 expect(organization.name).toNot.beNil();
+                expect(organization.identifier).toNot.beNil();
                 expect(organization.isActive).equal(YES);
+                expect(organization.description).equal([NSString stringWithFormat:@"CMAOrganization %@ with name: %@", organization.identifier, organization.name]);
             }
 
             done();
@@ -92,30 +94,6 @@ describe(@"CMA", ^{
             expect(space.name).to.equal(@"CMA SDK Test");
 
             done();
-        } failure:^(CDAResponse *response, NSError *error) {
-            XCTFail(@"Error: %@", error);
-
-            done();
-        }];
-    }); });
-
-    it(@"can retrieve the Content Types of a Space", ^{ waitUntil(^(DoneCallback done) {
-        NSAssert(client, @"Client is not available.");
-        [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
-                                                                   CMASpace *space) {
-            expect(space).toNot.beNil();
-
-            [space fetchContentTypesWithSuccess:^(CDAResponse *response, CDAArray *array) {
-                expect(array).toNot.beNil();
-                expect(array.items.count).equal(67);
-                expect([array.items[0] identifier]).toNot.beNil();
-
-                done();
-            } failure:^(CDAResponse *response, NSError *error) {
-                XCTFail(@"Error: %@", error);
-
-                done();
-            }];
         } failure:^(CDAResponse *response, NSError *error) {
             XCTFail(@"Error: %@", error);
 
@@ -252,34 +230,6 @@ describe(@"CMA", ^{
 
                 done();
             }];
-        } failure:^(CDAResponse *response, NSError *error) {
-            XCTFail(@"Error: %@", error);
-
-            done();
-        }];
-    }); });
-
-    it(@"can retrieve all locales of a Space", ^{ waitUntil(^(DoneCallback done) {
-        NSAssert(client, @"Client is not available.");
-        [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
-                                                                   CMASpace *space) {
-            expect(space).toNot.beNil();
-            expect(space.locales.count).to.beGreaterThanOrEqualTo(1);
-            expect(space.defaultLocale).to.equal(@"en-US");
-
-            NSDictionary* engrish = nil;
-
-            for (NSDictionary* locale in space.locales) {
-                if ([locale[@"code"] isEqualToString:@"en-US"]) {
-                    engrish = locale;
-                    break;
-                }
-            }
-
-            expect(engrish).toNot.beNil();
-            expect(engrish[@"name"]).to.equal(@"U.S. English");
-
-            done();
         } failure:^(CDAResponse *response, NSError *error) {
             XCTFail(@"Error: %@", error);
 
