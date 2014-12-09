@@ -29,3 +29,5 @@ DerivedData
 
 # CocoaPods
 Pods/
+
+.gutter.json
