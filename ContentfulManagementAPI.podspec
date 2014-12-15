@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.author           = { "Boris Bügling" => "boris@buegling.com" }
   s.source           = { :git => "https://github.com/contentful/contentful-management.objc.git",
                          :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/contentfulapp'
+  s.social_media_url = 'https://twitter.com/contentful'
 
   s.license = {
     :type => 'MIT',
