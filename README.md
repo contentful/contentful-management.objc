@@ -244,6 +244,16 @@ success:^(CDAResponse *response, CMAAsset *asset) {
 }];
 ```
 
+Start processing of an asset:
+
+```objective-c
+[asset processWithSuccess:^{
+    NSLog(@"Processing successfully started.");
+} failure:^(CDAResponse *response, NSError *error) {
+    NSLog(@"Error: %@", error);
+}];
+```
+
 Updating an asset:
 
 ```objective-c
