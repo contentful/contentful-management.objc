@@ -559,6 +559,8 @@
 					"\"${PODS_ROOT}/Headers/Build/ContentfulDeliveryAPI\"",
 					"\"${PODS_ROOT}/BuildHeaders/ContentfulDeliveryAPI\"",
 					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Private/ContentfulDeliveryAPI\"",
+					"\"${PODS_ROOT}/Headers/Private/ContentfulManagementAPI\"",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -586,6 +588,8 @@
 					"\"${PODS_ROOT}/Headers/Build/ContentfulDeliveryAPI\"",
 					"\"${PODS_ROOT}/BuildHeaders/ContentfulDeliveryAPI\"",
 					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Private/ContentfulDeliveryAPI\"",
+					"\"${PODS_ROOT}/Headers/Private/ContentfulManagementAPI\"",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";

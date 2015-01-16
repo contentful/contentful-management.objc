@@ -1,3 +1,8 @@
+plugin 'cocoapods-keys', {
+  :project => 'ManagementSDK',
+  :keys => [ 'ManagementAPIAccessToken' ]
+}
+
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ManagementSDK', :exclusive => true do
