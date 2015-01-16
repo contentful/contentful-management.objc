@@ -219,6 +219,12 @@
                                     failure:failure];
 }
 
+-(CDARequest *)fetchAccessTokensWithSuccess:(CDAArrayFetchedBlock)success
+                                    failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client fetchArrayAtURLPath:@"api_keys" parameters:nil success:success failure:failure];
+}
+
 -(CDARequest *)fetchAssetsWithSuccess:(CDAArrayFetchedBlock)success
                               failure:(CDARequestFailureBlock)failure {
     NSParameterAssert(self.client);

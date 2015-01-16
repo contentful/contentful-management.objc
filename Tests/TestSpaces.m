@@ -46,10 +46,36 @@ describe(@"CMA", ^{
         expect([userAgent hasPrefix:@"contentful-management.objc"]).to.beTruthy();
     });
 
+    it(@"can retrieve all Access Tokens of a Space", ^{ waitUntil(^(DoneCallback done) {
+        NSAssert(client, @"Client is not available.");
+        [client fetchSpaceWithIdentifier:@"hvjkfbzcwrfn" success:^(CDAResponse *response,
+                                                                   CMASpace *space) {
+            expect(space).toNot.beNil();
+
+            [space fetchAccessTokensWithSuccess:^(CDAResponse* response, CDAArray* tokens) {
+                expect(tokens).toNot.beNil();
+                expect(tokens.items.count).equal(1);
+                expect([tokens.items.firstObject token]).toNot.beNil();
+
+                done();
+            } failure:^(CDAResponse *response, NSError *error) {
+                XCTFail(@"Error: %@", error);
+
+                done();
+            }];
+
+            done();
+        } failure:^(CDAResponse *response, NSError *error) {
+            XCTFail(@"Error: %@", error);
+
+            done();
+        }];
+    }); });
+
     it(@"can retrieve all Organizations of an account", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client fetchOrganizationsWithSuccess:^(CDAResponse *response, CDAArray *array) {
-            expect(array.items.count).equal(6);
+            expect(array.items.count).equal(7);
 
             for (CMAOrganization* organization in array.items) {
                 expect(organization.name).toNot.beNil();
@@ -72,7 +98,7 @@ describe(@"CMA", ^{
             expect(response).toNot.beNil();
 
             expect(array).toNot.beNil();
-            expect(array.items.count).to.equal(35);
+            expect(array.items.count).to.equal(39);
             expect([array.items[0] class]).to.equal([CMASpace class]);
 
             done();
@@ -104,6 +130,7 @@ describe(@"CMA", ^{
     it(@"can create a new Space", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client createSpaceWithName:@"MySpace"
+                     inOrganization:organization
                             success:^(CDAResponse *response, CMASpace *space) {
                                 expect(space).toNot.beNil();
                                 expect(space.name).equal(@"MySpace");
@@ -177,6 +204,7 @@ describe(@"CMA", ^{
     it(@"can delete an existing Space", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(client, @"Client is not available.");
         [client createSpaceWithName:@"MySpace"
+                     inOrganization:organization
                             success:^(CDAResponse *response, CMASpace *space) {
                                 expect(space).toNot.beNil();
 

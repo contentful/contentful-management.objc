@@ -81,6 +81,16 @@
                            failure:(CDARequestFailureBlock)failure;
 
 /**
+ *  Fetch all Access Tokens from the server.
+ *
+ *  @param success A block which gets called upon successful retrieval of all Access Tokens.
+ *  @param failure A block which gets called if an error occured during the retrieval process.
+ *  @return The request used for fetching data.
+ */
+-(CDARequest*)fetchAccessTokensWithSuccess:(CDAArrayFetchedBlock)success
+                                   failure:(CDARequestFailureBlock)failure;
+
+/**
  *  Fetch all Assets matching a query from the server.
  *
  *  @param query   The query which retrieved Assets shall match. Queries are expressed as dictionaries,
