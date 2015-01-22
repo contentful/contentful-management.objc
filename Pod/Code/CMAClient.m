@@ -114,6 +114,8 @@
 -(id)initWithAccessToken:(NSString *)accessToken configuration:(CDAConfiguration*)configuration {
     self = [super init];
     if (self) {
+        // CMA is only accessible via HTTPS
+        configuration.secure = YES;
         configuration.server = @"api.contentful.com";
 
         if (!configuration.userAgent) {

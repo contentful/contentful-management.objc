@@ -98,7 +98,7 @@ describe(@"CMA", ^{
             expect(response).toNot.beNil();
 
             expect(array).toNot.beNil();
-            expect(array.items.count).to.equal(39);
+            expect(array.items.count).to.equal(40);
             expect([array.items[0] class]).to.equal([CMASpace class]);
 
             done();
