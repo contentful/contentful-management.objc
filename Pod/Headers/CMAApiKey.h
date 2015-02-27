@@ -6,7 +6,7 @@
 //
 //
 
-#import "CDAResource.h"
+#import <ContentfulDeliveryAPI/CDAResource.h>
 
 /** API key of a Space. */
 @interface CMAApiKey : CDAResource
