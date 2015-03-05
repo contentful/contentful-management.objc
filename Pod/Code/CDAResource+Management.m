@@ -12,6 +12,12 @@
 
 @implementation CDAResource (Management)
 
+-(NSDictionary*)linkDictionary {
+    return @{ @"sys": @{ @"type": @"Link",
+                         @"linkType": [self.class CDAType],
+                         @"id": self.identifier } };
+}
+
 -(CDARequest*)performDeleteToFragment:(NSString*)fragment
                           withSuccess:(void (^)())success
                               failure:(CDARequestFailureBlock)failure {

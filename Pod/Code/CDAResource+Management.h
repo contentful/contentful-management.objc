@@ -10,6 +10,7 @@
 
 @interface CDAResource (Management)
 
+@property (nonatomic, readonly) NSDictionary* linkDictionary;
 @property (nonatomic, readonly) NSString* URLPath;
 
 -(CDARequest*)performDeleteToFragment:(NSString*)fragment

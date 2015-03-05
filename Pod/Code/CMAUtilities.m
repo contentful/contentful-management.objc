@@ -6,7 +6,10 @@
 //
 //
 
+#import <ContentfulDeliveryAPI/ContentfulDeliveryAPI.h>
 #import <MapKit/MapKit.h>
+
+#import "CDAResource+Management.h"
 
 static NSDateFormatter* dateFormatter = nil;
 
@@ -25,6 +28,10 @@ NSDictionary* CMASanitizeParameterDictionaryForJSON(NSDictionary* fields) {
         NSMutableDictionary* mutableLocalizedValues = [localizedValues mutableCopy];
 
         [localizedValues enumerateKeysAndObjectsUsingBlock:^(NSString* locale, id value, BOOL *stop) {
+            if ([value isKindOfClass:[CDAResource class]]) {
+                mutableLocalizedValues[locale] = [(CDAResource*)value linkDictionary];
+            }
+
             if ([value isKindOfClass:[NSData class]]) {
                 CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(0.0, 0.0);
                 [(NSData*)value getBytes:&coordinate length:sizeof(coordinate)];

@@ -8,6 +8,7 @@
 
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
+#import "CDAResource+Private.h"
 #import "CMAUtilities.h"
 
 void _itTestForSanitize(id self, int lineNumber, const char *fileName, NSString *name,
@@ -32,6 +33,11 @@ SpecBegin(Utilities)
 describe(@"CMASanitizeParameterDictionaryForJSON", ^{
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(40.0, 50.0);
     NSData* locationValue = [NSData dataWithBytes:&location length:sizeof(location)];
+
+    CDAAsset* asset = (CDAAsset*)[CDAResource resourceObjectForDictionary:@{ @"sys": @{ @"type": @"Asset", @"id": @"XXX" } } client:[CDAClient new]];
+
+    _itTestForSanitize(self, __LINE__, __FILE__, @"sanitizes asset values",
+                       @{ @"en-US": @{ @"someAsset": asset } });
 
     _itTestForSanitize(self, __LINE__, __FILE__, @"sanitizes date values",
                        @{ @"en-US": @{ @"someDate": [NSDate new] } });
