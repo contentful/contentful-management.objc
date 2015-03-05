@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
+#import <CCLRequestReplay/CCLRequestJSONRecording.h>
 #import <CCLRequestReplay/CCLRequestRecordProtocol.h>
 #import <CCLRequestReplay/CCLRequestReplayProtocol.h>
 
@@ -42,6 +43,16 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:recordingPath]) {
         self.manager = [NSKeyedUnarchiver unarchiveObjectWithFile:recordingPath];
         self.replaying = YES;
+
+        CCLRequestJSONRecording* recording = [[CCLRequestJSONRecording alloc]
+                                              initWithBundledJSONNamed:nil
+                                              inDirectory:nil
+                                              matcher:^BOOL(NSURLRequest *request) {
+                                                  return YES;
+                                              }
+                                              statusCode:404
+                                              headerFields:nil];
+        [self.manager addRecording:recording];
 
         [self.manager replay];
     } else {

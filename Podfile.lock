@@ -38,7 +38,7 @@ PODS:
     - ContentfulDeliveryAPI (~> 1.4.7)
   - Expecta (0.3.1)
   - ISO8601DateFormatter (0.7)
-  - Specta (0.3.0.beta1)
+  - Specta (0.3.2)
 
 DEPENDENCIES:
   - CCLRequestReplay (from `https://github.com/neonichu/CCLRequestReplay.git`)
@@ -59,7 +59,7 @@ CHECKOUT OPTIONS:
     :commit: e2d771c32c5327ef18b367acaed299e3c841b9ed
     :git: https://github.com/neonichu/CCLRequestReplay.git
   Specta:
-    :commit: 9371f3a3a2a4316efae04ebc135cdcf89086e975
+    :commit: c67088e9866d770de4d04f791bbc76b3dadc6f33
     :git: https://github.com/specta/specta.git
 
 SPEC CHECKSUMS:
@@ -69,6 +69,6 @@ SPEC CHECKSUMS:
   ContentfulManagementAPI: 0cb87441b61450abf08955f3cc12455eeacb7b7e
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
-  Specta: d2158a483ad179e5f8d3a29f75ff4fc0ff6fab16
+  Specta: e5ad38f1b2227a23bc63d0b5a3b41c5e628f2851
 
-COCOAPODS: 0.36.0.beta.1
+COCOAPODS: 0.36.0.rc.1

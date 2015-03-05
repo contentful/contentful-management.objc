@@ -19,24 +19,27 @@ describe(@"CMA", ^{
 
     RECORD_TESTCASE
 
-    beforeEach(^{ waitUntil(^(DoneCallback done) {
-        NSString* token = [ManagementSDKKeys new].managementAPIAccessToken;
+    beforeEach(^{
+        setAsyncSpecTimeout(20.0);
 
-        client = [[CMAClient alloc] initWithAccessToken:token];
+        waitUntil(^(DoneCallback done) {
+            NSString* token = [ManagementSDKKeys new].managementAPIAccessToken;
 
-        [client fetchOrganizationsWithSuccess:^(CDAResponse *response, CDAArray *array) {
-            for (CMAOrganization* item in array.items) {
-                if ([item.identifier isEqualToString:@"1PLOOEmTI2S1NYald2TemO"]) {
-                    organization = item;
+            client = [[CMAClient alloc] initWithAccessToken:token];
+
+            [client fetchOrganizationsWithSuccess:^(CDAResponse *response, CDAArray *array) {
+                for (CMAOrganization* item in array.items) {
+                    if ([item.identifier isEqualToString:@"1PLOOEmTI2S1NYald2TemO"]) {
+                        organization = item;
+                    }
                 }
-            }
 
-            done();
-        } failure:^(CDAResponse *response, NSError *error) {
-            XCTFail(@"Error: %@", error);
-
-            done();
-        }];
+                done();
+            } failure:^(CDAResponse *response, NSError *error) {
+                XCTFail(@"Error: %@", error);
+                
+                done();
+            }];
     }); });
 
     it(@"uses the correct user-agent", ^{
@@ -98,7 +101,7 @@ describe(@"CMA", ^{
             expect(response).toNot.beNil();
 
             expect(array).toNot.beNil();
-            expect(array.items.count).to.equal(40);
+            expect(array.items.count).to.equal(52);
             expect([array.items[0] class]).to.equal([CMASpace class]);
 
             done();
