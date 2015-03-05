@@ -30,8 +30,14 @@ void _itTestForSanitize(id self, int lineNumber, const char *fileName, NSString 
 SpecBegin(Utilities)
 
 describe(@"CMASanitizeParameterDictionaryForJSON", ^{
+    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(40.0, 50.0);
+    NSData* locationValue = [NSData dataWithBytes:&location length:sizeof(location)];
+
     _itTestForSanitize(self, __LINE__, __FILE__, @"sanitizes date values",
                        @{ @"en-US": @{ @"someDate": [NSDate new] } });
+
+    _itTestForSanitize(self, __LINE__, __FILE__, @"sanitizes location values",
+                       @{ @"en-US": @{ @"someLocation": locationValue } });
 });
 
 SpecEnd
