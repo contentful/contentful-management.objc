@@ -8,7 +8,16 @@
 
 #import <MapKit/MapKit.h>
 
+static NSDateFormatter* dateFormatter = nil;
+
 NSDictionary* CMASanitizeParameterDictionaryForJSON(NSDictionary* fields) {
+    if (!dateFormatter) {
+        dateFormatter = [NSDateFormatter new];
+        NSLocale *posixLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        [dateFormatter setLocale:posixLocale];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    }
+
     NSMutableDictionary* mutableFields = [NSMutableDictionary dictionaryWithDictionary:fields];
 
     [mutableFields enumerateKeysAndObjectsUsingBlock:^(NSString* key,
@@ -22,6 +31,10 @@ NSDictionary* CMASanitizeParameterDictionaryForJSON(NSDictionary* fields) {
                 
                 mutableLocalizedValues[locale] = @{ @"lon": @(coordinate.longitude),
                                                     @"lat": @(coordinate.latitude) };
+            }
+
+            if ([value isKindOfClass:[NSDate class]]) {
+                mutableLocalizedValues[locale] = [dateFormatter stringFromDate:(NSDate*)value];
             }
         }];
 
