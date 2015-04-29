@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.5.0):
-    - AFNetworking/NSURLConnection (= 2.5.0)
-    - AFNetworking/NSURLSession (= 2.5.0)
-    - AFNetworking/Reachability (= 2.5.0)
-    - AFNetworking/Security (= 2.5.0)
-    - AFNetworking/Serialization (= 2.5.0)
-    - AFNetworking/UIKit (= 2.5.0)
-  - AFNetworking/NSURLConnection (2.5.0):
+  - AFNetworking (2.5.3):
+    - AFNetworking/NSURLConnection (= 2.5.3)
+    - AFNetworking/NSURLSession (= 2.5.3)
+    - AFNetworking/Reachability (= 2.5.3)
+    - AFNetworking/Security (= 2.5.3)
+    - AFNetworking/Serialization (= 2.5.3)
+    - AFNetworking/UIKit (= 2.5.3)
+  - AFNetworking/NSURLConnection (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.0):
+  - AFNetworking/NSURLSession (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.0)
-  - AFNetworking/Security (2.5.0)
-  - AFNetworking/Serialization (2.5.0)
-  - AFNetworking/UIKit (2.5.0):
+  - AFNetworking/Reachability (2.5.3)
+  - AFNetworking/Security (2.5.3)
+  - AFNetworking/Serialization (2.5.3)
+  - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CCLRequestReplay (0.9.0):
@@ -31,14 +31,14 @@ PODS:
   - CCLRequestReplay/Manager (0.9.0)
   - CCLRequestReplay/Record (0.9.0)
   - CCLRequestReplay/Replay (0.9.0)
-  - ContentfulDeliveryAPI (1.4.8):
-    - AFNetworking
+  - ContentfulDeliveryAPI (1.7.3):
+    - AFNetworking (>= 2.5.3)
     - ISO8601DateFormatter
   - ContentfulManagementAPI (0.5.0):
-    - ContentfulDeliveryAPI (~> 1.4.7)
-  - Expecta (0.3.1)
+    - ContentfulDeliveryAPI (~> 1.7.3)
+  - Expecta (0.4.2)
   - ISO8601DateFormatter (0.7)
-  - Specta (0.3.2)
+  - Specta (0.5.0)
 
 DEPENDENCIES:
   - CCLRequestReplay (from `https://github.com/neonichu/CCLRequestReplay.git`)
@@ -59,16 +59,16 @@ CHECKOUT OPTIONS:
     :commit: e2d771c32c5327ef18b367acaed299e3c841b9ed
     :git: https://github.com/neonichu/CCLRequestReplay.git
   Specta:
-    :commit: c67088e9866d770de4d04f791bbc76b3dadc6f33
+    :commit: 5a1be2ef4e2d94a6fd225c24caf05591f59e54ad
     :git: https://github.com/specta/specta.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   CCLRequestReplay: a472e52da260c28d7a41df76697b8e518625a44f
-  ContentfulDeliveryAPI: 4652d1fb65a08fdfbf01d5e3c399da01409bda00
-  ContentfulManagementAPI: 0cb87441b61450abf08955f3cc12455eeacb7b7e
-  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
-  ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
-  Specta: e5ad38f1b2227a23bc63d0b5a3b41c5e628f2851
+  ContentfulDeliveryAPI: 7c50f9ff2ef361ff1622bee630ed9aaac5f24a2d
+  ContentfulManagementAPI: bb2921576c691df1c281bee255a57b2ef2927538
+  Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
+  ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
+  Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
 
-COCOAPODS: 0.36.0.rc.1
+COCOAPODS: 0.36.4
