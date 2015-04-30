@@ -119,7 +119,7 @@
         configuration.server = @"api.contentful.com";
 
         if (!configuration.userAgent) {
-            configuration.userAgent = @"contentful-management.objc/0.5.0";
+            configuration.userAgent = @"contentful-management.objc/0.5.1";
         }
 
         self.client = [[CDAClient alloc] initWithSpaceKey:nil

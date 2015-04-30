@@ -34,7 +34,7 @@ PODS:
   - ContentfulDeliveryAPI (1.7.3):
     - AFNetworking (>= 2.5.3)
     - ISO8601DateFormatter
-  - ContentfulManagementAPI (0.5.0):
+  - ContentfulManagementAPI (0.5.1):
     - ContentfulDeliveryAPI (~> 1.7.3)
   - Expecta (0.4.2)
   - ISO8601DateFormatter (0.7)
@@ -66,7 +66,7 @@ SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   CCLRequestReplay: a472e52da260c28d7a41df76697b8e518625a44f
   ContentfulDeliveryAPI: 7c50f9ff2ef361ff1622bee630ed9aaac5f24a2d
-  ContentfulManagementAPI: bb2921576c691df1c281bee255a57b2ef2927538
+  ContentfulManagementAPI: c567ffb97cc8e5f6e818aef5b54cab46183bb93f
   Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
   ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
   Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
