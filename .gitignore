@@ -7,6 +7,7 @@
 *.lock
 
 # Xcode
+*.gcno
 build/
 *.pbxuser
 !default.pbxuser
