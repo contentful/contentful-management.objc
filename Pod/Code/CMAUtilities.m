@@ -13,6 +13,35 @@
 
 static NSDateFormatter* dateFormatter = nil;
 
+static id CMASanitizeParameterValue(id value) {
+    if ([value isKindOfClass:[CDAResource class]]) {
+        return [(CDAResource*)value linkDictionary];
+    }
+
+    if ([value isKindOfClass:[NSData class]]) {
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(0.0, 0.0);
+        [(NSData*)value getBytes:&coordinate length:sizeof(coordinate)];
+
+        return @{ @"lon": @(coordinate.longitude), @"lat": @(coordinate.latitude) };
+    }
+
+    if ([value isKindOfClass:[NSDate class]]) {
+        return [dateFormatter stringFromDate:(NSDate*)value];
+    }
+
+    if ([value isKindOfClass:[NSArray class]]) {
+        NSMutableArray* result = [@[] mutableCopy];
+
+        for (id item in value) {
+            [result addObject:CMASanitizeParameterValue(item)];
+        }
+
+        return [result copy];
+    }
+
+    return value;
+}
+
 NSDictionary* CMASanitizeParameterDictionaryForJSON(NSDictionary* fields) {
     if (!dateFormatter) {
         dateFormatter = [NSDateFormatter new];
@@ -28,21 +57,7 @@ NSDictionary* CMASanitizeParameterDictionaryForJSON(NSDictionary* fields) {
         NSMutableDictionary* mutableLocalizedValues = [localizedValues mutableCopy];
 
         [localizedValues enumerateKeysAndObjectsUsingBlock:^(NSString* locale, id value, BOOL *stop) {
-            if ([value isKindOfClass:[CDAResource class]]) {
-                mutableLocalizedValues[locale] = [(CDAResource*)value linkDictionary];
-            }
-
-            if ([value isKindOfClass:[NSData class]]) {
-                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(0.0, 0.0);
-                [(NSData*)value getBytes:&coordinate length:sizeof(coordinate)];
-                
-                mutableLocalizedValues[locale] = @{ @"lon": @(coordinate.longitude),
-                                                    @"lat": @(coordinate.latitude) };
-            }
-
-            if ([value isKindOfClass:[NSDate class]]) {
-                mutableLocalizedValues[locale] = [dateFormatter stringFromDate:(NSDate*)value];
-            }
+            mutableLocalizedValues[locale] = CMASanitizeParameterValue(value);
         }];
 
         mutableFields[key] = [mutableLocalizedValues copy];
