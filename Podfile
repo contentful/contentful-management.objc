@@ -8,7 +8,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 pod "ContentfulManagementAPI", :path => "."
 
 target 'Tests', :exclusive => true do
-  pod 'Specta', :git => 'https://github.com/specta/specta.git'
+  pod 'Specta'
   pod 'Expecta'
   pod 'CCLRequestReplay', :git => 'https://github.com/neonichu/CCLRequestReplay.git'
 end
