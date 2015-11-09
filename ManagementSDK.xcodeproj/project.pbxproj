@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		504BE7DD49C34CC2B93B6B0D /* libPods-ManagementSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 321DCB71A1D24855A59ADF19 /* libPods-ManagementSDK.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -47,7 +46,6 @@
 		05505DA3E41D71AE88CF2652 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2E87676E67BDB028C6EAB979 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		321DCB71A1D24855A59ADF19 /* libPods-ManagementSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManagementSDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4321938C336F052FFBD3FDDD /* Pods-ManagementSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagementSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ManagementSDK/Pods-ManagementSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		49D08F4022130D5E3F44D49F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F7323608B747220F3C8BF86 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* ManagementSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManagementSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,7 +81,6 @@
 		A93B57B77DCB446FB1CC2796 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CDB8C096AE1CF3D28A4CD333 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E6B5F085A26E4E618F0FE90D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		EB914584BB6A45C171319FEB /* Pods-ManagementSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagementSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-ManagementSDK/Pods-ManagementSDK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +91,6 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				504BE7DD49C34CC2B93B6B0D /* libPods-ManagementSDK.a in Frameworks */,
 				E81DD756D2B9B7B8E329D01F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,8 +112,6 @@
 		33D6802F19593864878F6A25 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4321938C336F052FFBD3FDDD /* Pods-ManagementSDK.debug.xcconfig */,
-				EB914584BB6A45C171319FEB /* Pods-ManagementSDK.release.xcconfig */,
 				2E87676E67BDB028C6EAB979 /* Pods-Tests.debug.xcconfig */,
 				5F7323608B747220F3C8BF86 /* Pods-Tests.release.xcconfig */,
 				05505DA3E41D71AE88CF2652 /* Pods.debug.xcconfig */,
