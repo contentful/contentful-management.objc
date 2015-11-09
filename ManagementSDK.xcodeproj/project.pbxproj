@@ -264,7 +264,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CMA;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Boris Bügling";
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
@@ -430,6 +430,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -496,6 +497,7 @@
 				GCC_PREFIX_HEADER = "Example/ManagementSDK-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/ManagementSDK-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.contentful.cma-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"-Wconversion",
@@ -524,6 +526,7 @@
 				GCC_PREFIX_HEADER = "Example/ManagementSDK-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/ManagementSDK-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.contentful.cma-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"-Wconversion",
@@ -569,6 +572,7 @@
 					"\"${PODS_ROOT}/Headers/Private/ContentfulManagementAPI\"",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -598,6 +602,7 @@
 					"\"${PODS_ROOT}/Headers/Private/ContentfulManagementAPI\"",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
