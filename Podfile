@@ -5,9 +5,7 @@ plugin 'cocoapods-keys', {
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'ManagementSDK', :exclusive => true do
-  pod "ContentfulManagementAPI", :path => "."
-end
+pod "ContentfulManagementAPI", :path => "."
 
 target 'Tests', :exclusive => true do
   pod 'Specta', :git => 'https://github.com/specta/specta.git'

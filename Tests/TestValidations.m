@@ -14,7 +14,7 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
-#import <CocoaPods-Keys/ManagementSDKKeys.h>
+#import <Keys/ManagementSDKKeys.h>
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
 #import "BBURecordingHelper.h"
@@ -74,7 +74,7 @@ describe(@"CMA", ^{
     RECORD_TESTCASE
 
     beforeEach(^{ waitUntil(^(DoneCallback done) {
-        NSString* token = [ManagementSDKKeys new].managementAPIAccessToken;
+        NSString* token = [ManagementsdkKeys new].managementAPIAccessToken;
 
         client = [[CMAClient alloc] initWithAccessToken:token];
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
-#import <CocoaPods-Keys/ManagementSDKKeys.h>
+#import <Keys/ManagementSDKKeys.h>
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
 #import "CMAViewController.h"
@@ -29,7 +29,7 @@
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:NSStringFromClass(self.class)];
 
-    NSString* token = [ManagementSDKKeys new].managementAPIAccessToken;
+    NSString* token = [ManagementsdkKeys new].managementAPIAccessToken;
 
     [[[CMAClient alloc] initWithAccessToken:token]
 #pragma clang diagnostic push
