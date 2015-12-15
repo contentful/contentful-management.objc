@@ -10,6 +10,7 @@
 
 #import "CDAArray+Private.h"
 #import "CDAClient+Private.h"
+#import "CDAResource+Private.h"
 #import "CDASpace+Private.h"
 #import "CMAAccessToken.h"
 #import "CMAClient.h"
@@ -126,6 +127,13 @@
                                               accessToken:accessToken
                                             configuration:configuration];
         self.client.resourceClassPrefix = @"CMA";
+
+        // FIXME: Workaround for contentful/contentful.objc#46
+        NSDictionary* dummyPayload = @{ @"sys": @{ @"id": @"06f5086772e0cd0b8f4e2381fa610d36" },
+                                        @"name": @"yolo" };
+        CDAContentType* dummyCT = [[CDAContentType alloc] initWithDictionary:dummyPayload
+                                                                      client:self.client];
+        [self.client registerClass:CMAEntry.class forContentType:dummyCT];
     }
     return self;
 }
