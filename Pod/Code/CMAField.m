@@ -31,9 +31,10 @@
 #pragma mark -
 
 +(instancetype)fieldWithName:(NSString *)name type:(CDAFieldType)type {
-    CMAField* field = [[self alloc] initWithDictionary:@{ @"type": @"Symbol" }
+    NSDictionary* fieldDictionary = @{ @"type": @"Symbol",
+                                       @"id": [self identifierFromString:name] };
+    CMAField* field = [[self alloc] initWithDictionary:fieldDictionary
                                                 client:(CDAClient*)[NSNull null]];
-    field.identifier = [self identifierFromString:name];
     field.name = name;
     field.type = type;
     return field;
