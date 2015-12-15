@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'cocoapods', '>= 0.36.0'
+gem 'cocoapods', '>= 0.39.0'
 gem 'xcpretty'
 gem 'cocoapods-keys'
 gem 'cocoapods-coverage', '>= 0.2.0'
