@@ -6,6 +6,7 @@ plugin 'cocoapods-keys', {
 source 'https://github.com/CocoaPods/Specs.git'
 
 pod "ContentfulManagementAPI", :path => "."
+pod "AFNetworking", :inhibit_warnings => true
 
 target 'Tests', :exclusive => true do
   pod 'Specta'

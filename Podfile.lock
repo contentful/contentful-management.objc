@@ -42,6 +42,7 @@ PODS:
   - Specta (1.0.5)
 
 DEPENDENCIES:
+  - AFNetworking
   - CCLRequestReplay (from `https://github.com/neonichu/CCLRequestReplay.git`)
   - ContentfulManagementAPI (from `.`)
   - Expecta
@@ -52,7 +53,7 @@ EXTERNAL SOURCES:
   CCLRequestReplay:
     :git: https://github.com/neonichu/CCLRequestReplay.git
   ContentfulManagementAPI:
-    :path: "."
+    :path: .
   Keys:
     :path: Pods/CocoaPodsKeys
 
