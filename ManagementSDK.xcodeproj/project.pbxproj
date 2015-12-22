@@ -25,6 +25,7 @@
 		A1BEFF2B19891654002E8EC5 /* BBURecordingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BEFF2A19891654002E8EC5 /* BBURecordingHelper.m */; };
 		A1BEFF2D19892243002E8EC5 /* Recordings in Resources */ = {isa = PBXBuildFile; fileRef = A1BEFF2C19892243002E8EC5 /* Recordings */; };
 		A1CF91491A1B787400C065CE /* TestValidations.m in Sources */ = {isa = PBXBuildFile; fileRef = A1CF91481A1B787400C065CE /* TestValidations.m */; };
+		A1D13C3B1C297884005DC379 /* TestPublished.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D13C3A1C297884005DC379 /* TestPublished.m */; };
 		A1D14EAE199B6A210076EB56 /* TestLocales.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D14EAD199B6A210076EB56 /* TestLocales.m */; };
 		A1D8AEA01A2F1D9D0021E538 /* TestErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D8AE9F1A2F1D9D0021E538 /* TestErrors.m */; };
 		A1D8AEA21A2F3D3D0021E538 /* TestFetching.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D8AEA11A2F3D3D0021E538 /* TestFetching.m */; };
@@ -74,6 +75,7 @@
 		A1BEFF2A19891654002E8EC5 /* BBURecordingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBURecordingHelper.m; sourceTree = "<group>"; };
 		A1BEFF2C19892243002E8EC5 /* Recordings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Recordings; sourceTree = "<group>"; };
 		A1CF91481A1B787400C065CE /* TestValidations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestValidations.m; sourceTree = "<group>"; };
+		A1D13C3A1C297884005DC379 /* TestPublished.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPublished.m; sourceTree = "<group>"; };
 		A1D14EAD199B6A210076EB56 /* TestLocales.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLocales.m; sourceTree = "<group>"; };
 		A1D8AE9F1A2F1D9D0021E538 /* TestErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestErrors.m; sourceTree = "<group>"; };
 		A1D8AEA11A2F3D3D0021E538 /* TestFetching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFetching.m; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				A1D8AE9F1A2F1D9D0021E538 /* TestErrors.m */,
 				A1D8AEA11A2F3D3D0021E538 /* TestFetching.m */,
 				A1D14EAD199B6A210076EB56 /* TestLocales.m */,
+				A1D13C3A1C297884005DC379 /* TestPublished.m */,
 				6003F5BB195388D20070C39A /* TestSpaces.m */,
 				A1D912F41AA85FE1001E06F7 /* TestUtilities.m */,
 				A1CF91481A1B787400C065CE /* TestValidations.m */,
@@ -425,6 +428,7 @@
 				A1757CCF19800B11008F52E1 /* TestEntries.m in Sources */,
 				A1D14EAE199B6A210076EB56 /* TestLocales.m in Sources */,
 				A1CF91491A1B787400C065CE /* TestValidations.m in Sources */,
+				A1D13C3B1C297884005DC379 /* TestPublished.m in Sources */,
 				A1D8AEA21A2F3D3D0021E538 /* TestFetching.m in Sources */,
 				A1A8C0EC1987E31700640A45 /* TestContentTypes.m in Sources */,
 				A1D8AEA01A2F1D9D0021E538 /* TestErrors.m in Sources */,
