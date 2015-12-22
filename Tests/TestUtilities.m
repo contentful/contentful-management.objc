@@ -8,6 +8,7 @@
 
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
+#import "CDAClient+Private.h"
 #import "CDAResource+Private.h"
 #import "CMAUtilities.h"
 
@@ -29,6 +30,24 @@ void _itTestForSanitize(id self, int lineNumber, const char *fileName, NSString 
 }
 
 SpecBegin(Utilities)
+
+describe(@"CMAClientAllowsChangingServer", ^{
+    it(@"uses the default server by default", ^{
+        CMAClient* client = [[CMAClient alloc] initWithAccessToken:@"XYZ"];
+
+        CDAClient* deliveryClient = [client valueForKey:@"client"];
+        XCTAssertEqualObjects(deliveryClient.configuration.server, @"api.contentful.com");
+    });
+
+    it(@"uses the specified server if changed", ^{
+        CDAConfiguration* config = [CDAConfiguration defaultConfiguration];
+        config.server = @"api.yolo.com";
+        CMAClient* client = [[CMAClient alloc] initWithAccessToken:@"XYZ" configuration:config];
+
+        CDAClient* deliveryClient = [client valueForKey:@"client"];
+        XCTAssertEqualObjects(deliveryClient.configuration.server, @"api.yolo.com");
+    });
+});
 
 describe(@"CMASanitizeParameterDictionaryForJSON", ^{
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(40.0, 50.0);

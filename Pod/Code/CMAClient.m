@@ -117,7 +117,11 @@
     if (self) {
         // CMA is only accessible via HTTPS
         configuration.secure = YES;
-        configuration.server = @"api.contentful.com";
+
+        // Use the default server if the configuration has not been changed by the user
+        if ([configuration.server isEqualToString:(NSString*)CDA_DEFAULT_SERVER]) {
+            configuration.server = @"api.contentful.com";
+        }
 
         if (!configuration.userAgent) {
             configuration.userAgent = @"contentful-management.objc/0.5.2";
