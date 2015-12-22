@@ -11,7 +11,7 @@
 /**
  *  Models the localization of a space into one specific language.
  */
-@interface CMALocale : CDAResource
+@interface CMALocale : CDAResource <CMAResource>
 
 /**
  *  The country-code of the receiver.
@@ -27,15 +27,5 @@
  *  The name of the receiver.
  */
 @property (nonatomic) NSString* name;
-
-/**
- *  Update the receiver with new values.
- *
- *  @param success Called if the update succeeds.
- *  @param failure Called if the update fails.
- *
- *  @return The request used for updating.
- */
--(CDARequest*)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
 
 @end

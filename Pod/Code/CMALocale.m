@@ -27,6 +27,10 @@
 
 #pragma mark -
 
+-(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
+}
+
 -(NSDictionary*)dictionaryRepresentation {
     return @{ @"name": self.name, @"code": self.code };
 }
