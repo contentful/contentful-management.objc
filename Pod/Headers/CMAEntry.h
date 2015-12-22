@@ -6,7 +6,10 @@
 //
 //
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Management extensions for entries.
@@ -22,3 +25,5 @@
 -(void)setValue:(id)value forFieldWithName:(NSString *)key;
 
 @end
+
+NS_ASSUME_NONNULL_END

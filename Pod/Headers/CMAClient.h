@@ -6,7 +6,10 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
 #import <ContentfulDeliveryAPI/ContentfulDeliveryAPI.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class CMAAsset;
 @class CMAContentType;
@@ -76,7 +79,7 @@ typedef void(^CMAUserFetchedBlock)(CDAResponse* response, CMAUser* user);
  *  @return The request used for creation.
  */
 -(CDARequest*)createSpaceWithName:(NSString*)name
-                   inOrganization:(CMAOrganization*)organization
+                   inOrganization:(CMAOrganization* __nullable)organization
                           success:(CMASpaceFetchedBlock)success
                           failure:(CDARequestFailureBlock)failure;
 
@@ -126,3 +129,5 @@ typedef void(^CMAUserFetchedBlock)(CDAResponse* response, CMAUser* user);
 -(CDARequest*)fetchUserWithSuccess:(CMAUserFetchedBlock)success failure:(CDARequestFailureBlock)failure;
 
 @end
+
+NS_ASSUME_NONNULL_END

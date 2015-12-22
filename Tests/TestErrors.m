@@ -23,11 +23,13 @@ describe(@"CMA", ^{
     });
 
     it(@"throws when specifying validations with invalid bounds", ^{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
         expect(^{ [CMAValidation validationOfArraySizeWithMinimumValue:nil
                                                           maximumValue:nil]; }).to.raiseAny();
         expect(^{ [CMAValidation validationOfValueRangeWithMinimumValue:nil
                                                            maximumValue:nil]; }).to.raiseAny();
-
+#pragma clang diagnostic pop
     });
 });
 

@@ -6,7 +6,10 @@
 //
 //
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class CMAField;
 
@@ -87,3 +90,5 @@
 -(void)updateType:(CDAFieldType)newType ofFieldWithIdentifier:(NSString*)identifier;
 
 @end
+
+NS_ASSUME_NONNULL_END

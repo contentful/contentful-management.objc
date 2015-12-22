@@ -44,7 +44,8 @@ describe(@"CMA", ^{
 
     it(@"uses the correct user-agent", ^{
         NSAssert(client, @"Client is not available.");
-        CDARequest* request = [client fetchOrganizationsWithSuccess:nil failure:nil];
+        CDARequest* request = [client fetchOrganizationsWithSuccess:^(CDAResponse* r, CDAArray* a){}
+                                                            failure:^(CDAResponse* r, NSError* e){}];
         NSString* userAgent = request.request.allHTTPHeaderFields[@"User-Agent"];
         expect([userAgent hasPrefix:@"contentful-management.objc"]).to.beTruthy();
     });

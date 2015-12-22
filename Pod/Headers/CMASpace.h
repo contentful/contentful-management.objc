@@ -6,7 +6,10 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class CMAContentType;
 
@@ -29,9 +32,9 @@
  *  @param success                  Called if creation succeeds.
  *  @param failure                  Called if creation fails.
  */
--(void)createAssetWithTitle:(NSDictionary*)titleDictionary
-                description:(NSDictionary*)descriptionDictionary
-               fileToUpload:(NSDictionary*)fileUploadDictionary
+-(void)createAssetWithTitle:(NSDictionary* __nullable)titleDictionary
+                description:(NSDictionary* __nullable)descriptionDictionary
+               fileToUpload:(NSDictionary* __nullable)fileUploadDictionary
                     success:(CMAAssetFetchedBlock)success
                     failure:(CDARequestFailureBlock)failure;
 
@@ -46,7 +49,7 @@
  *  @return The request used for creation.
  */
 -(CDARequest*)createContentTypeWithName:(NSString*)name
-                                 fields:(NSArray*)fields
+                                 fields:(NSArray* __nullable)fields
                                 success:(CMAContentTypeFetchedBlock)success
                                 failure:(CDARequestFailureBlock)failure;
 
@@ -99,7 +102,7 @@
  *  @param failure A block which gets called if an error occured during the retrieval process.
  *  @return The request used for fetching data.
  */
--(CDARequest*)fetchAssetsMatching:(NSDictionary*)query
+-(CDARequest*)fetchAssetsMatching:(NSDictionary* __nullable)query
                           success:(CDAArrayFetchedBlock)success
                           failure:(CDARequestFailureBlock)failure;
 
@@ -159,7 +162,7 @@
  *  @param failure A block which gets called if an error occured during the retrieval process.
  *  @return The request used for fetching data.
  */
--(CDARequest*)fetchEntriesMatching:(NSDictionary*)query
+-(CDARequest*)fetchEntriesMatching:(NSDictionary* __nullable)query
                            success:(CDAArrayFetchedBlock)success
                            failure:(CDARequestFailureBlock)failure;
 
@@ -195,7 +198,7 @@
  *  @param failure A block which gets called if an error occured during the retrieval process.
  *  @return The request used for fetching data.
  */
--(CDARequest*)fetchPublishedAssetsMatching:(NSDictionary*)query
+-(CDARequest*)fetchPublishedAssetsMatching:(NSDictionary* __nullable)query
                                    success:(CDAArrayFetchedBlock)success
                                    failure:(CDARequestFailureBlock)failure;
 
@@ -219,8 +222,10 @@
  *  @param failure A block which gets called if an error occured during the retrieval process.
  *  @return The request used for fetching data.
  */
--(CDARequest*)fetchPublishedEntriesMatching:(NSDictionary*)query
+-(CDARequest*)fetchPublishedEntriesMatching:(NSDictionary* __nullable)query
                                    success:(CDAArrayFetchedBlock)success
                                    failure:(CDARequestFailureBlock)failure;
 
 @end
+
+NS_ASSUME_NONNULL_END

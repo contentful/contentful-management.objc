@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Objects of this class represent a single validation rule for field values.
  */
@@ -21,7 +25,8 @@
  *
  *  @return A validation object conforming to the given rule.
  */
-+(CMAValidation*)validationOfArraySizeWithMinimumValue:(NSNumber*)min maximumValue:(NSNumber*)max;
++(CMAValidation*)validationOfArraySizeWithMinimumValue:(NSNumber*)min
+                                          maximumValue:(NSNumber* __nullable)max;
 
 /**
  *  Validate that links only target entries of one of the given content types.
@@ -73,3 +78,5 @@
 +(CMAValidation*)validationOfValueRangeWithMinimumValue:(NSNumber*)min maximumValue:(NSNumber*)max;
 
 @end
+
+NS_ASSUME_NONNULL_END

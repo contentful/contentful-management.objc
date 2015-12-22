@@ -6,7 +6,10 @@
 //
 //
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class CMAValidation;
 
@@ -40,3 +43,5 @@
 -(void)addValidation:(CMAValidation*)validation;
 
 @end
+
+NS_ASSUME_NONNULL_END

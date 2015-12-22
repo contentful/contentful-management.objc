@@ -6,7 +6,10 @@
 //
 //
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Represents metadata of a Contentful user account.
@@ -29,3 +32,5 @@
 @property (nonatomic, readonly) NSString* lastName;
 
 @end
+
+NS_ASSUME_NONNULL_END

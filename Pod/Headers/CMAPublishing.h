@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Protocol for resources which support publishing.
  */
@@ -42,3 +46,5 @@
 -(CDARequest *)unpublishWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
 
 @end
+
+NS_ASSUME_NONNULL_END

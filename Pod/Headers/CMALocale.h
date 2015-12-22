@@ -6,7 +6,10 @@
 //
 //
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Models the localization of a space into one specific language.
@@ -29,3 +32,5 @@
 @property (nonatomic) NSString* name;
 
 @end
+
+NS_ASSUME_NONNULL_END

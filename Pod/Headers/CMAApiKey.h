@@ -6,7 +6,10 @@
 //
 //
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
 #import <ContentfulDeliveryAPI/CDAResource.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /** API key of a Space. */
 @interface CMAApiKey : CDAResource
@@ -21,3 +24,5 @@
 @property (nonatomic, copy, readonly) NSString* tokenDescription;
 
 @end
+
+NS_ASSUME_NONNULL_END

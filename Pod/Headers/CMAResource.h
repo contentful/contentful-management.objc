@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Protocol for managing resources.
  */
@@ -40,3 +44,5 @@
 -(CDARequest*)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
 
 @end
+
+NS_ASSUME_NONNULL_END

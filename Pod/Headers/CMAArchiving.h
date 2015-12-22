@@ -6,7 +6,10 @@
 //
 //
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
 #import <ContentfulDeliveryAPI/ContentfulDeliveryAPI.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Protocol for resources which support archiving.
@@ -43,3 +46,5 @@
 -(CDARequest *)unarchiveWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure;
 
 @end
+
+NS_ASSUME_NONNULL_END

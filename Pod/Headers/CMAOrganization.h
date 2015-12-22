@@ -6,7 +6,10 @@
 //
 //
 
+#import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
 #import <ContentfulManagementAPI/ContentfulManagementAPI.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  An organization on Contentful.
@@ -24,3 +27,5 @@
 @property (nonatomic, readonly) NSString* name;
 
 @end
+
+NS_ASSUME_NONNULL_END
