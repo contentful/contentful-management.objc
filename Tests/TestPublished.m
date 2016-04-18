@@ -41,20 +41,6 @@ describe(@"Published", ^{
                                  }];
     }); });
 
-    it(@"can fetch published assets", ^{ waitUntil(^(DoneCallback done) {
-        NSAssert(space, @"Test space could not be found.");
-        [space fetchPublishedAssetsMatching:nil
-                                    success:^(CDAResponse *response, CDAArray *array) {
-                                        XCTAssertEqual(array.items.count, 19);
-
-                                        done();
-                                    } failure:^(CDAResponse *response, NSError *error) {
-                                        XCTFail("Error: %@", error);
-
-                                        done();
-                                    }];
-    }); });
-
     it(@"can fetch published content types", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space fetchPublishedContentTypesWithSuccess:^(CDAResponse *response, CDAArray *array) {
@@ -66,20 +52,6 @@ describe(@"Published", ^{
 
             done();
         }];
-    }); });
-
-    it(@"can fetch published entries", ^{ waitUntil(^(DoneCallback done) {
-        NSAssert(space, @"Test space could not be found.");
-        [space fetchPublishedEntriesMatching:nil
-                                     success:^(CDAResponse *response, CDAArray *array) {
-                                         XCTAssertEqual(array.items.count, 100);
-
-                                         done();
-                                     } failure:^(CDAResponse *response, NSError *error) {
-                                         XCTFail("Error: %@", error);
-
-                                         done();
-                                     }];
     }); });
 });
 

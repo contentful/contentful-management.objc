@@ -190,19 +190,6 @@ NS_ASSUME_NONNULL_BEGIN
                                failure:(CDARequestFailureBlock)failure;
 
 /**
- *  Fetch all published Assets matching a query from the server.
- *
- *  @param query   The query which retrieved Assets shall match. Queries are expressed as dictionaries,
- *                 see [Search Parameters](https://www.contentful.com/developers/documentation/content-delivery-api/#search) for more information.
- *  @param success A block which gets called upon successful retrieval of all matching Assets.
- *  @param failure A block which gets called if an error occured during the retrieval process.
- *  @return The request used for fetching data.
- */
--(CDARequest*)fetchPublishedAssetsMatching:(NSDictionary* __nullable)query
-                                   success:(CDAArrayFetchedBlock)success
-                                   failure:(CDARequestFailureBlock)failure;
-
-/**
  *  Fetch all published Content Types from Contentful.
  *
  *  @param success Called if fetching succeeds.
@@ -212,19 +199,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(CDARequest*)fetchPublishedContentTypesWithSuccess:(CDAArrayFetchedBlock)success
                                             failure:(CDARequestFailureBlock)failure;
-
-/**
- *  Fetch all published Entries matching a query from the server.
- *
- *  @param query   The query which retrieved Entries shall match. Queries are expressed as dictionaries,
- *                 see [Search Parameters](https://www.contentful.com/developers/documentation/content-delivery-api/#search) for more information.
- *  @param success A block which gets called upon successful retrieval of all matching Entries.
- *  @param failure A block which gets called if an error occured during the retrieval process.
- *  @return The request used for fetching data.
- */
--(CDARequest*)fetchPublishedEntriesMatching:(NSDictionary* __nullable)query
-                                   success:(CDAArrayFetchedBlock)success
-                                   failure:(CDARequestFailureBlock)failure;
 
 @end
 

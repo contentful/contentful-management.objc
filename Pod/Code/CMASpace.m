@@ -284,31 +284,11 @@
     return [self.client fetchEntryWithIdentifier:identifier success:success failure:failure];
 }
 
--(CDARequest *)fetchPublishedAssetsMatching:(NSDictionary *)query
-                                    success:(CDAArrayFetchedBlock)success
-                                    failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client fetchArrayAtURLPath:@"public/assets"
-                                 parameters:query
-                                    success:success
-                                    failure:failure];
-}
-
 -(CDARequest *)fetchPublishedContentTypesWithSuccess:(CDAArrayFetchedBlock)success
                                              failure:(CDARequestFailureBlock)failure {
     NSParameterAssert(self.client);
     return [self.client fetchArrayAtURLPath:@"public/content_types"
                                  parameters:@{}
-                                    success:success
-                                    failure:failure];
-}
-
--(CDARequest *)fetchPublishedEntriesMatching:(NSDictionary *)query
-                                     success:(CDAArrayFetchedBlock)success
-                                     failure:(CDARequestFailureBlock)failure {
-    NSParameterAssert(self.client);
-    return [self.client fetchArrayAtURLPath:@"public/entries"
-                                 parameters:query
                                     success:success
                                     failure:failure];
 }
