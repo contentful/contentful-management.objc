@@ -31,8 +31,12 @@
     return [NSString stringWithFormat:@"%@ '%@': %@", self.class.CDAType, self.name, self.token];
 }
 
--(id)initWithDictionary:(NSDictionary *)dictionary client:(CDAClient *)client {
-    self = [super initWithDictionary:dictionary client:client];
+-(id)initWithDictionary:(NSDictionary *)dictionary
+                 client:(CDAClient *)client
+  localizationAvailable:(BOOL)localizationAvailable {
+    self = [super initWithDictionary:dictionary
+                              client:client
+               localizationAvailable:localizationAvailable];
     if (self) {
         self.name = dictionary[@"name"];
         self.token = dictionary[@"accessToken"];

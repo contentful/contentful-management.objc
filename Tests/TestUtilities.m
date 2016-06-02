@@ -53,7 +53,7 @@ describe(@"CMASanitizeParameterDictionaryForJSON", ^{
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(40.0, 50.0);
     NSData* locationValue = [NSData dataWithBytes:&location length:sizeof(location)];
 
-    CDAAsset* asset = (CDAAsset*)[CDAResource resourceObjectForDictionary:@{ @"sys": @{ @"type": @"Asset", @"id": @"XXX" } } client:[CDAClient new]];
+    CDAAsset* asset = (CDAAsset*)[CDAResource resourceObjectForDictionary:@{ @"sys": @{ @"type": @"Asset", @"id": @"XXX" } } client:[CDAClient new] localizationAvailable:NO];
 
     _itTestForSanitize(self, __LINE__, __FILE__, @"sanitizes arrays of values",
                        @{ @"en-US": @{ @"someAssetArray": @[asset] } });

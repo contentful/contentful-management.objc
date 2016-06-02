@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   s.source_files = 'Pod/**/*.{h,m}'
   s.public_header_files = 'Pod/Headers/*.h'
 
-  s.dependency 'ContentfulDeliveryAPI', '~> 1.10.1'
+  s.dependency 'ContentfulDeliveryAPI', '~> 1.10.3'
 end

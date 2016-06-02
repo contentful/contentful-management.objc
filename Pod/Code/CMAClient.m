@@ -136,7 +136,8 @@
         NSDictionary* dummyPayload = @{ @"sys": @{ @"id": @"06f5086772e0cd0b8f4e2381fa610d36" },
                                         @"name": @"yolo" };
         CDAContentType* dummyCT = [[CDAContentType alloc] initWithDictionary:dummyPayload
-                                                                      client:self.client];
+                                                                      client:self.client
+                                                       localizationAvailable:NO];
         [self.client registerClass:CMAEntry.class forContentType:dummyCT];
     }
     return self;

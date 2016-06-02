@@ -35,8 +35,12 @@
     return @{ @"name": self.name, @"code": self.code };
 }
 
--(id)initWithDictionary:(NSDictionary *)dictionary client:(CDAClient *)client {
-    self = [super initWithDictionary:dictionary client:client];
+-(id)initWithDictionary:(NSDictionary *)dictionary
+                 client:(CDAClient *)client
+  localizationAvailable:(BOOL)localizationAvailable {
+    self = [super initWithDictionary:dictionary
+                              client:client
+               localizationAvailable:localizationAvailable];
     if (self) {
         self.code = dictionary[@"code"];
         self.defaultLocale = [dictionary[@"default"] boolValue];

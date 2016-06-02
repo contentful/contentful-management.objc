@@ -30,8 +30,12 @@
     return [NSString stringWithFormat:@"CMAOrganization %@ with name: %@", self.identifier, self.name];
 }
 
--(id)initWithDictionary:(NSDictionary *)dictionary client:(CDAClient *)client {
-    self = [super initWithDictionary:dictionary client:client];
+-(id)initWithDictionary:(NSDictionary *)dictionary
+                 client:(CDAClient *)client
+  localizationAvailable:(BOOL)localizationAvailable {
+    self = [super initWithDictionary:dictionary
+                              client:client
+               localizationAvailable:localizationAvailable];
     if (self) {
         self.active = [dictionary[@"subscriptionState"] isEqualToString:@"active"];
         self.name = dictionary[@"name"];

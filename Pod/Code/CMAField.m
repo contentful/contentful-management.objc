@@ -34,7 +34,8 @@
     NSDictionary* fieldDictionary = @{ @"type": @"Symbol",
                                        @"id": [self identifierFromString:name] };
     CMAField* field = [[self alloc] initWithDictionary:fieldDictionary
-                                                client:(CDAClient*)[NSNull null]];
+                                                client:(CDAClient*)[NSNull null]
+                                 localizationAvailable:NO];
     field.name = name;
     field.type = type;
     return field;
@@ -89,8 +90,12 @@
     return [base copy];
 }
 
--(id)initWithDictionary:(NSDictionary *)dictionary client:(CDAClient *)client {
-    self = [super initWithDictionary:dictionary client:client];
+-(id)initWithDictionary:(NSDictionary *)dictionary
+                 client:(CDAClient *)client
+  localizationAvailable:(BOOL)localizationAvailable {
+    self = [super initWithDictionary:dictionary
+                              client:client
+               localizationAvailable:localizationAvailable];
     if (self) {
         self.mutableValidations = [@[] mutableCopy];
 

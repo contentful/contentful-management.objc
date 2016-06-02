@@ -40,7 +40,8 @@
 
     NSDictionary* resourceDict = @{ @"sys": @{ @"type": @"Asset", @"version": @(newVersion) } };
     CDAResource* dummyResource = [CDAResource resourceObjectForDictionary:resourceDict
-                                                                   client:self.client];
+                                                                   client:self.client
+                                                    localizationAvailable:NO];
     [self updateWithResource:dummyResource];
 }
 
