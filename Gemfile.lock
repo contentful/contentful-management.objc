@@ -66,6 +66,7 @@ GEM
     osx_keychain (1.0.1)
       RubyInline (~> 3)
     rake (10.4.2)
+    rouge (1.11.1)
     slather (1.8.1)
       clamp (~> 0.6)
       xcodeproj (~> 0.17)
@@ -76,7 +77,8 @@ GEM
       activesupport (>= 3)
       claide (~> 0.9.1)
       colored (~> 1.2)
-    xcpretty (0.1.7)
+    xcpretty (0.2.2)
+      rouge (~> 1.8)
     xctasks (0.6.0)
       nokogiri (~> 1.6, >= 1.6.3.1)
       rake (~> 10.0, >= 10.0.0)
@@ -93,4 +95,4 @@ DEPENDENCIES
   xcpretty
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
