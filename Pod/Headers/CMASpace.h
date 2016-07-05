@@ -200,6 +200,19 @@ NS_ASSUME_NONNULL_BEGIN
 -(CDARequest*)fetchPublishedContentTypesWithSuccess:(CDAArrayFetchedBlock)success
                                             failure:(CDARequestFailureBlock)failure;
 
+/**
+ *  Fetch all matching roles from Contentful.
+ *
+ *  @param query    Query parameters for pagination of roles collection.
+ *  @param success  Called if fetching succeeds.
+ *  @param failure  Called if fetching fails.
+ *
+ *  @return The request used for fetching data.
+ */
+-(CDARequest *)fetchRolesMatching:(NSDictionary* __nullable)query
+                      withSuccess:(CDAArrayFetchedBlock)success
+                          failure:(CDARequestFailureBlock)failure;
+
 @end
 
 NS_ASSUME_NONNULL_END

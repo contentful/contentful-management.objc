@@ -22,6 +22,7 @@
 #import <ContentfulManagementAPI/CMAField.h>
 #import <ContentfulManagementAPI/CMALocale.h>
 #import <ContentfulManagementAPI/CMAOrganization.h>
+#import <ContentfulManagementAPI/CMARole.h>
 #import <ContentfulManagementAPI/CMASpace.h>
 #import <ContentfulManagementAPI/CMAUser.h>
 #import <ContentfulManagementAPI/CMAValidation.h>

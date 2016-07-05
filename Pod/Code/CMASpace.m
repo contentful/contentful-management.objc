@@ -293,6 +293,16 @@
                                     failure:failure];
 }
 
+-(CDARequest *)fetchRolesMatching:(NSDictionary *)query
+                      withSuccess:(CDAArrayFetchedBlock)success
+                          failure:(CDARequestFailureBlock)failure; {
+    NSParameterAssert(self.client);
+    return [self.client fetchArrayAtURLPath:@"roles"
+                                 parameters:query
+                                    success:success
+                                    failure:failure];
+}
+
 -(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performPutToFragment:@""
                        withParameters:@{ @"name": self.name }

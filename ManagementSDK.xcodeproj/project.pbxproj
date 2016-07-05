@@ -19,6 +19,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BC195388D20070C39A /* TestSpaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* TestSpaces.m */; };
 		92CAF3826F5D4D84A66E2F11 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF15F6F2C8A4651BD3C698E /* libPods-Tests.a */; };
+		A105B5EC1D2BC844002F0A3D /* TestRoles.m in Sources */ = {isa = PBXBuildFile; fileRef = A105B5EB1D2BC844002F0A3D /* TestRoles.m */; };
 		A1757CCF19800B11008F52E1 /* TestEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = A1757CCE19800B11008F52E1 /* TestEntries.m */; };
 		A1A8C0EC1987E31700640A45 /* TestContentTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A8C0EB1987E31700640A45 /* TestContentTypes.m */; };
 		A1BB173B1986933D00B55DCA /* TestAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB173A1986933D00B55DCA /* TestAssets.m */; };
@@ -67,6 +68,7 @@
 		6003F5BB195388D20070C39A /* TestSpaces.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestSpaces.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		9AF15F6F2C8A4651BD3C698E /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A105B5EB1D2BC844002F0A3D /* TestRoles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRoles.m; sourceTree = "<group>"; };
 		A13B0AAA1973CB2B00A88BA3 /* ContentfulManagementAPI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ContentfulManagementAPI.podspec; sourceTree = "<group>"; };
 		A1757CCE19800B11008F52E1 /* TestEntries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestEntries.m; sourceTree = "<group>"; };
 		A1A8C0EB1987E31700640A45 /* TestContentTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestContentTypes.m; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				A1D8AEA11A2F3D3D0021E538 /* TestFetching.m */,
 				A1D14EAD199B6A210076EB56 /* TestLocales.m */,
 				A1D13C3A1C297884005DC379 /* TestPublished.m */,
+				A105B5EB1D2BC844002F0A3D /* TestRoles.m */,
 				6003F5BB195388D20070C39A /* TestSpaces.m */,
 				A1D912F41AA85FE1001E06F7 /* TestUtilities.m */,
 				A1CF91481A1B787400C065CE /* TestValidations.m */,
@@ -425,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A105B5EC1D2BC844002F0A3D /* TestRoles.m in Sources */,
 				A1757CCF19800B11008F52E1 /* TestEntries.m in Sources */,
 				A1D14EAE199B6A210076EB56 /* TestLocales.m in Sources */,
 				A1CF91491A1B787400C065CE /* TestValidations.m in Sources */,
