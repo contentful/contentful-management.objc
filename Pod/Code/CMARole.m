@@ -6,18 +6,8 @@
 //
 
 #import "CDAResource+Private.h"
+#import "CDAResource+Management.h"
 #import "CMARole.h"
-
-@interface CMARole ()
-
-@property (nonatomic, copy) NSString* name;
-@property (nonatomic, copy) NSDictionary* permissions;
-@property (nonatomic, copy) NSArray* policies;
-@property (nonatomic, copy) NSString* roleDescription;
-
-@end
-
-#pragma mark -
 
 @implementation CMARole
 
@@ -26,6 +16,10 @@
 }
 
 #pragma mark -
+
+-(CDARequest*)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
+}
 
 -(NSString *)description {
     return [NSString stringWithFormat:@"%@ '%@'", self.class.CDAType, self.name];
@@ -44,6 +38,21 @@
         self.roleDescription = dictionary[@"description"];
     }
     return self;
+}
+
+-(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performPutToFragment:@""
+                       withParameters:@{ @"name": self.name,
+                                         @"permissions": self.permissions,
+                                         @"policies": self.policies,
+                                         @"description": self.roleDescription
+                                       }
+                              success:success
+                              failure:failure];
+}
+
+-(NSString *)URLPath {
+    return [@"roles" stringByAppendingPathComponent:self.identifier];
 }
 
 @end

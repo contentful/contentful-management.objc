@@ -138,6 +138,63 @@ describe(@"Roles", ^{
                                    done();
                                }];
     }); });
+
+    it(@"can update a single role", ^{ waitUntil(^(DoneCallback done) {
+        NSAssert(space, @"Test space could not be found.");
+        [space fetchRoleWithIdentifier:@"7zStucnmwK4vSHUKRRcV73"
+                               success:^(CDAResponse *response, CMARole *role) {
+                                   XCTAssertNotNil(role);
+                                   XCTAssertEqualObjects(role.roleDescription, @"Allows only editing of content they created themselves");
+
+                                   role.roleDescription = @"YOLO";
+
+                                   [role updateWithSuccess:^{
+                                       [space fetchRoleWithIdentifier:@"7zStucnmwK4vSHUKRRcV73"
+                                                              success:^(CDAResponse *r, CMARole *role) {
+                                                                  XCTAssertEqualObjects(role.roleDescription, @"YOLO");
+
+                                                                  done();
+                                                              } failure:^(CDAResponse *r, NSError *e) {
+                                                                  XCTFail("Error: %@", e);
+
+                                                                  done();
+                                                              }];
+                                   } failure:^(CDAResponse *response, NSError *error) {
+                                       XCTFail("Error: %@", error);
+
+                                       done();
+                                   }];
+                               } failure:^(CDAResponse *response, NSError *error) {
+                                   XCTFail("Error: %@", error);
+
+                                   done();
+                               }];
+    }); });
+
+    it(@"can delete a single role", ^{ waitUntil(^(DoneCallback done) {
+        NSAssert(space, @"Test space could not be found.");
+        [space fetchRoleWithIdentifier:@"7A5qhAwxThimzbpCe8FLhn"
+                               success:^(CDAResponse *response, CMARole *role) {
+                                   [role deleteWithSuccess:^{
+                                       [space fetchRoleWithIdentifier:@"7A5qhAwxThimzbpCe8FLhn"
+                                                              success:^(CDAResponse* r, CMARole* role) {
+                                                                  XCTFail(@"Role should not exists.");
+
+                                                                  done();
+                                                              } failure:^(CDAResponse* r, NSError* e) {
+                                                                  done();
+                                                              }];
+                                   } failure:^(CDAResponse *response, NSError *error) {
+                                       XCTFail("Error: %@", error);
+
+                                       done();
+                                   }];
+                               } failure:^(CDAResponse *response, NSError *error) {
+                                   XCTFail("Error: %@", error);
+
+                                   done();
+                               }];
+    }); });
 });
 
 SpecEnd

@@ -6,24 +6,24 @@
 //
 
 #import <ContentfulDeliveryAPI/CDANullabilityStubs.h>
-#import <ContentfulDeliveryAPI/CDAResource.h>
+#import <ContentfulManagementAPI/ContentfulManagementAPI.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /** Role of a Space. */
-@interface CMARole : CDAResource
+@interface CMARole : CDAResource <CMAResource>
 
 /** Name of the role */
-@property (nonatomic, copy, readonly) NSString* name;
+@property (nonatomic, copy) NSString* name;
 
 /** The permissions of the role */
-@property (nonatomic, copy, readonly) NSDictionary* permissions;
+@property (nonatomic, copy) NSDictionary* permissions;
 
 /** The policies of the role */
-@property (nonatomic, copy, readonly) NSArray* policies;
+@property (nonatomic, copy) NSArray* policies;
 
 /** Description of the role */
-@property (nonatomic, copy, readonly) NSString* roleDescription;
+@property (nonatomic, copy) NSString* roleDescription;
 
 @end
 
