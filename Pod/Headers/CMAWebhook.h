@@ -12,22 +12,22 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /** Definition of a webhook. */
-@interface CMAWebhook : CDAResource
+@interface CMAWebhook : CDAResource <CMAResource>
 
 /** Name of the given webhook. */
-@property (nonatomic, copy, readonly) NSString* name;
+@property (nonatomic, copy) NSString* name;
 
 /** URL that will be request when the webhook is triggered. */
-@property (nonatomic, copy, readonly) NSURL* url;
+@property (nonatomic, copy) NSURL* url;
 
 /** List of event types which trigger the webhook. */
-@property (nonatomic, copy, readonly) NSArray* topics;
+@property (nonatomic, copy) NSArray* topics;
 
 /** Custom HTTP headers to be send with the webhook request. */
-@property (nonatomic, copy, readonly) NSDictionary* headers;
+@property (nonatomic, copy) NSDictionary* headers;
 
 /** HTTP basic auth username to be send with the webhook request. */
-@property (nonatomic, copy, readonly) NSString* httpBasicUsername;
+@property (nonatomic, copy) NSString* httpBasicUsername;
 
 /** 
  HTTP basic auth password to be send with the webhook request.

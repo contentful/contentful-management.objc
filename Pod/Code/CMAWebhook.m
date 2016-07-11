@@ -5,18 +5,9 @@
 //  Created by Boris Bügling on 11/07/16.
 //
 
+#import "CDAResource+Management.h"
 #import "CDAResource+Private.h"
 #import "CMAWebhook.h"
-
-@interface CMAWebhook ()
-
-@property (nonatomic, copy) NSDictionary* headers;
-@property (nonatomic, copy) NSString* httpBasicUsername;
-@property (nonatomic, copy) NSString* name;
-@property (nonatomic, copy) NSArray* topics;
-@property (nonatomic, copy) NSURL* url;
-
-@end
 
 #pragma mark -
 
@@ -26,7 +17,45 @@
     return @"WebhookDefinition";
 }
 
++(NSDictionary*)parametersForWebhookWithName:(NSString*)name
+                                         url:(NSURL*)url
+                                      topics:(NSArray*)topics
+                                     headers:(NSDictionary*)headers
+                           httpBasicUsername:(NSString*)httpBasicUsername
+                           httpBasicPassword:(NSString*)httpBasicPassword {
+    NSMutableDictionary* parameters = [@{ @"name": name, @"url": url.absoluteString } mutableCopy];
+
+    if (topics) {
+        parameters[@"topics"] = topics;
+    } else {
+        parameters[@"topics"] = @[ @"*.*" ];
+    }
+
+    if (headers) {
+        NSMutableArray* customHeaders = [@[] mutableCopy];
+        [headers enumerateKeysAndObjectsUsingBlock:^(NSString* key, NSString* value, BOOL* stop) {
+            [customHeaders addObject:@{ @"key": key, @"value": value }];
+        }];
+
+        parameters[@"headers"] = customHeaders;
+    }
+
+    if (httpBasicUsername) {
+        parameters[@"httpBasicUsername"] = httpBasicUsername;
+    }
+
+    if (httpBasicPassword) {
+        parameters[@"httpBasicPassword"] = httpBasicPassword;
+    }
+
+    return [parameters copy];
+}
+
 #pragma mark -
+
+-(CDARequest*)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
+}
 
 -(NSString *)description {
     return [NSString stringWithFormat:@"%@ '%@': %@", self.class.CDAType, self.name, self.url];
@@ -56,6 +85,24 @@
         }
     }
     return self;
+}
+
+-(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
+    NSDictionary* parameters = [self.class parametersForWebhookWithName:self.name
+                                                                    url:self.url
+                                                                 topics:self.topics
+                                                                headers:self.headers
+                                                      httpBasicUsername:self.httpBasicUsername
+                                                      httpBasicPassword:self.httpBasicPassword];
+
+    return [self performPutToFragment:@""
+                       withParameters:parameters
+                              success:success
+                              failure:failure];
+}
+
+-(NSString *)URLPath {
+    return [@"webhook_definitions" stringByAppendingPathComponent:self.identifier];
 }
 
 @end

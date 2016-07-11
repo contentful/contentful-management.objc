@@ -10,6 +10,7 @@
 #import "CDAResource+Management.h"
 #import "CMASpace+Private.h"
 #import "CMAUtilities.h"
+#import "CMAWebhook+Private.h"
 
 @interface CMASpace ()
 
@@ -229,30 +230,12 @@
                    httpBasicPassword:(NSString*)httpBasicPassword
                              success:(CMAWebhookFetchedBlock)success
                              failure:(CDARequestFailureBlock)failure {
-    NSMutableDictionary* parameters = [@{ @"name": name, @"url": url.absoluteString } mutableCopy];
-
-    if (topics) {
-        parameters[@"topics"] = topics;
-    } else {
-        parameters[@"topics"] = @[ @"*.*" ];
-    }
-
-    if (headers) {
-        NSMutableArray* customHeaders = [@[] mutableCopy];
-        [headers enumerateKeysAndObjectsUsingBlock:^(NSString* key, NSString* value, BOOL* stop) {
-            [customHeaders addObject:@{ @"key": key, @"value": value }];
-        }];
-
-        parameters[@"headers"] = customHeaders;
-    }
-
-    if (httpBasicUsername) {
-        parameters[@"httpBasicUsername"] = httpBasicUsername;
-    }
-
-    if (httpBasicPassword) {
-        parameters[@"httpBasicPassword"] = httpBasicPassword;
-    }
+    NSDictionary* parameters = [CMAWebhook parametersForWebhookWithName:name
+                                                                    url:url
+                                                                 topics:topics
+                                                                headers:headers
+                                                      httpBasicUsername:httpBasicUsername
+                                                      httpBasicPassword:httpBasicPassword];
 
     NSParameterAssert(self.client);
     return [self.client postURLPath:@"webhook_definitions"

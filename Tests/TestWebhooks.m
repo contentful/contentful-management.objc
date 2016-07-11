@@ -17,7 +17,7 @@
  */
 SpecBegin(XXXX)
 
-describe(@"EditorInterface", ^{
+describe(@"Webhooks", ^{
     __block CMAClient* client;
     __block CMASpace* space;
 
@@ -44,7 +44,7 @@ describe(@"EditorInterface", ^{
     it(@"can fetch all webhooks for a space", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space fetchWebhooksWithSuccess:^(CDAResponse* response, CDAArray* array) {
-            XCTAssertEqual(array.items.count, 1);
+            XCTAssertEqual(array.items.count, 2);
 
             done();
         } failure:^(CDAResponse* response, NSError* error) {
@@ -89,12 +89,68 @@ describe(@"EditorInterface", ^{
                                   success:^(CDAResponse* response, CMAWebhook* webhook) {
                                       XCTAssertNotNil(webhook);
                                       XCTAssertEqualObjects(webhook.name, @"yolo");
-                                      XCTAssertEqualObjects(webhook.url, [NSURL URLWithString:@"http://example.com"]);
+                                      XCTAssertEqualObjects(webhook.url, [NSURL URLWithString:@"http://example.com/"]);
                                       XCTAssertEqualObjects(webhook.topics, (@[ @"Entry.archive" ]));
                                       XCTAssertEqualObjects(webhook.headers, (@{ @"foo": @"bar", @"moo": @"foo" }));
                                       XCTAssertEqualObjects(webhook.httpBasicUsername, @"yolo");
 
                                       done();
+                                  } failure:^(CDAResponse* response, NSError* error) {
+                                      XCTFail("Error: %@", error);
+
+                                      done();
+                                  }];
+    }); });
+
+    it(@"can update a single webhook", ^{ waitUntil(^(DoneCallback done) {
+        NSAssert(space, @"Test space could not be found.");
+        [space fetchWebhookWithIdentifier:@"3ylg2m4MZEnhggGFyI0gyJ"
+                                  success:^(CDAResponse* response, CMAWebhook* webhook) {
+                                      XCTAssertNotNil(webhook);
+                                      XCTAssertEqualObjects(webhook.name, @"yolo");
+
+                                      webhook.name = @"updated name";
+                                      [webhook updateWithSuccess:^{
+                                          [space fetchWebhookWithIdentifier:@"3ylg2m4MZEnhggGFyI0gyJ"
+                                                                    success:^(CDAResponse* r, CMAWebhook* webhook) {
+                                                                        XCTAssertNotNil(webhook);
+                                                                        XCTAssertEqualObjects(webhook.name, @"updated name");
+
+                                                                        done();
+                                                                    } failure:^(CDAResponse* r, NSError* e) {
+                                                                        XCTFail("Error: %@", e);
+
+                                                                        done();
+                                                                    }];
+                                      } failure:^(CDAResponse* r, NSError* e) {
+                                          XCTFail("Error: %@", e);
+
+                                          done();
+                                      }];
+                                  } failure:^(CDAResponse* response, NSError* error) {
+                                      XCTFail("Error: %@", error);
+
+                                      done();
+                                  }];
+    }); });
+
+    it(@"can delete a single webhook", ^{ waitUntil(^(DoneCallback done) {
+        NSAssert(space, @"Test space could not be found.");
+        [space fetchWebhookWithIdentifier:@"3dVk12ZonlqmSI2F7A2rqx"
+                                  success:^(CDAResponse* response, CMAWebhook* webhook) {
+                                      [webhook deleteWithSuccess:^{
+                                          [space fetchWebhookWithIdentifier:@"3dVk12ZonlqmSI2F7A2rqx" success:^(CDAResponse* response, CMAWebhook* webhook) {
+                                              XCTFail(@"Webhook shouldn't exist.");
+
+                                              done();
+                                          } failure:^(CDAResponse* response, NSError* error) {
+                                              done();
+                                          }];
+                                      } failure:^(CDAResponse* response, NSError* error) {
+                                          XCTFail("Error: %@", error);
+
+                                          done();
+                                      }];
                                   } failure:^(CDAResponse* response, NSError* error) {
                                       XCTFail("Error: %@", error);
 
