@@ -232,6 +232,19 @@ NS_ASSUME_NONNULL_BEGIN
                       withSuccess:(CDAArrayFetchedBlock)success
                           failure:(CDARequestFailureBlock)failure;
 
+/**
+ *  Fetch a single role from Contentful.
+ *
+ *  @param identifier   Identifier of the role to be requested.
+ *  @param success      Called if fetching succeeds.
+ *  @param failure      Called if fetching fails.
+ *
+ *  @return The request used for fetching data.
+ */
+-(CDARequest *)fetchRoleWithIdentifier:(NSString *)identifier
+                               success:(CMARoleFetchedBlock)success
+                               failure:(CDARequestFailureBlock)failure;
+
 @end
 
 NS_ASSUME_NONNULL_END

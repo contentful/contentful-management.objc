@@ -11,6 +11,35 @@
 
 #import "BBURecordingHelper.h"
 
+void validateEditorRole(id self, CMARole* editorRole) {
+    NSDictionary* expectedPermissions = @{
+                                          @"ContentDelivery": @[],
+                                          @"ContentModel": @[ @"read" ],
+                                          @"Settings": @[]
+                                          };
+
+    NSArray* expectedPolicies = @[
+                                  @{
+                                      @"actions": @"all",
+                                      @"constraint": @{
+                                              @"and": @[ @{ @"equals": @[ @{ @"doc": @"sys.type" }, @"Asset" ] } ]
+                                              },
+                                      @"effect": @"allow"
+                                      },
+                                  @{
+                                      @"actions": @"all",
+                                      @"constraint": @{
+                                              @"and": @[ @{ @"equals": @[ @{ @"doc": @"sys.type" }, @"Entry" ] } ]
+                                              },
+                                      @"effect": @"allow"
+                                      } ];
+
+    XCTAssertNotNil(editorRole);
+    XCTAssertEqualObjects(editorRole.roleDescription, @"Allows editing of all Entries");
+    XCTAssertEqualObjects(editorRole.permissions, expectedPermissions);
+    XCTAssertEqualObjects(editorRole.policies, expectedPolicies);
+}
+
 /*
  The spec name is a result of the test recordings being essential to a working testsuite right now
  and the recordings are order dependant.
@@ -87,39 +116,27 @@ describe(@"Roles", ^{
                               }
                           }
 
-                          NSDictionary* expectedPermissions = @{
-                            @"ContentDelivery": @[],
-                            @"ContentModel": @[ @"read" ],
-                            @"Settings": @[]
-                          };
-
-                          NSArray* expectedPolicies = @[
-                          @{
-                            @"actions": @"all",
-                            @"constraint": @{
-                              @"and": @[ @{ @"equals": @[ @{ @"doc": @"sys.type" }, @"Asset" ] } ]
-                            },
-                            @"effect": @"allow"
-                          },
-                          @{
-                            @"actions": @"all",
-                            @"constraint": @{
-                              @"and": @[ @{ @"equals": @[ @{ @"doc": @"sys.type" }, @"Entry" ] } ]
-                            },
-                            @"effect": @"allow"
-                          } ];
-
-                          XCTAssertNotNil(editorRole);
-                          XCTAssertEqualObjects(editorRole.roleDescription, @"Allows editing of all Entries");
-                          XCTAssertEqualObjects(editorRole.permissions, expectedPermissions);
-                          XCTAssertEqualObjects(editorRole.policies, expectedPolicies);
-
+                          validateEditorRole(self, editorRole);
                           done();
                       } failure:^(CDAResponse *response, NSError *error) {
                           XCTFail("Error: %@", error);
 
                           done();
                       }];
+    }); });
+
+    it(@"can fetch a single role", ^{ waitUntil(^(DoneCallback done) {
+        NSAssert(space, @"Test space could not be found.");
+        [space fetchRoleWithIdentifier:@"2jEj26wGn3Au6E7yG2rBhc"
+                               success:^(CDAResponse *response, CMARole *role) {
+                                   validateEditorRole(self, role);
+
+                                   done();
+                               } failure:^(CDAResponse *response, NSError *error) {
+                                   XCTFail("Error: %@", error);
+
+                                   done();
+                               }];
     }); });
 });
 
