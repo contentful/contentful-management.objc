@@ -206,6 +206,21 @@
                             failure:failure];
 }
 
+-(CDARequest *)createRoleWithName:(NSString *)name
+                      description:(NSString *)description
+                      permissions:(NSDictionary *)permissions
+                         policies:(NSArray *)policies
+                          success:(CMARoleFetchedBlock)success
+                          failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client postURLPath:@"roles"
+                            headers:nil
+                         parameters:@{ @"name": name, @"description": description,
+                                       @"permissions": permissions, @"policies": policies }
+                            success:success
+                            failure:failure];
+}
+
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
 }

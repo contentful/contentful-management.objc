@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class CMAEntry;
 @class CMALocale;
 @class CMAOrganization;
+@class CMARole;
 @class CMASpace;
 @class CMAUser;
 
@@ -23,6 +24,7 @@ typedef void(^CMAAssetFetchedBlock)(CDAResponse* response, CMAAsset* asset);
 typedef void(^CMAContentTypeFetchedBlock)(CDAResponse* response, CMAContentType* contentType);
 typedef void(^CMAEntryFetchedBlock)(CDAResponse* response, CMAEntry* entry);
 typedef void(^CMALocaleFetchedBlock)(CDAResponse* response, CMALocale* locale);
+typedef void(^CMARoleFetchedBlock)(CDAResponse* response, CMARole* role);
 typedef void(^CMASpaceFetchedBlock)(CDAResponse* response, CMASpace* space);
 typedef void(^CMAUserFetchedBlock)(CDAResponse* response, CMAUser* user);
 

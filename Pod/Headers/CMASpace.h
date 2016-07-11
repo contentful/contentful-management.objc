@@ -84,6 +84,25 @@ NS_ASSUME_NONNULL_BEGIN
                            failure:(CDARequestFailureBlock)failure;
 
 /**
+ *  Create a new role on Contentful.
+ *
+ *  @param name         The name for the new role.
+ *  @param description  The description of the new role.
+ *  @param permissions  The permissions of the new role.
+ *  @param policies     The policies of the new role.
+ *  @param success Called if creation succeeds.
+ *  @param failure Called if creation fails.
+ *
+ *  @return The request used for creation.
+ */
+-(CDARequest *)createRoleWithName:(NSString *)name
+                      description:(NSString *)description
+                      permissions:(NSDictionary *)permissions
+                         policies:(NSArray *)policies
+                          success:(CMARoleFetchedBlock)success
+                          failure:(CDARequestFailureBlock)failure;
+
+/**
  *  Fetch all Access Tokens from the server.
  *
  *  @param success A block which gets called upon successful retrieval of all Access Tokens.
