@@ -18,6 +18,7 @@
 #import <ContentfulManagementAPI/CMAAsset.h>
 #import <ContentfulManagementAPI/CMAClient.h>
 #import <ContentfulManagementAPI/CMAContentType.h>
+#import <ContentfulManagementAPI/CMAEditorInterface.h>
 #import <ContentfulManagementAPI/CMAEntry.h>
 #import <ContentfulManagementAPI/CMAField.h>
 #import <ContentfulManagementAPI/CMALocale.h>

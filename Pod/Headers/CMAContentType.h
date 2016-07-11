@@ -70,6 +70,17 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)deleteFieldWithIdentifier:(NSString*)identifier;
 
 /**
+ *  Fetch editor interface for the given content type.
+ *
+ *  @param success  Called if fetching succeeds.
+ *  @param failure  Called if fetching fails.
+ *
+ *  @return The request used for fetching data.
+ */
+-(CDARequest *)fetchEditorInterfaceWithSuccess:(CMAEditorInterfaceFetchedBlock)success
+                                       failure:(CDARequestFailureBlock)failure;
+
+/**
  *  Update the name of an existing field locally.
  *
  *  Call `updateWithSuccess:failure:` to synchronize local changes to Contentful.

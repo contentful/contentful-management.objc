@@ -6,6 +6,7 @@
 //
 //
 
+#import "CDAClient+Private.h"
 #import "CDAField+Private.h"
 #import "CDAResource+Management.h"
 #import "CDAResource+Private.h"
@@ -58,6 +59,15 @@
 
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];;
+}
+
+-(CDARequest *)fetchEditorInterfaceWithSuccess:(CMAEditorInterfaceFetchedBlock)success
+                                       failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    [self.client fetchURLPath:[self.URLPath stringByAppendingPathComponent:@"editor_interface"]
+                   parameters:@{}
+                      success:success
+                      failure:failure];
 }
 
 -(NSArray *)fields {

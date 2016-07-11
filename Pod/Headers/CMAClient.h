@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class CMAAsset;
 @class CMAContentType;
+@class CMAEditorInterface;
 @class CMAEntry;
 @class CMALocale;
 @class CMAOrganization;
@@ -22,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^CMAAssetFetchedBlock)(CDAResponse* response, CMAAsset* asset);
 typedef void(^CMAContentTypeFetchedBlock)(CDAResponse* response, CMAContentType* contentType);
+typedef void(^CMAEditorInterfaceFetchedBlock)(CDAResponse* response, CMAEditorInterface* interface);
 typedef void(^CMAEntryFetchedBlock)(CDAResponse* response, CMAEntry* entry);
 typedef void(^CMALocaleFetchedBlock)(CDAResponse* response, CMALocale* locale);
 typedef void(^CMARoleFetchedBlock)(CDAResponse* response, CMARole* role);
