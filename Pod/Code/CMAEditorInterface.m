@@ -25,7 +25,7 @@
 #pragma mark -
 
 -(NSString *)description {
-    return [NSString stringWithFormat:@"%@ '%@': %@", self.class.CDAType, self.controls];
+    return [NSString stringWithFormat:@"%@: %@", self.class.CDAType, self.controls];
 }
 
 -(id)initWithDictionary:(NSDictionary *)dictionary
