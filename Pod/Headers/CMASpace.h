@@ -103,6 +103,29 @@ NS_ASSUME_NONNULL_BEGIN
                           failure:(CDARequestFailureBlock)failure;
 
 /**
+ *  Create a new webhook on Contentful.
+ *
+ *  @param name                 The name for the new role.
+ *  @param url                  The URL to request when the webhook is triggered.
+ *  @param topics               The events for which the webhook will be triggered.
+ *  @param headers              Additional headers to send with the webhook request.
+ *  @param httpBasicUsername    HTTP basic auth username to send with the webhook request.
+ *  @param httpBasicPassword    HTTP basic auth password to send with the webhook request.
+ *  @param success              Called if creation succeeds.
+ *  @param failure              Called if creation fails.
+ *
+ *  @return The request used for creation.
+ */
+-(CDARequest *)createWebhookWithName:(NSString*)name
+                                 url:(NSURL*)url
+                              topics:(NSArray* __nullable)topics
+                             headers:(NSDictionary* __nullable)headers
+                   httpBasicUsername:(NSString* __nullable)httpBasicUsername
+                   httpBasicPassword:(NSString* __nullable)httpBasicPassword
+                             success:(CMAWebhookFetchedBlock)success
+                             failure:(CDARequestFailureBlock)failure;
+
+/**
  *  Fetch all Access Tokens from the server.
  *
  *  @param success A block which gets called upon successful retrieval of all Access Tokens.
@@ -244,6 +267,30 @@ NS_ASSUME_NONNULL_BEGIN
 -(CDARequest *)fetchRoleWithIdentifier:(NSString *)identifier
                                success:(CMARoleFetchedBlock)success
                                failure:(CDARequestFailureBlock)failure;
+
+/**
+ *  Fetch a single webhook from Contentful.
+ *
+ *  @param identifier   Identifier of the webhook to be requested.
+ *  @param success      Called if fetching succeeds.
+ *  @param failure      Called if fetching fails.
+ *
+ *  @return The request used for fetching data.
+ */
+-(CDARequest *)fetchWebhookWithIdentifier:(NSString*)identifier
+                                  success:(CMAWebhookFetchedBlock)success
+                                  failure:(CDARequestFailureBlock)failure;
+
+/**
+ *  Fetch all webhooks from Contentful.
+ *
+ *  @param success      Called if fetching succeeds.
+ *  @param failure      Called if fetching fails.
+ *
+ *  @return The request used for fetching data.
+ */
+-(CDARequest *)fetchWebhooksWithSuccess:(CDAArrayFetchedBlock)success
+                                failure:(CDARequestFailureBlock)failure;
 
 @end
 

@@ -221,6 +221,47 @@
                             failure:failure];
 }
 
+-(CDARequest *)createWebhookWithName:(NSString*)name
+                                 url:(NSURL*)url
+                              topics:(NSArray*)topics
+                             headers:(NSDictionary*)headers
+                   httpBasicUsername:(NSString*)httpBasicUsername
+                   httpBasicPassword:(NSString*)httpBasicPassword
+                             success:(CMAWebhookFetchedBlock)success
+                             failure:(CDARequestFailureBlock)failure {
+    NSMutableDictionary* parameters = [@{ @"name": name, @"url": url.absoluteString } mutableCopy];
+
+    if (topics) {
+        parameters[@"topics"] = topics;
+    } else {
+        parameters[@"topics"] = @[ @"*.*" ];
+    }
+
+    if (headers) {
+        NSMutableArray* customHeaders = [@[] mutableCopy];
+        [headers enumerateKeysAndObjectsUsingBlock:^(NSString* key, NSString* value, BOOL* stop) {
+            [customHeaders addObject:@{ @"key": key, @"value": value }];
+        }];
+
+        parameters[@"headers"] = customHeaders;
+    }
+
+    if (httpBasicUsername) {
+        parameters[@"httpBasicUsername"] = httpBasicUsername;
+    }
+
+    if (httpBasicPassword) {
+        parameters[@"httpBasicPassword"] = httpBasicPassword;
+    }
+
+    NSParameterAssert(self.client);
+    return [self.client postURLPath:@"webhook_definitions"
+                            headers:nil
+                         parameters:parameters
+                            success:success
+                            failure:failure];
+}
+
 -(CDARequest *)deleteWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performDeleteToFragment:@"" withSuccess:success failure:failure];
 }
@@ -326,6 +367,25 @@
                           parameters:@{}
                              success:success
                              failure:failure];
+}
+
+-(CDARequest *)fetchWebhookWithIdentifier:(NSString*)identifier
+                                  success:(CMAWebhookFetchedBlock)success
+                                  failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client fetchURLPath:[@"webhook_definitions" stringByAppendingPathComponent:identifier]
+                          parameters:@{}
+                             success:success
+                             failure:failure];
+}
+
+-(CDARequest *)fetchWebhooksWithSuccess:(CDAArrayFetchedBlock)success
+                                failure:(CDARequestFailureBlock)failure {
+    NSParameterAssert(self.client);
+    return [self.client fetchArrayAtURLPath:@"webhook_definitions"
+                                 parameters:@{}
+                                    success:success
+                                    failure:failure];
 }
 
 -(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {

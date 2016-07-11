@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class CMARole;
 @class CMASpace;
 @class CMAUser;
+@class CMAWebhook;
 
 typedef void(^CMAAssetFetchedBlock)(CDAResponse* response, CMAAsset* asset);
 typedef void(^CMAContentTypeFetchedBlock)(CDAResponse* response, CMAContentType* contentType);
@@ -29,6 +30,7 @@ typedef void(^CMALocaleFetchedBlock)(CDAResponse* response, CMALocale* locale);
 typedef void(^CMARoleFetchedBlock)(CDAResponse* response, CMARole* role);
 typedef void(^CMASpaceFetchedBlock)(CDAResponse* response, CMASpace* space);
 typedef void(^CMAUserFetchedBlock)(CDAResponse* response, CMAUser* user);
+typedef void(^CMAWebhookFetchedBlock)(CDAResponse* response, CMAWebhook* webhook);
 
 /**
  *  The CMAClient is used to request information from the server. Contrary to the delivery API,

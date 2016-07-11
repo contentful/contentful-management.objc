@@ -27,3 +27,4 @@
 #import <ContentfulManagementAPI/CMASpace.h>
 #import <ContentfulManagementAPI/CMAUser.h>
 #import <ContentfulManagementAPI/CMAValidation.h>
+#import <ContentfulManagementAPI/CMAWebhook.h>
