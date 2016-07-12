@@ -77,7 +77,7 @@
                                                              NSUInteger idx, BOOL * stop) {
             headers[pair[@"key"]] = pair[@"value"];
         }];
-        self.headers = headers;
+        self.headers = [headers copy];
 
         NSString* urlString = dictionary[@"url"];
         if (urlString) {

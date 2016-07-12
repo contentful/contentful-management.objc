@@ -71,7 +71,7 @@ describe(@"Webhooks", ^{
                                  XCTAssertEqualObjects(webhook.name, name);
                                  XCTAssertEqualObjects(webhook.url, url);
                                  XCTAssertEqualObjects(webhook.topics, @[ @"*.*" ]);
-                                 XCTAssertNil(webhook.headers);
+                                 XCTAssertEqualObjects(webhook.headers, @{});
                                  XCTAssertNil(webhook.httpBasicUsername);
                                  XCTAssertNil(webhook.httpBasicPassword);
 
@@ -136,10 +136,10 @@ describe(@"Webhooks", ^{
 
     it(@"can delete a single webhook", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
-        [space fetchWebhookWithIdentifier:@"3dVk12ZonlqmSI2F7A2rqx"
+        [space fetchWebhookWithIdentifier:@"4uUpDd5MecwQN8y6DmTXiF"
                                   success:^(CDAResponse* response, CMAWebhook* webhook) {
                                       [webhook deleteWithSuccess:^{
-                                          [space fetchWebhookWithIdentifier:@"3dVk12ZonlqmSI2F7A2rqx" success:^(CDAResponse* response, CMAWebhook* webhook) {
+                                          [space fetchWebhookWithIdentifier:@"4uUpDd5MecwQN8y6DmTXiF" success:^(CDAResponse* response, CMAWebhook* webhook) {
                                               XCTFail(@"Webhook shouldn't exist.");
 
                                               done();
