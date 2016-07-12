@@ -41,13 +41,14 @@ describe(@"EditorInterface", ^{
                                  }];
     }); });
 
-#if 0 // TODO: Test disabled for now because editor interface endpoint 404s here
     it(@"can fetch editor interface", ^{ waitUntil(^(DoneCallback done) {
         NSAssert(space, @"Test space could not be found.");
         [space fetchContentTypeWithIdentifier:@"3G3PM4Uth6Q4ymGG8iiasI"
                                       success:^(CDAResponse* response, CMAContentType* contentType) {
                                           [contentType fetchEditorInterfaceWithSuccess:^(CDAResponse*  response, CMAEditorInterface* interface) {
+                                              XCTAssertNotNil(contentType);
                                               XCTAssertNotNil(interface);
+                                              XCTAssertNotNil(interface.controls);
 
                                               done();
                                           } failure:^(CDAResponse* response, NSError* error) {
@@ -55,15 +56,55 @@ describe(@"EditorInterface", ^{
 
                                               done();
                                           }];
+                                      } failure:^(CDAResponse* response, NSError* error) {
+                                          XCTFail("Error: %@", error);
 
-                                          XCTAssertNotNil(contentType);
+                                          done();
+                                      }];
+    }); });
+
+    it(@"can update editor interface", ^{ waitUntil(^(DoneCallback done) {
+        NSAssert(space, @"Test space could not be found.");
+        [space fetchContentTypeWithIdentifier:@"3G3PM4Uth6Q4ymGG8iiasI"
+                                      success:^(CDAResponse* response, CMAContentType* contentType) {
+                                          [contentType fetchEditorInterfaceWithSuccess:^(CDAResponse*  response, CMAEditorInterface* interface) {
+                                              XCTAssertNotNil(contentType);
+
+                                              NSMutableArray* controls = [interface.controls mutableCopy];
+
+                                              [controls enumerateObjectsUsingBlock:^(NSDictionary* item,
+                                                                                     NSUInteger idx,
+                                                                                     BOOL *stop) {
+                                                  if ([item[@"fieldId"] isEqualToString:@"title"]) {
+                                                      [controls removeObjectAtIndex:idx];
+                                                      *stop = YES;
+                                                  }
+                                              }];
+
+                                              [controls addObject:@{ @"fieldId": @"title",
+                                                                     @"widgetId": @"multipleLine" }];
+                                              interface.controls = controls;
+
+                                              [interface updateWithSuccess:^{
+                                                  done();
+                                              } failure:^(CDAResponse* response, NSError* error) {
+                                                  XCTFail("Error: %@", error);
+
+                                                  done();
+                                              }];
+
+                                              done();
+                                          } failure:^(CDAResponse* response, NSError* error) {
+                                              XCTFail("Error: %@", error);
+
+                                              done();
+                                          }];
                                       } failure:^(CDAResponse* response, NSError* error) {
                                           XCTFail("Error: %@", error);
                                           
                                           done();
                                       }];
     }); });
-#endif
 });
 
 SpecEnd

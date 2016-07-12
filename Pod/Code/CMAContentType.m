@@ -64,7 +64,7 @@
 -(CDARequest *)fetchEditorInterfaceWithSuccess:(CMAEditorInterfaceFetchedBlock)success
                                        failure:(CDARequestFailureBlock)failure {
     NSParameterAssert(self.client);
-    [self.client fetchURLPath:[self.URLPath stringByAppendingPathComponent:@"editor_interface"]
+    return [self.client fetchURLPath:[self.URLPath stringByAppendingPathComponent:@"editor_interface"]
                    parameters:@{}
                       success:success
                       failure:failure];
