@@ -208,6 +208,22 @@ contentType.name = @"new name";
 }];
 ```
 
+### Editing Interface
+
+Fetching the editor interface for a content-type:
+
+[contentType fetchEditorInterfaceWithSuccess:^(CDAResponse*  response, CMAEditorInterface* interface) {
+	NSLog(@"Editor interface: %@", interface);
+
+	// Can be updated using this
+	[interface updateWithSuccess:^{}
+		failure:^(CDAResponse* response, NSError* error) {
+			NSLog(@"Error: %@", error);
+	}];
+} failure:^(CDAResponse *response, NSError *error) {
+	NSLog(@"Error: %@", error);
+}];
+
 ### Assets
 
 Retrieving all assets from the space:
@@ -383,6 +399,80 @@ Checking if the entry is published:
 ```objective-c
 BOOL result = entry.isPublish;
 ```
+
+### Roles and Permissions
+
+Creating a role:
+
+```objective-c
+[space createRoleWithName:name
+              description:description
+              permissions:permissions
+                 policies:policies
+                  success:^(CDAResponse *response, CMARole *role) {
+                    NSLog(@"New role: %@", role);
+                  }
+                  failure:^(CDAResponse *response, NSError *error) {
+                    NSLog(@"Error: %@", error);
+                  }];
+```
+
+Fetching roles defined in a space:
+
+```objective-c
+[space fetchRolesMatching:@{} withSuccess:nil failure:nil];
+```
+
+Updating a role:
+
+```objective-c
+role.roleDescription = @"New description";
+
+[role updateWithSuccess:nil failure:nil];
+```
+
+Deleting a role:
+
+```objective-c
+[role deleteWithSuccess:nil failure:nil];
+```
+
+### Webhooks
+
+Creating a new webhook:
+
+```objective-c
+[space createWebhookWithName:name
+                         url:url
+                      topics:nil
+                     headers:nil
+           httpBasicUsername:nil
+           httpBasicPassword:nil
+                     success:nil
+                     failure:nil];
+```
+
+Fetching all webhooks for a space:
+
+```objective-c
+[space fetchWebhooksWithSuccess:nil failure:nil];
+```
+
+Updating a webhook:
+
+```objective-c
+webhook.name = @"updated name";
+[webhook updateWithSuccess:nil failure:nil];
+```
+
+Deleting a webhook:
+
+```objective-c
+[webhook deleteWithSuccess:nil failure:nil];
+```
+
+(Note: for brevity's sake, some of the examples use `nil` completion blocks. Obviously, you should
+not do that in your real applications.)
 
 ## Installation
 
