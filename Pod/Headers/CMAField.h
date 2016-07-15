@@ -35,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** List of currently active validations for the receiver. */
 @property (nonatomic, readonly) NSArray* validations;
 
+/** Whether or not this field will be omitted from delivery API responses. */
+@property (nonatomic) BOOL omitted;
+
 /**
  *  Add a validation for the receiver. It will be applied whenever a value of that field is set.
  *

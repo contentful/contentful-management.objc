@@ -97,6 +97,7 @@
                               client:client
                localizationAvailable:localizationAvailable];
     if (self) {
+        self.omitted = [dictionary[@"omitted"] boolValue];
         self.mutableValidations = [@[] mutableCopy];
 
         for (NSArray* validations in @[dictionary[@"validations"] ?: @[], dictionary[@"items"][@"validations"] ?: @[]]) {
