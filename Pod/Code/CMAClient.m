@@ -124,7 +124,7 @@
         }
 
         if (!configuration.userAgent) {
-            configuration.userAgent = @"contentful-management.objc/0.7.1";
+            configuration.userAgent = @"contentful-management.objc/0.8.0";
         }
 
         self.client = [[CDAClient alloc] initWithSpaceKey:nil
