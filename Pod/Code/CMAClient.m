@@ -100,7 +100,19 @@
                                                               if (success) {
                                                                   success(response, space);
                                                               }
-                                                          } failure:failure];
+                                                          } failure:^(CDAResponse *response,
+                                                                      NSError *error) {
+                                                              if (response.statusCode == 404) {
+                                                                  if (success) {
+                                                                      success(response, space);
+                                                                  }
+                                                                  return;
+                                                              }
+
+                                                              if (failure) {
+                                                                  failure(response, error);
+                                                              }
+                                                          }];
                              }
                              failure:failure];
 }
