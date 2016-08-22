@@ -508,5 +508,5 @@ Copyright (c) 2014 Contentful GmbH. See LICENSE for further details.
 [1]: https://www.contentful.com/
 [2]: http://www.cocoapods.org/
 [3]: https://github.com/neonichu/cocoapods-testing
-[4]: https://github.com/contentful/contentful-management.objc/releases/download/0.8.0/ContentfulManagementAPI-0.8.0.zip
+[4]: https://github.com/contentful/contentful-management.objc/releases/download/0.9.0/ContentfulManagementAPI-0.9.0.zip
 [5]: https://github.com/contentful/webinar-ios-demo

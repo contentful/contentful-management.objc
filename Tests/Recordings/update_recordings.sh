@@ -1,7 +1,7 @@
 #!/bin/sh
 
-OLD_VERSION='0\.7\.1'
-NEW_VERSION=0.8.0
+OLD_VERSION='0\.8\.0'
+NEW_VERSION=0.9.0
 
 for recording in *.recording
 do
