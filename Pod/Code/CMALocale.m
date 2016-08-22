@@ -45,13 +45,15 @@
         self.code = dictionary[@"code"];
         self.defaultLocale = [dictionary[@"default"] boolValue];
         self.name = dictionary[@"name"];
+        self.optional = [dictionary[@"optional"] boolValue];
     }
     return self;
 }
 
 -(CDARequest *)updateWithSuccess:(void (^)())success failure:(CDARequestFailureBlock)failure {
     return [self performPutToFragment:@""
-                       withParameters:@{ @"name": self.name }
+                       withParameters:@{ @"name": self.name,
+                                         @"optional": @(self.isOptional) }
                               success:success
                               failure:failure];
 }

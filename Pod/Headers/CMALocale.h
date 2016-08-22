@@ -31,6 +31,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic) NSString* name;
 
+/**
+ *  Whether or not the receiver is an optional locale.
+ *
+ *  Optional locales do not need values for required fields to publish an entry.
+ */
+@property (nonatomic, getter = isOptional) BOOL optional;
+
 @end
 
 NS_ASSUME_NONNULL_END
