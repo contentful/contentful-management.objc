@@ -1,6 +1,6 @@
 # contentful-management.objc
 
-[![CI Status](http://img.shields.io/travis/contentful/contentful-management.objc.svg?style=flat)](https://travis-ci.org/contentful/contentful-management.objc)
+[![Build Status](https://travis-ci.org/contentful/contentful-management.objc.svg?branch=master)](https://travis-ci.org/contentfulcontentful-management.objc)
 [![Version](https://img.shields.io/cocoapods/v/ContentfulManagementAPI.svg?style=flat)](http://cocoadocs.org/docsets/ContentfulManagementAPI)
 [![License](https://img.shields.io/cocoapods/l/ContentfulManagementAPI.svg?style=flat)](http://cocoadocs.org/docsets/ContentfulManagementAPI)
 [![Platform](https://img.shields.io/cocoapods/p/ContentfulManagementAPI.svg?style=flat)](http://cocoadocs.org/docsets/ContentfulManagementAPI)
